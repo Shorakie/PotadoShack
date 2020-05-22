@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack;
+package ir.aminer.potadoshack.client;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;

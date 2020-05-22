@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack;
+package ir.aminer.potadoshack.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
