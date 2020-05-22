@@ -13,7 +13,7 @@ public class Main {
                 cmd = arg.substring(1);
             else
                 throw new IllegalArgumentException();
-            
+
             switch (cmd) {
                 /* if argument was s or server start the server instead */
                 case "s":
