@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PotatoShack extends Application {
+public class PotadoShack extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
