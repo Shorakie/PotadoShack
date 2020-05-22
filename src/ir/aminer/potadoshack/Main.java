@@ -1,7 +1,7 @@
 package ir.aminer.potadoshack;
 
 import ir.aminer.potadoshack.client.PotadoShack;
-import ir.aminer.potadoshack.server.PotatoShackServer;
+import ir.aminer.potadoshack.server.PotadoShackServer;
 
 public class Main {
     public static void main(String[] args) {
