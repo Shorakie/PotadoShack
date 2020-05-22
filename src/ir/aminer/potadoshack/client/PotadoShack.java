@@ -41,6 +41,9 @@ public class PotadoShack extends Application {
         /* Set current Page to MainMenu */
         SceneHandler.getInstance().activeNode("main_menu");
 
+        if (!Client.hasPreference())
+            SceneHandler.getInstance().activeNode("sign_up");
+
         primaryStage.show();
     }
 }
