@@ -6,9 +6,11 @@ import ir.aminer.potadoshack.server.PotadoShackServer;
 import java.io.IOException;
 
 public class Main {
+    public static boolean runClient = true;
+    public static int port = 25552;
+    public static String host = "localhost";
+
     public static void main(String[] args) throws IOException {
-        boolean runClient = true;
-        int port = 25552;
 
         for (int i=0; i <args.length; i++) {
             String cmd = null;
@@ -29,6 +31,10 @@ public class Main {
                 case "p":
                 case "port":
                     port = Integer.parseInt(args[i+1]);
+                    break;
+                case "h":
+                case "host":
+                    host = args[i+1];
                     break;
                 default:
                     throw new IllegalArgumentException();
