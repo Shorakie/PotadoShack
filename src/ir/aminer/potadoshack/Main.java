@@ -3,28 +3,41 @@ package ir.aminer.potadoshack;
 import ir.aminer.potadoshack.client.PotadoShack;
 import ir.aminer.potadoshack.server.PotadoShackServer;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        for (String arg : args) {
-            String cmd;
-            if (arg.startsWith("--"))
-                cmd = arg.substring(2);
-            else if (arg.startsWith("-"))
-                cmd = arg.substring(1);
-            else
-                throw new IllegalArgumentException();
+    public static void main(String[] args) throws IOException {
+        boolean runClient = true;
+        int port = 25552;
+
+        for (int i=0; i <args.length; i++) {
+            String cmd = null;
+            if (args[i].startsWith("--"))
+                cmd = args[i].substring(2);
+            else if (args[i].startsWith("-"))
+                cmd = args[i].substring(1);
+
+            if(cmd==null)
+                continue;
 
             switch (cmd) {
                 /* if argument was s or server start the server instead */
                 case "s":
                 case "server":
-                    new PotatoShackServer().start();
-                    return;
+                    runClient = false;
+                    break;
+                case "p":
+                case "port":
+                    port = Integer.parseInt(args[i+1]);
+                    break;
                 default:
                     throw new IllegalArgumentException();
             }
         }
 
-        javafx.application.Application.launch(PotadoShack.class, args);
+        if(runClient)
+            javafx.application.Application.launch(PotadoShack.class, args);
+        else
+            new PotadoShackServer().start(port);
     }
 }
