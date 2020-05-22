@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ir.aminer.potadoshack.client.controllers.SignUp"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.SignUp">
+    <VBox layoutX="150.0" layoutY="73.0" prefHeight="254.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <children>
+            <TextField fx:id="txt_username" promptText="username" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+            </TextField>
+            <TextField fx:id="txt_password" promptText="password" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets left="20.0" right="20.0" top="20.0" />
+                </VBox.margin>
+            </TextField>
+            <TextField fx:id="txt_password_confirm" promptText="Confirm password" VBox.vgrow="ALWAYS">
+                <VBox.margin>
+                    <Insets left="20.0" right="20.0" top="20.0" />
+                </VBox.margin>
+            </TextField>
+            <HBox>
+                <VBox.margin>
+                    <Insets left="20.0" right="20.0" top="20.0" />
+                </VBox.margin>
+                <TextField fx:id="txt_first_name" promptText="first name" VBox.vgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets right="20.0" />
+                    </HBox.margin>
+                </TextField>
+                <TextField fx:id="txt_last_name" promptText="last name" VBox.vgrow="ALWAYS" />
+            </HBox>
+            <Button fx:id="btn_signup" alignment="CENTER" mnemonicParsing="false" onAction="#signup" prefWidth="260.0" text="Signup" textAlignment="CENTER">
+                <VBox.margin>
+                    <Insets left="20.0" right="20.0" top="20.0" />
+                </VBox.margin>
+            </Button>
+        </children>
+    </VBox>
 </AnchorPane>
