@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack.core.packets;
+package ir.aminer.potadoshack.core.network.packets;
 
 public class PlaceOrderPacket extends Packet{
     @Override

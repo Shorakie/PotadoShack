@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack.core.packets;
+package ir.aminer.potadoshack.core.network.packets;
 
 import java.io.Serializable;
 
