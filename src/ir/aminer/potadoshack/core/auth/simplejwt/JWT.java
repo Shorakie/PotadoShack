@@ -1,6 +1,6 @@
 package ir.aminer.potadoshack.core.auth.simplejwt;
 
-import ir.aminer.potadoshack.core.SerializationUtils;;
+import ir.aminer.potadoshack.core.utils.SerializationUtils;;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
