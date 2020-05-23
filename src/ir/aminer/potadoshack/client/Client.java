@@ -1,19 +1,24 @@
 package ir.aminer.potadoshack.client;
 
+import ir.aminer.potadoshack.core.BaseClient;
+
 import java.io.File;
-import java.io.Serializable;
 
-public class Client implements Serializable {
-    String username;
-    String first_name;
-    String last_name;
+public class Client extends BaseClient {
+    String jwt;
 
-    public static boolean hasPreference(){
-        File credentialsFile = new File("./user.pref");
-        return (credentialsFile.exists() && credentialsFile.isFile());
+    public static File getPreferenceFile(){
+        return new File("./user.pref");
     }
 
-    public boolean isAuthenticated(){
-        return false;
+    public static BaseClient loadClient() {
+        if (!hasPreference())
+            throw new IllegalStateException("Client doesn't have a preference.");
+        return loadClient(getPreferenceFile());
+    }
+
+    public static boolean hasPreference() {
+        File credentialsFile = getPreferenceFile();
+        return (credentialsFile.exists() && credentialsFile.isFile());
     }
 }
