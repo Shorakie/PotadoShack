@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack.core.eventsystem;
+package ir.aminer.potadoshack.core.event;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

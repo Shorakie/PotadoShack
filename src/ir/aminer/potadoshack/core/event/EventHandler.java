@@ -1,6 +1,6 @@
-package ir.aminer.potadoshack.core.eventsystem;
+package ir.aminer.potadoshack.core.event;
 
-import ir.aminer.potadoshack.core.eventsystem.events.Event;
+import ir.aminer.potadoshack.core.event.events.Event;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -51,7 +51,8 @@ public class EventHandler {
                     try {
                         method.invoke(listener, event);
                     } catch (InvocationTargetException e) {
-                        throw new RuntimeException(e.getMessage());
+                        System.err.println(e.getCause().toString());
+                        e.printStackTrace();
                     } catch (IllegalAccessException e) {
                         System.err.println("Could not access method.");
                     }

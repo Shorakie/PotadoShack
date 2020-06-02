@@ -1,6 +1,6 @@
-package ir.aminer.potadoshack.core.eventsystem;
+package ir.aminer.potadoshack.core.event;
 
-import ir.aminer.potadoshack.core.eventsystem.events.Event;
+import ir.aminer.potadoshack.core.event.events.Event;
 
 public abstract class ListenerExecutor {
     public Listener listener;
