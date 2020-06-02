@@ -1,12 +1,12 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-public class SignupPacket extends Packet{
-    private String username;
-    private String password;
-    private String first_name;
-    private String last_name;
+public class SignUpPacket extends Packet{
+    private final String username;
+    private final String password;
+    private final String first_name;
+    private final String last_name;
 
-    public SignupPacket(String username, String password, String first_name, String last_name) {
+    public SignUpPacket(String username, String password, String first_name, String last_name) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
