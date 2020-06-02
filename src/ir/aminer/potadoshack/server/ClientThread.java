@@ -1,36 +1,31 @@
 package ir.aminer.potadoshack.server;
 
-import ir.aminer.potadoshack.core.packets.Packet;
+import ir.aminer.potadoshack.core.error.Error;
+import ir.aminer.potadoshack.core.event.EventHandler;
+import ir.aminer.potadoshack.core.event.utils.EventFactory;
+import ir.aminer.potadoshack.core.network.ClientSocket;
+import ir.aminer.potadoshack.core.network.packets.AuthenticatedPacket;
+import ir.aminer.potadoshack.core.network.packets.Packet;
+import ir.aminer.potadoshack.core.utils.Log;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.Socket;
+import java.io.ObjectOutputStream;
 
 public class ClientThread extends Thread {
 
-    private Socket client;
+    private final ClientSocket client;
 
-    public ClientThread(Socket client) {
+    public ClientThread(ClientSocket client) {
         this.client = client;
     }
 
     @Override
     public void run() {
-        ObjectInputStream inputStream = null;
-        try {
-            inputStream = new ObjectInputStream(client.getInputStream());
-        } catch (IOException e) {
-            System.err.println("Could not initialize InputStream. closing socket.");
-            /* Close the socket */
-            try {client.close();} catch (IOException ioException) {System.err.println("Could not close the socket.");}
-            /* Finish the Thread */
-            return;
-        }
 
-        Packet packet = null;
+        Packet packet;
         try {
-            packet = (Packet)inputStream.readObject();
-
+            packet = client.readPacket();
         } catch (IOException e) {
             System.err.println("Could not read the packet.");
             return;
@@ -39,6 +34,29 @@ public class ClientThread extends Thread {
             return;
         }
 
-        System.out.println(packet.getId());
+        Log.info(client, "Received Packet id:"+packet.getId());
+
+        if(checkAuthentications(packet))
+            EventHandler.getInstance().trigger(EventFactory.getEvent(packet, client));
+        else
+            try {
+                client.sendError(Error.INVALID_TOKEN);
+            } catch (IOException ioException) {
+                System.err.println("Could not send invalid_token error packet");
+            }
+
+        /* Close the socket after handling */
+        try {
+            client.close();
+        } catch (IOException ioException) {
+            System.err.println("Could not close the socket.");
+        }
+    }
+
+    private boolean checkAuthentications(Packet packet) {
+        if (packet instanceof AuthenticatedPacket)
+            return ((AuthenticatedPacket) packet).getJwt().validate(PotadoShackServer.SECRET_KEY);
+        else
+            return true;
     }
 }
