@@ -36,7 +36,10 @@ public class MainMenu extends Page {
 
     @FXML
     public void initialize(){
+        /* make profile picture circle */
         img_user_pfp.setClip(new Circle(img_user_pfp.getFitWidth()/2,img_user_pfp.getFitHeight()/2,img_user_pfp.getFitWidth()/2));
+
+        /* Add foods */
         for(Food food : Food.values()){
             ProductCard productCard = new ProductCard();
             productCard.setProduct(food);
