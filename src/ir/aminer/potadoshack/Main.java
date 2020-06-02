@@ -6,7 +6,10 @@ import ir.aminer.potadoshack.server.PotadoShackServer;
 import java.io.IOException;
 
 public class Main {
-    public static boolean runClient = true;
+    public enum Mode{
+        SERVER, CLIENT
+    }
+    public static Mode mode = Mode.CLIENT;
     public static int port = 25552;
     public static String host = "localhost";
 
@@ -26,12 +29,14 @@ public class Main {
                 /* if argument was s or server start the server instead */
                 case "s":
                 case "server":
-                    runClient = false;
+                    mode = Mode.SERVER;
                     break;
+                /* if argument was p or port set the port */
                 case "p":
                 case "port":
                     port = Integer.parseInt(args[i+1]);
                     break;
+                /* if argument was h or host set the host */
                 case "h":
                 case "host":
                     host = args[i+1];
@@ -41,9 +46,9 @@ public class Main {
             }
         }
 
-        if(runClient)
+        if (mode.equals(Mode.CLIENT))
             javafx.application.Application.launch(PotadoShack.class, args);
-        else
+        else if (mode.equals(Mode.SERVER))
             new PotadoShackServer().start(port);
     }
 }
