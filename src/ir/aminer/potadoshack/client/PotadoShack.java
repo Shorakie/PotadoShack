@@ -1,5 +1,8 @@
 package ir.aminer.potadoshack.client;
 
+import ir.aminer.potadoshack.client.controllers.SignUp;
+import ir.aminer.potadoshack.client.page.Page;
+import ir.aminer.potadoshack.client.page.PageHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,14 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PotadoShack extends Application {
-    Map<String, String> pages = new HashMap<>()
+
+    Map<String, Page> pages = new HashMap<>()
     {{
-        put("main_menu", "layouts/MainMenu.fxml");
-        put("sign_in", "layouts/SignIn.fxml");
-        put("sign_up", "layouts/SignUp.fxml");
-        put("order_registration", "layouts/OrderRegistration.fxml");
-        put("order_view", "layouts/OrderView.fxml");
-        put("cart", "layouts/Cart.fxml");
+        put("sign_up", new SignUp());
     }};
 
     @Override
@@ -28,14 +27,14 @@ public class PotadoShack extends Application {
         Scene primaryScene = new Scene(new Pane());
         primaryStage.setScene(primaryScene);
 
-        /* Awake SceneHandler */
-        SceneHandler.awoke(primaryScene);
+        /* Awake PageHandler */
+        PageHandler.awoke(primaryScene);
 
         /* Dynamically add pages to SceneHandler */
-        for (Map.Entry<String, String> page : pages.entrySet()){
-            SceneHandler.getInstance().addNode(
+        for (Map.Entry<String, Page> page : pages.entrySet()){
+            PageHandler.getInstance().addPage(
                     page.getKey(),
-                    FXMLLoader.load(getClass().getResource(page.getValue())));
+                    page.getValue());
         }
 
         /* Set current Page to MainMenu */
@@ -44,6 +43,8 @@ public class PotadoShack extends Application {
         if (!Client.hasPreference())
             SceneHandler.getInstance().activeNode("sign_up");
 
+        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 }
