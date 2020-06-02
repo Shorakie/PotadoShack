@@ -1,6 +1,7 @@
 package ir.aminer.potadoshack.client;
 
 import ir.aminer.potadoshack.Main;
+import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.SignIn;
 import ir.aminer.potadoshack.client.controllers.SignUp;
 import ir.aminer.potadoshack.client.page.Page;
@@ -19,8 +20,12 @@ public class PotadoShack extends Application {
 
     Map<String, Page> pages = new HashMap<>()
     {{
+        put("main_menu", new MainMenu());
         put("sign_in", new SignIn());
         put("sign_up", new SignUp());
+//        put("order_registration", new Page("layouts/OrderRegistration.fxml"));
+//        put("order_view", new Page("layouts/OrderView.fxml"));
+//        put("cart", new Page("layouts/Cart.fxml"));
     }};
 
     @Override

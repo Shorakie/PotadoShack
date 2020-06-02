@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ir.aminer.potadoshack.client.controllers.MainMenu"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane prefHeight="626.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="740.0" stylesheets="@/css/material.css">
+         <TilePane fx:id="pane" hgap="20.0" prefColumns="1" prefHeight="480.0" prefRows="1" prefWidth="740.0" vgap="20.0">
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </TilePane>
+      </ScrollPane>
+   </center>
+   <left>
+      <AnchorPane prefWidth="200.0" style="-fx-background-color: darkslategrey;" BorderPane.alignment="CENTER">
+         <VBox alignment="TOP_CENTER" maxWidth="180.0" prefHeight="480.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" spacing="10.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <ImageView fx:id="img_user_pfp" fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
+                  <VBox.margin>
+                     <Insets left="20.0" right="20.0" top="20.0" />
+                  </VBox.margin>
+                  <Image url="@/boy-3.jpg" />
+               </ImageView>
+               <HBox alignment="CENTER" maxWidth="180.0">
+                  <Label fx:id="lbl_user_name" alignment="CENTER" contentDisplay="RIGHT" maxWidth="170.0" prefHeight="30.0" style="-fx-background-color: linear-gradient(whitesmoke,ghostwhite); -fx-background-radius: 5 0 0 5;" text="Amin Jafari">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="btn_cart" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: linear-gradient(limegreen,#2bb32b); -fx-border-radius: 0;" text="C" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Roboto Black" size="14.0" />
+                     </font>
+                  </Button>
+               </HBox>
+            </VBox>
+            <Button fx:id="btn_meals" alignment="BASELINE_LEFT" graphicTextGap="10.0" maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-border-width: 0; -fx-background-color: grey;" text="Meals">
+               <font>
+                  <Font name="Roboto Medium" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@/boy-2.jpg" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_orders" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="173.0" maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-border-width: 0; -fx-background-color: grey;" text="My Orders">
+               <font>
+                  <Font name="Roboto Medium" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@/boy-2.jpg" />
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_settings" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="235.0" maxWidth="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-border-width: 0; -fx-background-color: grey;" text="Settings">
+               <font>
+                  <Font name="Roboto Medium" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@/boy-2.jpg" />
+                  </ImageView>
+               </graphic>
+            </Button>
+         </VBox>
+         <Label text="Developed By @Shorakie" textFill="#fdfdfd" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" />
+      </AnchorPane>
+   </left>
+   <top>
+      <fx:include source="../controllers/custom/TitleBar.fxml" />
+   </top>
+</BorderPane>
