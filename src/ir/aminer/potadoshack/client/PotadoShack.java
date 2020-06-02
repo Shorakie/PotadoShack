@@ -1,5 +1,7 @@
 package ir.aminer.potadoshack.client;
 
+import ir.aminer.potadoshack.Main;
+import ir.aminer.potadoshack.client.controllers.SignIn;
 import ir.aminer.potadoshack.client.controllers.SignUp;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
@@ -8,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +19,7 @@ public class PotadoShack extends Application {
 
     Map<String, Page> pages = new HashMap<>()
     {{
+        put("sign_in", new SignIn());
         put("sign_up", new SignUp());
     }};
 
@@ -37,11 +41,10 @@ public class PotadoShack extends Application {
                     page.getValue());
         }
 
-        /* Set current Page to MainMenu */
-        SceneHandler.getInstance().activeNode("main_menu");
-
-        if (!Client.hasPreference())
-            SceneHandler.getInstance().activeNode("sign_up");
+        if (!User.hasPreference())
+            PageHandler.getInstance().activePage("sign_up");
+        else
+            PageHandler.getInstance().activePage("sign_in");
 
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);

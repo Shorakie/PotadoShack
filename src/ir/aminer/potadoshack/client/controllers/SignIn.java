@@ -1,15 +1,74 @@
 package ir.aminer.potadoshack.client.controllers;
 
+import ir.aminer.potadoshack.Main;
+import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.page.Page;
+import ir.aminer.potadoshack.client.page.PageHandler;
+import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
+import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
+import ir.aminer.potadoshack.core.error.Error;
+import ir.aminer.potadoshack.core.network.ClientSocket;
+import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
+import ir.aminer.potadoshack.core.network.packets.SignInPacket;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class SignIn {
+import java.io.IOException;
+
+public class SignIn extends Page {
     public Button btn_signin;
     public TextField txt_username;
-    public TextField txt_password;
+    public PasswordField txt_password;
 
-    public void signin(ActionEvent actionEvent) {
+    public SignIn() {
+        super("layouts/SignIn.fxml");
+    }
 
+//    public SignIn(String path) {
+//        super(path);
+//    }
+
+    @Override
+    public void onEnter(Page from) {
+        if (User.hasPreference() && User.loadClient().getJwt() != null)
+            PageHandler.getInstance().activePage("main_menu");
+    }
+
+    public void signin(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        ClientSocket client = new ClientSocket(Main.host, Main.port);
+
+        SignInPacket signin = new SignInPacket(txt_username.getText(), txt_password.getText());
+        client.sendPacket(signin);
+
+        handleResponse(client);
+    }
+
+    @Override
+    public void onResponse(ResponsePacket response) throws IOException {
+
+        User user;
+        if(User.hasPreference())
+            user = User.loadClient();
+        else {
+            UserPayload payload = JWT.decode(response.getResponse()).getPayload();
+            user = new User(payload.getUsername(), payload.getFirstName(), payload.getLastName());
+            User.getPreferenceFile().createNewFile();
+        }
+        user.setJwt(response.getResponse());
+        user.save();
+        PageHandler.getInstance().activePage("main_menu");
+    }
+
+    @Override
+    public void onError(Error error) throws IOException {
+        System.err.println("Got Error: "+ error);
+    }
+
+    public void Signup(ActionEvent actionEvent) {
+        ((Hyperlink)actionEvent.getSource()).setVisited(false);
+        PageHandler.getInstance().activePage("sign_up");
     }
 }

@@ -3,37 +3,54 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.SignIn">
-<columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="162.0" />
-  <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="264.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="174.0" />
-</columnConstraints>
-<rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-</rowConstraints>
- <children>
-    <VBox prefHeight="254.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-       <children>
-          <TextField fx:id="txt_username" promptText="username">
-             <VBox.margin>
-                <Insets left="20.0" right="20.0" top="20.0" />
-             </VBox.margin>
-          </TextField>
-          <TextField fx:id="txt_password" promptText="password" VBox.vgrow="ALWAYS">
-             <VBox.margin>
-                <Insets left="20.0" right="20.0" top="20.0" />
-             </VBox.margin>
-          </TextField>
-          <Button fx:id="btn_signin" alignment="CENTER" mnemonicParsing="false" onAction="#signin" prefWidth="224.0" text="Signin" textAlignment="CENTER">
-             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-             </VBox.margin>
-          </Button>
-       </children>
-    </VBox>
- </children>
-</GridPane>
+<BorderPane prefHeight="626.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <AnchorPane>
+            <VBox layoutX="320.0" layoutY="182.0" maxHeight="230.0" prefHeight="230.0" prefWidth="300.0">
+                <children>
+                    <Label text="Sign in">
+                        <VBox.margin>
+                            <Insets left="20.0" right="20.0" top="20.0" />
+                        </VBox.margin>
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="txt_username" promptText="username">
+                        <VBox.margin>
+                            <Insets left="20.0" right="20.0" top="20.0" />
+                        </VBox.margin>
+                    </TextField>
+                    <PasswordField fx:id="txt_password" promptText="password" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                            <Insets left="20.0" right="20.0" top="20.0" />
+                        </VBox.margin>
+                    </PasswordField>
+                    <Button fx:id="btn_signin" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#signin" prefHeight="25.0" prefWidth="413.0" text="Signin" textAlignment="CENTER">
+                        <VBox.margin>
+                            <Insets left="20.0" right="20.0" top="20.0" />
+                        </VBox.margin>
+                    </Button>
+                    <TextFlow prefHeight="23.0" prefWidth="260.0">
+                        <children>
+                            <Label text="Don't have an account?">
+                                <padding>
+                                    <Insets right="3.0" />
+                                </padding>
+                            </Label>
+                            <Hyperlink onAction="#Signup" text="Signup" />
+                        </children>
+                        <VBox.margin>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
+                        </VBox.margin>
+                    </TextFlow>
+                </children>
+            </VBox>
+        </AnchorPane>
+    </center>
+    <top>
+        <fx:include source="../controllers/custom/TitleBar.fxml" />
+    </top>
+</BorderPane>
