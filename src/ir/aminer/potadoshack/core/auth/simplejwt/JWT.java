@@ -97,8 +97,8 @@ public class JWT {
         return header;
     }
 
-    public Payload getPayload() {
-        return payload;
+    public <P extends Payload> P getPayload() {
+        return (P)payload;
     }
 
     @Override
