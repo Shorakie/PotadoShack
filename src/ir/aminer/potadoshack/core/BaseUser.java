@@ -2,19 +2,18 @@ package ir.aminer.potadoshack.core;
 
 import java.io.*;
 
-public class BaseClient implements Serializable {
+public class BaseUser implements Serializable {
     protected String username;
-    protected String password;
     protected String first_name;
     protected String last_name;
 
-    public static BaseClient loadClient(File clientFile) {
-        if (! (clientFile.exists() && clientFile.isFile()))
+    public static BaseUser loadUser(File userFile) {
+        if (! (userFile.exists() && userFile.isFile()))
             throw new IllegalStateException("Specified path should exist and be a valid file.");
 
         ObjectInputStream inputStream;
         try {
-            inputStream = new ObjectInputStream(new FileInputStream(clientFile));
+            inputStream = new ObjectInputStream(new FileInputStream(userFile));
         } catch (IOException e) {
             System.err.println("Could not initialize InputStream.");
             return null;
@@ -34,16 +33,16 @@ public class BaseClient implements Serializable {
         /* Close the stream */
         try {inputStream.close();} catch (IOException e) {System.err.println("Could not close the stream.");}
 
-        return (BaseClient)o;
+        return (BaseUser)o;
     }
 
-    public boolean save(File clientFile){
-        if (! (clientFile.exists() && clientFile.isFile()))
+    public boolean save(File userFile){
+        if (! (userFile.exists() && userFile.isFile()))
             throw new IllegalStateException("Specified path should exist and be a valid file.");
 
         ObjectOutputStream outputStream;
         try {
-            outputStream = new ObjectOutputStream(new FileOutputStream(clientFile));
+            outputStream = new ObjectOutputStream(new FileOutputStream(userFile));
         } catch (IOException e) {
             System.err.println("Could not initialize OutputStream.");
             return false;
@@ -64,10 +63,6 @@ public class BaseClient implements Serializable {
 
     public String getUsername() {
         return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getFirstName() {
