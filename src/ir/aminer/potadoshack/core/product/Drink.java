@@ -5,17 +5,19 @@ public enum Drink implements Product {
 
 
     public enum Category implements Product.Category {
-        HOT_DRINK("Hot drink", "orangered"),
-        COLD_DRINK("Cold drink", "skyblue"),
-        SHAKE("Shake", "hotpink"),
+        HOT_DRINK("Hot drink", "orangered", "\f7b6"),
+        COLD_DRINK("Cold drink", "skyblue", "\f0f4"),
+        SHAKE("Shake", "hotpink", "\f0fc"),
         ;
 
         private final String name;
         private final String color;
+        private final String icon;
 
-        Category(String name, String color) {
+        Category(String name, String color, String icon) {
             this.name = name;
             this.color = color;
+            this.icon = icon;
         }
 
         @Override
@@ -26,6 +28,11 @@ public enum Drink implements Product {
         @Override
         public String getColor() {
             return this.color;
+        }
+
+        @Override
+        public String getIcon() {
+            return this.icon;
         }
     }
 

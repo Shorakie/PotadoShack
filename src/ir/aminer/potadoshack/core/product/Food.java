@@ -8,24 +8,25 @@ public enum Food implements Product {
     ROYAL_BURGER(4, "Royal Burger", 8000, "Bread, Burger", "/girl-4.png", Category.BURGER),
     TANDOORI_DOUBLE_BURGER(5, "TANDOORI Double Burger", 8000, "Bread, Burger", "/girl-5.jpg", Category.BURGER),
     TANDOORI_BURGER(6, "TANDOORI Burger", 8000, "Bread, Burger", "/girl-6.png", Category.BURGER),
-
-
+    HOTDOG(7, "Hotdog", 12000, "Bread, Burger", "/girl-6.png", Category.HOTDOG),
+    JUMBON(8, "Jumbon", 32000, "Bread, Burger", "/girl-6.png", Category.PIZZA),
+    SALAD(9, "Salad", 2000, "Bread, Burger", "/girl-6.png", Category.APPETIZER),
     ;
     public enum Category implements Product.Category {
-        APPETIZER("Appetizer", "orange"),
-        BURGER("Burger", "saddlebrown"),
-        SANDWICH("Sandwich", "sandybrown"),
-        CUTLET("Cutlet", "goldenrod"),
-        TANDOORI("Tandoori", "darkred"),
-
+        APPETIZER("Appetizer", "#b2ff59", "\uf06c"),
+        BURGER("Burger", "#795548", "\uf805"),
+        HOTDOG("Hotdog", "#ff6e40", "\uf80f"),
+        PIZZA("Pizza", "#ffab40", "\uf818"),
         ;
 
         private final String name;
         private final String color;
+        private final String icon;
 
-        Category(String name, String color) {
+        Category(String name, String color, String icon) {
             this.name = name;
             this.color = color;
+            this.icon = icon;
         }
 
         @Override
@@ -36,6 +37,11 @@ public enum Food implements Product {
         @Override
         public String getColor() {
             return this.color;
+        }
+
+        @Override
+        public String getIcon() {
+            return icon;
         }
     }
 

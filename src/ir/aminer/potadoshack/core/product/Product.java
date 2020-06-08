@@ -10,6 +10,7 @@ public interface Product extends Serializable {
     public interface Category {
         public String getName();
         public String getColor();
+        public String getIcon();
     }
 
     public int getId();
