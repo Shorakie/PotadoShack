@@ -7,6 +7,7 @@ import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
+import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.network.packets.SignUpPacket;
 import ir.aminer.potadoshack.core.utils.AnimationUtils;
@@ -34,10 +35,6 @@ public class SignUp extends Page {
         super("layouts/SignUp.fxml");
     }
 
-//    public SignUp(String path) {
-//        super(path);
-//    }
-
     public void signup(ActionEvent actionEvent) throws IOException, InterruptedException, ClassNotFoundException {
         if (!txt_password.getText().equals(txt_password_confirm.getText())) {
             // TODO: Show error span
@@ -60,13 +57,18 @@ public class SignUp extends Page {
     }
 
     @Override
-    public void onResponse(ResponsePacket response) throws IOException {
+    public void onResponse(ResponsePacket response) {
         User user = new User(txt_username.getText(), txt_first_name.getText(), txt_last_name.getText());
 
-        if (!User.getPreferenceFile().exists())
-            User.getPreferenceFile().createNewFile();
+        if (!User.getPreferenceFile().exists()) {
+            try {
+                User.getPreferenceFile().createNewFile();
+            } catch (IOException ioException) {
+                System.err.println("Couldn't create preference file");
+            }
+        }
 
-        user.setJwt(response.getResponse());
+        user.setJwt(((PrimitivePacket<String>)response.getResponse()).getData());
         user.save();
         PageHandler.getInstance().activePage("sign_in");
     }
