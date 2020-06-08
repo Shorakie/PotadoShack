@@ -24,8 +24,8 @@ public class PotadoShack extends Application {
         put("sign_in", new SignIn());
         put("sign_up", new SignUp());
 //        put("order_registration", new Page("layouts/OrderRegistration.fxml"));
-//        put("order_view", new Page("layouts/OrderView.fxml"));
-//        put("cart", new Page("layouts/Cart.fxml"));
+//        put("order_view", new Page("layouts/ViewOrder.fxml"));
+//        put("cart", new Page("layouts/ViewCart.fxml"));
     }};
 
     @Override
