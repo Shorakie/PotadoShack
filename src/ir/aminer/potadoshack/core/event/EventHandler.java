@@ -76,8 +76,10 @@ public class EventHandler {
     }
 
     public void trigger(Event event) {
-        if (callbacks.get(event.getClass()) == null)
+        if (callbacks.get(event.getClass()) == null) {
             System.err.println("Event " + event.getClass().getName() + " has no callbacks.");
+            return;
+        }
 
         for (ListenerExecutor executor : callbacks.get(event.getClass()))
             executor.execute(event);
