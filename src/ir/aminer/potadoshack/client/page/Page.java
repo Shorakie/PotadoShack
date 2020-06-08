@@ -21,10 +21,6 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     private final Parent parent;
 
     // TODO: Rework constructors
-//
-//    public Page() {
-//        this((Parent) null);
-//    }
 
     public Page(String path) {
         Parent temp_parent;
@@ -48,28 +44,19 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
         return parent;
     }
 
-    public void handleResponse(ClientSocket client) throws IOException, ClassNotFoundException {
-        try {
-            ResponsePacket response = client.readResponse();
+    public void handleResponse(ClientSocket client) throws IOException {
+        client.handleResponse(this::onResponse, error -> {
+            if (error.equals(Error.UNAUTHORIZED_TOKEN) || error.equals(Error.INVALID_TOKEN))
+                onAuthorityError(error);
 
-            if (response.getStatus().equals(ResponsePacket.Status.ERROR)) {
-                Error error = ((ErrorPacket) response).getError();
-
-                if (error.equals(Error.UNAUTHORIZED_TOKEN) || error.equals(Error.INVALID_TOKEN))
-                    onAuthorityError(error);
-
-                onError(error);
-            } else if (response.getStatus().equals(ResponsePacket.Status.OK))
-                onResponse(response);
-        } catch (EOFException eofException) {
-            System.out.println(client.getAddress() + "#No responses were received");
-        }
+            onError(error);
+        });
     }
 
-    public void onResponse(ResponsePacket response) throws IOException {
+    public void onResponse(ResponsePacket response) {
     }
 
-    public void onError(Error error) throws IOException {
+    public void onError(Error error) {
     }
 
     public void onEnter(Page from) {
@@ -78,7 +65,7 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     public void onExit(Page to) {
     }
 
-    public void onAuthorityError(Error error) throws IOException {
+    public void onAuthorityError(Error error) {
         if (User.getPreferenceFile().delete()){
             PageHandler.getInstance().activePage("sign_in");
         }
