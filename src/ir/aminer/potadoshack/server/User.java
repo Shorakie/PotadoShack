@@ -8,11 +8,13 @@ import ir.aminer.potadoshack.core.order.Order;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class User extends BaseUser {
 
     protected String password;
-    protected HashMap<Integer, Order> orders;
+    protected HashMap<Integer, Order> orders = new HashMap<>();
 
     public User(String username, String password, String first_name, String last_name) {
         this.username = username;
@@ -21,8 +23,19 @@ public class User extends BaseUser {
         this.last_name = last_name;
     }
 
+    public static boolean hasUserFilePref(String username) {
+        File credentialsFile = getUserFilePref(username);
+        return (credentialsFile.exists() && credentialsFile.isFile());
+    }
+
+    private static File getUserFilePref(String username) {
+        return new File("./clients/" + username + ".pref");
+    }
+
     public static User fromUsername(String username) {
-        return (User) loadUser(new File("./clients/" + username + ".pref"));
+        if (!hasUserFilePref(username))
+            throw new IllegalStateException("User doesn't have a preference");
+        return (User) loadUser(getUserFilePref(username));
     }
 
     public static User fromJWT(JWT jwt) {
@@ -45,7 +58,15 @@ public class User extends BaseUser {
         orders.remove(code);
     }
 
+    public HashMap<Integer, Order> getOrders(){
+        return orders;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public boolean save() {
+        return super.save(getUserFilePref(username));
     }
 }
