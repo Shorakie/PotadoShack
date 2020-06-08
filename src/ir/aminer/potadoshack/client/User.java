@@ -3,18 +3,19 @@ package ir.aminer.potadoshack.client;
 import ir.aminer.potadoshack.core.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 import ir.aminer.potadoshack.core.order.Cart;
+import ir.aminer.potadoshack.core.order.Order;
 
 import java.io.File;
 
 public class User extends BaseUser {
     private String jwt = null;
-    private final Cart cart;
+    private Order order;
 
     public User(String username, String firstName, String lastName) {
         this.username = username;
         this.first_name = firstName;
         this.last_name = lastName;
-        this.cart = new Cart();
+        renewCart();
     }
 
     public static File getPreferenceFile(){
@@ -44,7 +45,11 @@ public class User extends BaseUser {
         this.jwt = jwt;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void renewCart() {
+        this.order = new Order();
     }
 }
