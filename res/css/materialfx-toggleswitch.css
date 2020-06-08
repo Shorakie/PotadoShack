@@ -13,7 +13,7 @@
 	-fx-text-base-color: rgb(100.0, 100.0, 100.0);
 	/* Text defaults */
 	-fx-font-family: 'Roboto Medium';
-	-fx-font-size: 14.0px;
+	-fx-font-size: 14px;
 	-fx-disabled-opacity: 0.6;
 	-fx-text-fill: -fx-text-base-color;
 }
