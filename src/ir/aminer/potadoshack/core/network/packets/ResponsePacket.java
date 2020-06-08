@@ -5,10 +5,10 @@ public class ResponsePacket extends Packet{
         OK,ERROR;
     }
 
-    private String response;
+    private Packet response;
     private Status status;
 
-    public ResponsePacket(String response, Status status) {
+    public ResponsePacket(Packet response, Status status) {
         this.status = status;
         this.response = response;
     }
@@ -17,13 +17,13 @@ public class ResponsePacket extends Packet{
         return status;
     }
 
-    public String getResponse() {
+    public Packet getResponse() {
         return response;
     }
 
     @Override
     public String toString() {
-        return getResponse();
+        return getResponse().toString();
     }
 
     @Override

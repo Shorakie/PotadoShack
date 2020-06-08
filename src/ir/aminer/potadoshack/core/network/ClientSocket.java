@@ -5,10 +5,12 @@ import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.function.Consumer;
 
 public class ClientSocket {
 
@@ -30,7 +32,7 @@ public class ClientSocket {
         return client;
     }
 
-    public void sendResponse(String response, ResponsePacket.Status status) throws IOException {
+    public void sendResponse(Packet response, ResponsePacket.Status status) throws IOException {
         sendPacket(new ResponsePacket(response, status));
     }
 
