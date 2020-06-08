@@ -4,33 +4,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onMouseDragged="#dragging" onMousePressed="#drag" prefHeight="32.0" prefWidth="720" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.custom.TitleBar">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" onMouseDragged="#dragging" onMousePressed="#drag" prefHeight="32.0" prefWidth="720" styleClass="title-bar" stylesheets="@TitleBar.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.custom.TitleBar">
+   <Label maxWidth="150.0" prefHeight="32.0" styleClass="title" text="POTADO SHACK" textAlignment="CENTER" textFill="#f0f0f0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
    <HBox alignment="CENTER_RIGHT" fillHeight="false" layoutX="520.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Button contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="278.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMinimize" prefHeight="32.0" style="-fx-background-color: linear-gradient(#2996cc,#2483b3); -fx-background-radius: 0; -fx-border-radius: 0;" text="_" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-         <font>
-            <Font name="Roboto Black" size="12.0" />
-         </font>
+      <Button contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="278.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMinimize" prefHeight="32.0" styleClass="minimize" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
          <padding>
             <Insets left="18.0" right="18.0" />
          </padding>
       </Button>
-      <Button contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="278.0" layoutY="10.0" mnemonicParsing="false" onAction="#onExit" prefHeight="32.0" style="-fx-background-color: linear-gradient(#cc2929,#b32424); -fx-background-radius: 0; -fx-border-radius: 0;" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
-         <font>
-            <Font name="Roboto Black" size="12.0" />
-         </font>
+      <Button contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="278.0" layoutY="10.0" mnemonicParsing="false" onAction="#onExit" prefHeight="32.0" styleClass="close" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
          <padding>
             <Insets left="18.0" right="18.0" />
          </padding>
       </Button>
    </HBox>
    <effect>
-      <DropShadow height="10.5" radius="2.125" width="0.0">
-         <color>
-            <Color red="0.07058823853731155" green="0.07058823853731155" blue="0.07058823853731155" />
-         </color>
-      </DropShadow>
+      <DropShadow color="#121212" height="10.5" radius="2.125" width="0.0" />
    </effect>
 </AnchorPane>

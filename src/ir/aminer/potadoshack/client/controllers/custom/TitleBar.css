@@ -1,0 +1,58 @@
+/*******************************************************************************
+ *                                                                             *
+ * Root					 				                       				   *
+ *                                                                             *
+ ******************************************************************************/
+@font-face {
+    src: url('/font/WorkSans-Bold.ttf');
+}
+
+@font-face {
+    src: url('/font/FontAwesome-Solid.otf');
+}
+
+* {
+    -mat-primary: #b794f6;
+    -mat-secondary: #6002ee;
+    -mat-red: #B00020;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Title Bar                 			                       				   *
+ *                                                                             *
+ ******************************************************************************/
+
+.title-bar {
+    -fx-background-color: #202020;
+}
+
+.minimize {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: 'Font Awesome 5 Free Solid';
+    -fx-font-size: 9px;
+}
+
+.minimize:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+}
+
+.close {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-font-family: 'Font Awesome 5 Free Solid';
+    -fx-font-size: 14px;
+}
+
+.close:hover{
+    -fx-background-color: -mat-red;
+}
+
+.title{
+    -fx-font-family: 'Work Sans bold';
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255, 255, 255, 0.2);
+}
