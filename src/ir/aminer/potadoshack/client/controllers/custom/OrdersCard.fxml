@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root maxHeight="50.0" prefWidth="700.0" styleClass="box" stylesheets="@OrderCard.css" type="AnchorPane"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0" AnchorPane.leftAnchor="0.0">
+        <padding>
+            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0"/>
+        </padding>
+        <Label styleClass="fontawesome, icon" text=""/>
+        <Label fx:id="lbl_code" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" styleClass="code" text="1">
+            <padding>
+                <Insets left="5.0" right="5.0"/>
+            </padding>
+            <HBox.margin>
+                <Insets left="10.0"/>
+            </HBox.margin>
+        </Label>
+    </HBox>
+    <HBox spacing="5" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="lbl_total_price" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity"
+               minWidth="-Infinity" prefHeight="30.0" prefWidth="120" styleClass="order-total" text="0">
+            <padding>
+                <Insets left="5.0" right="5.0"/>
+            </padding>
+            <HBox.margin>
+                <Insets right="10.0"/>
+            </HBox.margin>
+        </Label>
+        <JFXButton fx:id="btn_view" onAction="#onView" prefHeight="30.0" styleClass="fontawesome" text="">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <JFXButton fx:id="btn_delete" onAction="#onDelete" prefHeight="30.0" styleClass="fontawesome, delete-button"
+                   text="">
+            <HBox.margin>
+                <Insets left="20.0"/>
+            </HBox.margin>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+        </JFXButton>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+    </HBox>
+</fx:root>
