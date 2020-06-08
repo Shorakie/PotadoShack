@@ -1,0 +1,9 @@
+#total-price{
+    -fx-font-family: 'Work Sans Bold';
+}
+
+.submit-button{
+    -fx-font-family: 'Work Sans Bold';
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}

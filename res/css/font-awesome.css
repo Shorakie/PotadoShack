@@ -1,0 +1,7 @@
+@font-face {
+    src: url('/font/FontAwesome-Solid.otf');
+}
+
+.font-awesome{
+    -fx-font-family: 'Font Awesome 5 Free Solid';
+}

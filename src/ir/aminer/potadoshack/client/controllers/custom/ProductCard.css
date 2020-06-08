@@ -1,0 +1,77 @@
+/*******************************************************************************
+ *                                                                             *
+ * Root					 				                       				   *
+ *                                                                             *
+ ******************************************************************************/
+@font-face {
+	src: url('/font/WorkSans-Bold.ttf');
+}
+
+@font-face {
+	src: url('/font/WorkSans-Regular.ttf');
+}
+
+* {
+    -mat-primary: #b794f6;
+    -mat-secondary: #6002ee;
+    -mat-red: #B00020;
+    -mat-text: rgba(255, 255, 255, 0.87);
+    -mat-text-low: rgba(255, 255, 255, 0.60);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Product Card             			                       				   *
+ *                                                                             *
+ ******************************************************************************/
+
+.product-card {
+    -fx-background-radius: 5;
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+}
+
+.product-card:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.header {
+    -fx-effect: none;
+    -fx-background-color: -mat-secondary;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.image {
+}
+
+.count{
+    -fx-font-family: 'Work Sans Bold';
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-text-fill: -mat-text-low;
+}
+
+.count:focused{
+    -fx-text-fill: -mat-text;
+}
+
+.name {
+    -fx-effect: none;
+    -fx-font-family: 'Work Sans bold';
+    -fx-font-size: 15;
+    -fx-text-fill: -mat-primary;
+}
+
+.price {
+    -fx-effect: none;
+    -fx-font-family: 'Work Sans';
+    -fx-font-size: 14;
+    -fx-text-fill: -mat-text;
+}
+
+.order {
+    -fx-effect: none;
+    -fx-background-color: -mat-secondary;
+    -fx-font-family: 'Work Sans bold';
+    -fx-font-size: 12;
+    -fx-text-fill: -mat-text;
+}
