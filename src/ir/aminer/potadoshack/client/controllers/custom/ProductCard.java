@@ -1,5 +1,6 @@
 package ir.aminer.potadoshack.client.controllers.custom;
 
+import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
 import ir.aminer.potadoshack.core.product.Product;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
@@ -21,24 +22,6 @@ import java.util.function.Consumer;
  */
 public class ProductCard extends AnchorPane {
 
-    public class OrderEvent {
-        private Product product;
-        private int amount;
-
-        public OrderEvent(Product product, int amount) {
-            this.product = product;
-            this.amount = amount;
-        }
-
-        public Product getProduct() {
-            return product;
-        }
-
-        public int getAmount() {
-            return amount;
-        }
-    }
-
     public Pane head;
     public ImageView thumbnail;
     public Label txt_name;
@@ -48,7 +31,7 @@ public class ProductCard extends AnchorPane {
     private String color = "black";
     private Product product;
 
-    private Consumer<OrderEvent> orderEventConsumer;
+    private Consumer<ProductChangeEvent> orderEventConsumer = orderEvent -> {};
 
     public ProductCard() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
@@ -144,11 +127,11 @@ public class ProductCard extends AnchorPane {
     }
     
     /// On Order event
-    public Consumer<OrderEvent> getOnOrder() {
+    public Consumer<ProductChangeEvent> getOnOrder() {
         return orderEventConsumer;
     }
 
-    public void setOnOrder(Consumer<OrderEvent> eventHandler) {
+    public void setOnOrder(Consumer<ProductChangeEvent> eventHandler) {
         orderEventConsumer = eventHandler;
     }
 
@@ -159,6 +142,6 @@ public class ProductCard extends AnchorPane {
 
     @FXML
     private void onOrder() {
-        orderEventConsumer.accept(new OrderEvent(getProduct() ,getCount()));
+        orderEventConsumer.accept(new ProductChangeEvent(getProduct() ,getCount()));
     }
 }
