@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="626.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="626.0" prefWidth="940.0" stylesheets="/css/material.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <AnchorPane>
-            <VBox layoutX="320.0" layoutY="182.0" maxHeight="230.0" prefHeight="230.0" prefWidth="300.0">
+        <AnchorPane styleClass="body">
+            <VBox layoutX="320.0" layoutY="182.0" maxHeight="230.0" prefHeight="230.0" prefWidth="300.0" styleClass="box">
                 <children>
                     <Label text="Sign in">
                         <VBox.margin>
@@ -28,14 +29,14 @@
                             <Insets left="20.0" right="20.0" top="20.0" />
                         </VBox.margin>
                     </PasswordField>
-                    <Button fx:id="btn_signin" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#signin" prefHeight="25.0" prefWidth="413.0" text="Signin" textAlignment="CENTER">
+                    <JFXButton fx:id="btn_signin" alignment="CENTER" buttonType="RAISED" defaultButton="true" mnemonicParsing="false" onAction="#signin" prefHeight="25.0" prefWidth="413.0" text="Signin" textAlignment="CENTER">
                         <VBox.margin>
                             <Insets left="20.0" right="20.0" top="20.0" />
                         </VBox.margin>
-                    </Button>
+                    </JFXButton>
                     <TextFlow prefHeight="23.0" prefWidth="260.0">
                         <children>
-                            <Label text="Don't have an account?">
+                            <Label styleClass="secondary-label" text="Don't have an account?">
                                 <padding>
                                     <Insets right="3.0" />
                                 </padding>
