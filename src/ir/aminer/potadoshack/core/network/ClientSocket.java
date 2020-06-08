@@ -82,4 +82,19 @@ public class ClientSocket {
     public String getAddress(){
         return client.getInetAddress().getHostName()+"@"+client.getInetAddress().getHostAddress();
     }
+
+    public void handleResponse(Consumer<ResponsePacket> onResponse, Consumer<Error> onError) throws IOException {
+        try {
+            ResponsePacket response = readResponse();
+
+            if (response.getStatus().equals(ResponsePacket.Status.ERROR))
+                onError.accept(((ErrorPacket) response).getError());
+            else if (response.getStatus().equals(ResponsePacket.Status.OK))
+                onResponse.accept(response);
+        } catch (EOFException eofException) {
+            System.out.println(getAddress() + "#No responses were received");
+        } catch (ClassNotFoundException classNotFoundException){
+            System.err.println("Couldn't cast response object into ResponsePacket");
+        }
+    }
 }
