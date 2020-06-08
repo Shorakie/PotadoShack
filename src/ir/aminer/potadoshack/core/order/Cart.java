@@ -14,15 +14,11 @@ public class Cart implements Serializable {
         products.put(product, count);
     }
 
-    public void removeProduct(Product product) {
+    public synchronized void removeProduct(Product product) {
         products.remove(product);
     }
 
-    public void addProduct(Product product) {
-        addProduct(product, 1);
-    }
-
-    public void addProduct(Product product, final int count) {
+    public synchronized void addProduct(Product product, final int count) {
         products.computeIfPresent(product, (key, value) -> value + count);
         products.computeIfAbsent(product, (key) -> count);
     }
