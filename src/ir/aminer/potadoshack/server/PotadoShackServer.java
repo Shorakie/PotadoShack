@@ -4,6 +4,7 @@ import ir.aminer.potadoshack.core.event.EventHandler;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.utils.Log;
 import ir.aminer.potadoshack.server.listeneres.AuthenticationListener;
+import ir.aminer.potadoshack.server.listeneres.OrdersListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class PotadoShackServer {
         /* Awake event handler to create a new instance of it */
         EventHandler.awake();
         EventHandler.getInstance().register(new AuthenticationListener());
+        EventHandler.getInstance().register(new OrdersListener());
 
         while (true) {
             client = new ClientSocket(serverSocket.accept());
