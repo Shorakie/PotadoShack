@@ -8,52 +8,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root minWidth="-Infinity" prefHeight="240.0" prefWidth="160.0" styleClass="product-card" stylesheets="@ProductCard.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox minWidth="-Infinity" prefHeight="240.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<fx:root minWidth="-Infinity" prefHeight="240.0" prefWidth="160.0" styleClass="product-card"
+         stylesheets="@ProductCard.css" type="javafx.scene.layout.AnchorPane"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox minWidth="-Infinity" prefHeight="240.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
-            <Pane fx:id="head" minHeight="7.0" prefHeight="7.0" prefWidth="160.0" styleClass="header" />
-            <ImageView fx:id="thumbnail" fitHeight="160.0" fitWidth="160.0" styleClass="image" VBox.vgrow="ALWAYS" />
+            <Pane fx:id="head" minHeight="7.0" prefHeight="7.0" prefWidth="160.0" styleClass="header"/>
+            <ImageView fx:id="thumbnail" fitHeight="160.0" fitWidth="160.0" styleClass="image" VBox.vgrow="ALWAYS"/>
             <AnchorPane prefHeight="73.0" prefWidth="160.0">
                 <VBox prefHeight="40.0" prefWidth="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <Label fx:id="txt_name" prefHeight="25.0" styleClass="name" text="Name" wrapText="true">
                         <VBox.margin>
-                            <Insets left="10.0" right="5.0" top="5.0" />
+                            <Insets left="10.0" right="5.0" top="5.0"/>
                         </VBox.margin>
                         <font>
-                            <Font name="System Bold" size="14.0" />
+                            <Font name="System Bold" size="14.0"/>
                         </font>
                     </Label>
-                    <Label fx:id="lbl_price" prefHeight="35.0" prefWidth="100.0" styleClass="price" text="price" textAlignment="CENTER">
+                    <Label fx:id="lbl_price" prefHeight="35.0" prefWidth="100.0" styleClass="price" text="price"
+                           textAlignment="CENTER">
                         <opaqueInsets>
-                            <Insets />
+                            <Insets/>
                         </opaqueInsets>
                         <VBox.margin>
-                            <Insets left="10.0" right="5.0" />
+                            <Insets left="10.0" right="5.0"/>
                         </VBox.margin>
                     </Label>
                 </VBox>
-                <HBox alignment="CENTER_RIGHT" maxWidth="160.0" prefHeight="35.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <TextField fx:id="txt_count" alignment="CENTER" focusTraversable="false" prefHeight="25.0" prefWidth="30.0" styleClass="count" text="1">
+                <HBox alignment="CENTER_RIGHT" maxWidth="160.0" prefHeight="35.0" spacing="5.0"
+                      AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <TextField fx:id="txt_count" alignment="CENTER" focusTraversable="false" prefHeight="25.0"
+                               prefWidth="30.0" styleClass="count" text="1">
                     </TextField>
-                    <JFXButton fx:id="btn_order" alignment="CENTER_RIGHT" maxWidth="115.0" onAction="#onOrder" styleClass="order" text="Order" textAlignment="JUSTIFY" textFill="WHITE">
+                    <JFXButton fx:id="btn_order" alignment="CENTER_RIGHT" maxWidth="115.0" onAction="#onOrder"
+                               styleClass="order" text="Order" textAlignment="JUSTIFY" textFill="WHITE">
                         <font>
-                            <Font name="System Bold" size="12.0" />
+                            <Font name="System Bold" size="12.0"/>
                         </font>
                         <HBox.margin>
-                            <Insets />
+                            <Insets/>
                         </HBox.margin>
                         <padding>
-                            <Insets bottom="6.0" left="15.0" right="15.0" top="6.0" />
+                            <Insets bottom="6.0" left="15.0" right="15.0" top="6.0"/>
                         </padding>
                     </JFXButton>
                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                     </padding>
                 </HBox>
             </AnchorPane>
         </children>
     </VBox>
     <effect>
-        <DropShadow height="5.0" radius="2.0" width="5.0" />
+        <DropShadow height="5.0" radius="2.0" width="5.0"/>
     </effect>
 </fx:root>

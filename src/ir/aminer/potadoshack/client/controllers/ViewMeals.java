@@ -11,11 +11,13 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 public class ViewMeals {
     @FXML
@@ -45,6 +47,7 @@ public class ViewMeals {
                 return null;
             }
         };
+
         executorService.submit(addFoodsThread);
     }
 

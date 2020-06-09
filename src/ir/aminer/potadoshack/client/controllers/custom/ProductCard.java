@@ -1,5 +1,6 @@
 package ir.aminer.potadoshack.client.controllers.custom;
 
+import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
 import ir.aminer.potadoshack.core.product.Product;
 import javafx.beans.property.ObjectProperty;
@@ -71,6 +72,7 @@ public class ProductCard extends AnchorPane {
 
     public void setProduct(Product product) {
         this.product = product;
+
         setThumbnail(new Image(product.getImageUrl()));
         setName(product.getName());
         setColor(product.getCategory().getColor());
@@ -142,6 +144,6 @@ public class ProductCard extends AnchorPane {
 
     @FXML
     private void onOrder() {
-        orderEventConsumer.accept(new ProductChangeEvent(getProduct() ,getCount()));
+        orderEventConsumer.accept(new ProductChangeEvent(getProduct(), getCount()));
     }
 }
