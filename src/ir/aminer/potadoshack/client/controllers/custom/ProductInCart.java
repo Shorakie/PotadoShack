@@ -74,10 +74,6 @@ public class ProductInCart extends AnchorPane {
         setIconColor(product.getCategory().getColor());
         setName(product.getName());
         setPrice(product.getPrice());
-
-//        btn_plus.setDisable(getReadOnly());
-//        btn_minus.setDisable(getReadOnly());
-//        btn_delete.setDisable(getReadOnly());
     }
 
     public boolean getReadOnly(){
@@ -86,6 +82,10 @@ public class ProductInCart extends AnchorPane {
 
     public void setReadOnly(boolean readOnly){
         this.readOnly = readOnly;
+
+        btn_plus.setDisable(readOnly);
+        btn_minus.setDisable(readOnly);
+        btn_delete.setDisable(readOnly);
     }
 
     /// icon property
