@@ -2,18 +2,26 @@ package ir.aminer.potadoshack.client.controllers;
 
 import ir.aminer.potadoshack.client.PotadoShack;
 import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.controllers.views.View;
+import ir.aminer.potadoshack.client.controllers.views.ViewCart;
+import ir.aminer.potadoshack.client.controllers.views.ViewMeals;
+import ir.aminer.potadoshack.client.controllers.views.ViewOrder;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
+import jdk.jfr.SettingControl;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MainMenu extends Page {
     @FXML
@@ -32,12 +40,6 @@ public class MainMenu extends Page {
     @FXML
     private Button btn_settings;
 
-
-    public static enum View{
-        MEALS, ORDERS, CART, SETTINGS
-    }
-
-    private View selectedView;
     private Button selectedButton = btn_meals;
 
     public MainMenu() {
@@ -50,78 +52,80 @@ public class MainMenu extends Page {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() throws IOException{
         /* make profile picture circle */
         img_user_pfp.setClip(new Circle(img_user_pfp.getFitWidth() / 2, img_user_pfp.getFitHeight() / 2, img_user_pfp.getFitWidth() / 2));
 
-        border_pane.setCenter(FXMLLoader.load(PotadoShack.class.getResource("layouts/ViewMeals.fxml")));
-        selectedView = View.MEALS;
+        FXMLLoader loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewMeals.fxml"));
+        loader.setController(new ViewMeals(this));
+        border_pane.setCenter(loader.load());
         selectedButton = btn_meals;
     }
 
-    public Object selectView(View view) {
-        if (selectedView.equals(view))
-            return null;
+    public void selectView(View view) {
+        final View.Type type = view.getType();
 
-        Object control = null;
-
-        selectedView = view;
         selectedButton.getStyleClass().remove("selected");
         selectedButton.getGraphic().getStyleClass().remove("selected-icon");
 
-        try {
-            if (view.equals(View.MEALS)) {
-                FXMLLoader loader = new FXMLLoader(PotadoShack.class.getResource("layouts/ViewMeals.fxml"));
-                ScrollPane pane = loader.load();
-                control = loader.getController();
-                border_pane.setCenter(pane);
-                selectedButton = btn_meals;
+        FXMLLoader loader = null;
+        if (type.equals(View.Type.MEALS)) {
+            loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewMeals.fxml"));
 
-            } else if (view.equals(View.CART)) {
-                FXMLLoader loader = new FXMLLoader(PotadoShack.class.getResource("layouts/ViewCart.fxml"));
-                BorderPane pane = loader.load();
-                control = loader.getController();
-                border_pane.setCenter(pane);
-                selectedButton = btn_cart;
-            } else if (view.equals(View.ORDERS)) {
-                FXMLLoader loader = new FXMLLoader(PotadoShack.class.getResource("layouts/ViewOrder.fxml"));
-                ScrollPane pane = loader.load();
-                control = loader.getController();
+            selectedButton = btn_meals;
+        } else if (type.equals(View.Type.CART)) {
+            loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewCart.fxml"));
 
-                ((ViewOrder) control).setMainMenu(this);
+            selectedButton = btn_cart;
+        } else if (type.equals(View.Type.ORDERS)) {
+            loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewOrder.fxml"));
 
-                border_pane.setCenter(pane);
-                selectedButton = btn_orders;
-            } else if (view.equals(View.SETTINGS)) {
-                selectedButton = btn_settings;
-            }
-        } catch (IOException ignored) {
-            System.err.println("Couldn't load fxml files");
+            selectedButton = btn_orders;
+        } else if (type.equals(View.Type.SETTINGS)) {
+            selectedButton = btn_settings;
+        }else {
+            throw new IllegalArgumentException("given type is not valid");
         }
+
         selectedButton.getStyleClass().add("selected");
         selectedButton.getGraphic().getStyleClass().add("selected-icon");
 
-        return control;
+        if (loader == null)
+            return;
+
+        loader.setController(view);
+
+        try {
+            border_pane.setCenter(loader.load());
+        } catch (IOException ignored) {
+            System.err.println("Couldn't load fxml file");
+        }
+
     }
 
     @FXML
     private void onMeals() throws IOException {
-        selectView(View.MEALS);
+        selectView(new ViewMeals(this));
     }
 
     @FXML
     private void onViewCart() throws IOException {
-        selectView(View.CART);
+        selectView(new ViewCart(this, User.loadClient().getOrder()));
     }
 
     @FXML
     private void onViewOrders() throws IOException {
-        selectView(View.ORDERS);
+        selectView(new ViewOrder(this));
     }
 
     @FXML
     private void onSettings() throws IOException {
-        selectView(View.SETTINGS);
+        selectView(new View(this){
+            @Override
+            public Type getType() {
+                return Type.SETTINGS;
+            }
+        });
     }
 
     @FXML
