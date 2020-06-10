@@ -1,7 +1,8 @@
-package ir.aminer.potadoshack.client.controllers;
+package ir.aminer.potadoshack.client.controllers.views;
 
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.custom.ProductInCart;
 import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
 import ir.aminer.potadoshack.core.network.ClientSocket;
@@ -21,12 +22,11 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
-public class ViewCart {
+public class ViewCart extends View {
 
     @FXML
     private VBox v_box;
@@ -35,6 +35,8 @@ public class ViewCart {
     @FXML
     private Button btn_submit;
 
+    private boolean readOnly;
+
     ExecutorService executorService = ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
     Supplier<Task<Void>> updateGrandTotalPriceFactory = () -> new Task<Void>() {
         @Override
@@ -42,7 +44,7 @@ public class ViewCart {
             int grand_total_price = 0;
 
             /* Add products in cart */
-            for (HashMap.Entry<Product, Integer> product : currentOrder.getCart().getProducts())
+            for (HashMap.Entry<Product, Integer> product : order.getCart().getProducts())
                 grand_total_price += product.getKey().getPrice() * product.getValue();
 
             int finalGrand_total_price = grand_total_price;
@@ -51,31 +53,26 @@ public class ViewCart {
         }
     };
 
-    private Order currentOrder;
+    private final Order order;
+
+    public ViewCart(MainMenu mainMenu, Order order) {
+        super(mainMenu);
+        this.order = order;
+        setReadOnly(isReadOnly(order));
+    }
 
     @FXML
     public void initialize() {
-        setOrder(User.loadClient().getOrder());
-        executorService.submit(updateGrandTotalPriceFactory.get());
-    }
-
-    public void setOrder(Order order) {
         v_box.getChildren().clear();
-        this.currentOrder = order;
-
-        final boolean isReadOnly = isReadOnly();
 
         Task<Void> addProductsInCart = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                btn_submit.setDisable(isReadOnly);
-                btn_submit.setVisible(!isReadOnly);
 
                 /* Add products in cart */
-                for (HashMap.Entry<Product, Integer> product : currentOrder.getCart().getProducts()) {
-                    System.out.println(product.getKey());
+                for (HashMap.Entry<Product, Integer> product : ViewCart.this.order.getCart().getProducts()) {
                     ProductInCart productInfo = new ProductInCart();
-                    productInfo.setReadOnly(isReadOnly);
+                    productInfo.setReadOnly(isReadOnly());
                     productInfo.setProduct(product.getKey());
                     productInfo.setCount(product.getValue());
 
@@ -88,15 +85,40 @@ public class ViewCart {
                 return null;
             }
         };
-        try {
-            executorService.submit(addProductsInCart).get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+
+        executorService.submit(addProductsInCart);
+
+        executorService.submit(updateGrandTotalPriceFactory.get());
     }
 
-    private boolean isReadOnly() {
-        return !currentOrder.getStatus().equals(Order.Status.CREATED);
+    private boolean isReadOnly(Order order) {
+        return !order.getStatus().equals(Order.Status.CREATED);
+    }
+
+    public final boolean isReadOnly() {
+        return readOnly;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
+
+        executorService.submit(new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> {
+                    btn_submit.setDisable(readOnly);
+                    btn_submit.setVisible(!readOnly);
+                });
+
+                for (Node node : v_box.getChildren()) {
+                    if (!(node instanceof ProductInCart))
+                        continue;
+
+                    Platform.runLater(() ->((ProductInCart) node).setReadOnly(readOnly));
+                }
+                return null;
+            }
+        });
     }
 
     public void onDelete(ProductChangeEvent event) {
@@ -136,13 +158,18 @@ public class ViewCart {
         client.sendPacket(packet);
 
         client.handleResponse(responsePacket -> {
-            System.out.println(((PrimitivePacket<Integer>)responsePacket.getResponse()).getData());
-            setOrder(user.getOrder());
+            setReadOnly(true);
+
             user.renewCart();
             user.save();
 
         }, System.err::println);
 
         client.close();
+    }
+
+    @Override
+    public Type getType() {
+        return Type.CART;
     }
 }

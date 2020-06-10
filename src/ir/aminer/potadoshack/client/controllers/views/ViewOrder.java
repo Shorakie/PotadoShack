@@ -1,7 +1,8 @@
-package ir.aminer.potadoshack.client.controllers;
+package ir.aminer.potadoshack.client.controllers.views;
 
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.custom.OrderCard;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.CancelOrderPacket;
@@ -19,13 +20,15 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ViewOrder {
+public class ViewOrder extends View{
     @FXML private VBox v_box;
-
-    private MainMenu mainMenu = null;
 
     ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+
+    public ViewOrder(MainMenu mainMenu) {
+        super(mainMenu);
+    }
 
     @FXML
     public void initialize() {
@@ -58,10 +61,6 @@ public class ViewOrder {
         executorService.submit(addOrders);
     }
 
-    public void setMainMenu(MainMenu mainMenu) {
-        this.mainMenu = mainMenu;
-    }
-
     public void onDelete(Order order) {
         try {
             ClientSocket client = new ClientSocket(Main.host, Main.port);
@@ -80,8 +79,11 @@ public class ViewOrder {
     }
 
     public void onView(Order order) {
-        ViewCart viewCart = (ViewCart) mainMenu.selectView(MainMenu.View.CART);
-        viewCart.setOrder(order);
+        mainMenu.selectView(new ViewCart(mainMenu, order));
     }
 
+    @Override
+    public Type getType() {
+        return Type.ORDERS;
+    }
 }
