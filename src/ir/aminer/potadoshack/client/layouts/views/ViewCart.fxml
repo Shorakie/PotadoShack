@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane style="-fx-background-color: #121212;" styleClass="body" stylesheets="/css/material.css, /css/Cart.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="740.0"
+                    style="-fx-background-color: #121212;">
+            <VBox fx:id="v_box" spacing="8.0">
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <AnchorPane prefHeight="50" style="-fx-background-color: #1A1A1A;">
+            <HBox prefHeight="30.0" spacing="24.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+                  AnchorPane.topAnchor="10.0">
+                <TextFlow maxWidth="160.0" prefHeight="30.0" prefWidth="160.0">
+                    <Label prefHeight="30.0" text="Total Price: ">
+                        <font>
+                            <Font size="14.0"/>
+                        </font>
+                    </Label>
+                    <Label id="total-price" fx:id="lbl_total_price" prefHeight="30.0" styleClass="secondary-label"
+                           text="0000">
+                        <font>
+                            <Font size="14.0"/>
+                        </font>
+                    </Label>
+                </TextFlow>
+                <Label contentDisplay="RIGHT" graphicTextGap="6.0" prefHeight="30.0" text="Address:">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                    <graphic>
+                        <ChoiceBox prefWidth="150.0"/>
+                    </graphic>
+                </Label>
+
+            </HBox>
+            <JFXButton fx:id="btn_submit" contentDisplay="RIGHT" onAction="#onSubmit" prefHeight="30.0"
+                       styleClass="submit-button" text="Submit" AnchorPane.bottomAnchor="10.0"
+                       AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                <padding>
+                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                </padding>
+                <graphic>
+                    <Label contentDisplay="TEXT_ONLY" styleClass="fontawesome" text=""/>
+                </graphic>
+            </JFXButton>
+        </AnchorPane>
+    </bottom>
+</BorderPane>
