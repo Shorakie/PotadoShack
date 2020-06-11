@@ -4,23 +4,23 @@
  *                                                                             *
  ******************************************************************************/
 @font-face {
-	src: url('/font/WorkSans-Bold.ttf');
+    src: url('/font/WorkSans-Bold.ttf');
 }
 
 @font-face {
-	src: url('/font/FontAwesome-Solid.otf');
+    src: url('/font/FontAwesome-Solid.otf');
 }
 
 @font-face {
-	src: url('/font/WorkSans-Regular.ttf');
+    src: url('/font/WorkSans-Regular.ttf');
 }
 
 * {
-	-mat-primary: #b794f6;
-	-mat-secondary: #6002ee;
-	-mat-red: #B00020;
-	-mat-text: rgba(255, 255, 255, 0.87);
-	-mat-text-low: rgba(255, 255, 255, 0.60);
+    -mat-primary: #b794f6;
+    -mat-secondary: #6002ee;
+    -mat-red: #B00020;
+    -mat-text: rgba(255, 255, 255, 0.87);
+    -mat-text-low: rgba(255, 255, 255, 0.60);
 }
 
 /*******************************************************************************
@@ -30,13 +30,13 @@
  ******************************************************************************/
 
 .box {
-	-fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 2);
-	-fx-background-color: rgba(255, 255, 255, 0.07);
-	-fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, black, 3, 0, 0, 2);
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-background-radius: 5;
 }
 
-.body{
-	-fx-background-color: #121212;
+.body {
+    -fx-background-color: #121212;
 }
 
 /*******************************************************************************
@@ -45,52 +45,53 @@
  *                                                                             *
  ******************************************************************************/
 
-.scroll-bar{
-	-fx-focus-traversable: false;
-	-fx-border-style: hidden;
-	-fx-background-color: transparent;
+.scroll-bar {
+    -fx-focus-traversable: false;
+    -fx-border-style: hidden;
+    -fx-background-color: transparent;
 }
+
 .scroll-bar:vertical .track-background,
 .scroll-bar:horizontal .track-background,
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track {
-	-fx-background-color: transparent;
-	-fx-border-color:transparent;
-	-fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
 }
 
 .scroll-bar:vertical .thumb,
 .scroll-bar:horizontal .thumb {
-	-fx-background-color: rgba(255, 255, 255, 0.08);
-	-fx-background-radius: 0;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 0;
 }
 
 .scroll-bar:horizontal .thumb:hover,
 .scroll-bar:vertical .thumb:hover {
-	-fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-background-color: rgba(255, 255, 255, 0.12);
 }
 
 .scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button,
 .scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button {
-	-fx-background-color:transparent;
-	-fx-padding: 5;
+    -fx-background-color: transparent;
+    -fx-padding: 5;
 }
 
 .scroll-bar:vertical .decrement-arrow,
 .scroll-bar:horizontal .decrement-arrow,
 .scroll-bar:vertical .increment-arrow,
-.scroll-bar:horizontal .increment-arrow{
-	-fx-pref-width: 5px;
-	-fx-pref-height: 0px;
+.scroll-bar:horizontal .increment-arrow {
+    -fx-pref-width: 5px;
+    -fx-pref-height: 0px;
 }
 
 .scroll-bar:vertical:focused,
 .scroll-bar:horizontal:focused {
-	-fx-background-color: transparent,rgb(96,96,96),rgb(96,96,96);
+    -fx-background-color: transparent, rgb(96, 96, 96), rgb(96, 96, 96);
 }
 
 .scroll-pane > .viewport {
-	-fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 
@@ -99,30 +100,30 @@
  * Text Field, Label														   *
  *                                                                             *
  ******************************************************************************/
-.fontawesome{
-	-fx-font-family: 'Font Awesome 5 Free Solid' !important;
+.fontawesome {
+    -fx-font-family: 'Font Awesome 5 Free Solid' !important;
 }
 
-.label{
-	-fx-font-family: 'Work Sans';
-	-fx-text-fill: -mat-primary;
+.label {
+    -fx-font-family: 'Work Sans';
+    -fx-text-fill: -mat-primary;
 }
 
-.secondary-label{
-	-fx-text-fill: -mat-text;
+.secondary-label {
+    -fx-text-fill: -mat-text;
 }
 
-.text-field{
-	-fx-effect: none;
-	-fx-font-family: 'Work Sans';
-	-fx-background-color: transparent;
-	-fx-border-width: 0 0 2 0;
-	-fx-border-color: #cccccc;
-	-fx-text-fill: -mat-text;
+.text-field {
+    -fx-effect: none;
+    -fx-font-family: 'Work Sans';
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #cccccc;
+    -fx-text-fill: -mat-text;
 }
 
-.text-field:focused{
-	-fx-border-color: -mat-primary;
+.text-field:focused {
+    -fx-border-color: -mat-primary;
 }
 
 
@@ -132,12 +133,54 @@
  *                                                                             *
  ******************************************************************************/
 
-.button{
-	-fx-background-color: -mat-secondary;
-	-fx-border-radius: 5;
-	-fx-text-fill: -mat-text;
+.button {
+    -fx-background-color: -mat-secondary;
+    -fx-border-radius: 5;
+    -fx-text-fill: -mat-text;
 }
 
-.button:hover{
-	-fx-background-color: -mat-secondary, #ffffff0C;
+.button:hover {
+    -fx-background-color: -mat-secondary, rgba(255, 255, 255, 0.05);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * ComboBox, ChoiceBox COMMON                                                  *
+ *                                                                             *
+ ******************************************************************************/
+.combo-box {
+    -fx-padding: 3px 0px 0px 0px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1a1a1a;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0.0, 0, 0);
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: #1a1a1a;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+    -fx-background-color: -mat-primary;
+    -fx-text-fill: -mat-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #1a1a1a, rgba(255, 255, 255, 0.05);
+    -fx-text-fill: -mat-text;
+}
+
+.combo-box-base {
+    -fx-background-color: transparent;
+}
+
+.combo-box-base:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
 }
