@@ -35,6 +35,7 @@ public class User extends BaseUser {
     public static User fromUsername(String username) {
         if (!hasUserFilePref(username))
             throw new IllegalStateException("User doesn't have a preference");
+
         return (User) loadUser(getUserFilePref(username));
     }
 

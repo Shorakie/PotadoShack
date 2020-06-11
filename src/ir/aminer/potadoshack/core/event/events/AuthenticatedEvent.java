@@ -17,7 +17,15 @@ public abstract class AuthenticatedEvent extends Event {
 
     public User getUser() throws IOException {
         JWT jwt = ((AuthenticatedPacket)getData()).getJwt();
-        User client = User.fromJWT(jwt);
+
+        User client;
+        try{
+            client = User.fromJWT(jwt);
+        } catch (IllegalStateException exception){
+            getSender().sendError(Error.UNAUTHORIZED_TOKEN);
+            getSender().close();
+            return null;
+        }
 
         if (!client.getPassword().equals(((UserPayload) jwt.getPayload()).getPassword()))
             getSender().sendError(Error.UNAUTHORIZED_TOKEN);
