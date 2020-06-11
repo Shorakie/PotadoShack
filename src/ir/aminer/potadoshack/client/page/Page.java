@@ -11,11 +11,14 @@ import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.ErrorPacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.error.Error;
+import ir.aminer.potadoshack.core.utils.Common;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     private final Parent parent;
@@ -45,12 +48,7 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     }
 
     public void handleResponse(ClientSocket client) throws IOException {
-        client.handleResponse(this::onResponse, error -> {
-            if (error.equals(Error.UNAUTHORIZED_TOKEN) || error.equals(Error.INVALID_TOKEN))
-                onAuthorityError(error);
-
-            onError(error);
-        });
+        client.handleResponseAfterAuthority(this::onResponse, this::onError);
     }
 
     public void onResponse(ResponsePacket response) {
@@ -63,11 +61,5 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     }
 
     public void onExit(Page to) {
-    }
-
-    public void onAuthorityError(Error error) {
-        if (User.getPreferenceFile().delete()){
-            PageHandler.getInstance().activePage("sign_in");
-        }
     }
 }
