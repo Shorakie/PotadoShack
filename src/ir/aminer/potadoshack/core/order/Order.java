@@ -31,6 +31,10 @@ public class Order implements Serializable {
 
     public void close(){
         code = hashCode();
+
+        if (address == null)
+            throw new IllegalStateException("Address is null");
+
         if (status.compareTo(Status.FINALIZED) < 0)
             status = Status.FINALIZED;
     }

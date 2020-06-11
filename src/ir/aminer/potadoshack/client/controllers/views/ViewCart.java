@@ -1,13 +1,17 @@
 package ir.aminer.potadoshack.client.controllers.views;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXSnackbar;
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.custom.ProductInCart;
 import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
+import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.PlaceOrderPacket;
 import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
+import ir.aminer.potadoshack.core.order.Address;
 import ir.aminer.potadoshack.core.order.Order;
 import ir.aminer.potadoshack.core.product.Product;
 import ir.aminer.potadoshack.core.utils.ExecutorUtils;
@@ -19,9 +23,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -34,6 +40,8 @@ public class ViewCart extends View {
     private Label lbl_total_price;
     @FXML
     private Button btn_submit;
+    @FXML
+    private JFXComboBox<Address> address_list;
 
     private boolean readOnly;
 
@@ -65,12 +73,14 @@ public class ViewCart extends View {
     public void initialize() {
         v_box.getChildren().clear();
 
-        Task<Void> addProductsInCart = new Task<Void>() {
+        executorService.submit(new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-
                 /* Add products in cart */
                 for (HashMap.Entry<Product, Integer> product : ViewCart.this.order.getCart().getProducts()) {
+                    if (isCancelled())
+                        break;
+
                     ProductInCart productInfo = new ProductInCart();
                     productInfo.setReadOnly(isReadOnly());
                     productInfo.setProduct(product.getKey());
@@ -84,9 +94,18 @@ public class ViewCart extends View {
 
                 return null;
             }
-        };
+        });
 
-        executorService.submit(addProductsInCart);
+        List<Address> addresses = User.loadClient().getAddresses();
+        for (Address address : addresses)
+            address_list.getItems().add(address);
+
+        if (order.getAddress() != null) {
+            if (!address_list.getItems().contains(order.getAddress()))
+                address_list.getItems().add(order.getAddress());
+
+            address_list.setValue(order.getAddress());
+        }
 
         executorService.submit(updateGrandTotalPriceFactory.get());
     }
@@ -114,7 +133,7 @@ public class ViewCart extends View {
                     if (!(node instanceof ProductInCart))
                         continue;
 
-                    Platform.runLater(() ->((ProductInCart) node).setReadOnly(readOnly));
+                    Platform.runLater(() -> ((ProductInCart) node).setReadOnly(readOnly));
                 }
                 return null;
             }
@@ -147,8 +166,14 @@ public class ViewCart extends View {
 
     @FXML
     public void onSubmit(ActionEvent event) throws IOException {
+        if (address_list.getValue() == null) {
+            (new JFXSnackbar(v_box)).enqueue(new JFXSnackbar.SnackbarEvent(new Label("Amin :D"), new Duration(5000)));
+            return;
+        }
+
         ClientSocket client = new ClientSocket(Main.host, Main.port);
         User user = User.loadClient();
+        user.getOrder().setAddress(address_list.getValue());
         user.getOrder().close();
 
         PlaceOrderPacket packet = new PlaceOrderPacket(
@@ -157,7 +182,7 @@ public class ViewCart extends View {
 
         client.sendPacket(packet);
 
-        client.handleResponse(responsePacket -> {
+        client.handleResponseAfterAuthority(responsePacket -> {
             setReadOnly(true);
 
             user.renewCart();
