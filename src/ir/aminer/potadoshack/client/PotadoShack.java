@@ -6,6 +6,7 @@ import ir.aminer.potadoshack.client.controllers.SignIn;
 import ir.aminer.potadoshack.client.controllers.SignUp;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
+import ir.aminer.potadoshack.core.order.Address;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,9 +24,6 @@ public class PotadoShack extends Application {
         put("main_menu", new MainMenu());
         put("sign_in", new SignIn());
         put("sign_up", new SignUp());
-//        put("order_registration", new Page("layouts/OrderRegistration.fxml"));
-//        put("order_view", new Page("layouts/ViewOrder.fxml"));
-//        put("cart", new Page("layouts/ViewCart.fxml"));
     }};
 
     @Override
