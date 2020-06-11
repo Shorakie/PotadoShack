@@ -40,7 +40,7 @@ public class ViewOrder extends View{
 
                 client.sendPacket(new ViewOrdersPacket(User.loadClient().getJwt().toString()));
 
-                client.handleResponse(responsePacket -> {
+                client.handleResponseAfterAuthority(responsePacket -> {
                     /* Add products in cart */
                     for (HashMap.Entry<Integer, Order> order : ((ViewOrdersPacket) responsePacket.getResponse()).getOrders().entrySet()) {
                         OrderCard orderCard = new OrderCard();
@@ -67,7 +67,7 @@ public class ViewOrder extends View{
 
             client.sendPacket(new CancelOrderPacket(User.loadClient().getJwt().toString(), order.getCode()));
 
-            client.handleResponse(responsePacket -> {
+            client.handleResponseAfterAuthority(responsePacket -> {
                 System.out.println(((PrimitivePacket<String>)responsePacket.getResponse()).getData());
             }, System.err::println);
 
