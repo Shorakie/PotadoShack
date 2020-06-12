@@ -2,6 +2,7 @@ package ir.aminer.potadoshack.client.controllers.views;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.controllers.MainMenu;
@@ -42,6 +43,7 @@ public class ViewCart extends View {
     private JFXComboBox<Address> address_list;
 
     private boolean readOnly;
+    private JFXSnackbar snackbar;
 
     ExecutorService executorService = ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
     Supplier<Task<Void>> updateGrandTotalPriceFactory = () -> new Task<Void>() {
@@ -70,6 +72,7 @@ public class ViewCart extends View {
     @FXML
     public void initialize() {
         v_box.getChildren().clear();
+        snackbar = new JFXSnackbar(v_box);
 
         executorService.submit(new Task<Void>() {
             @Override
@@ -165,7 +168,7 @@ public class ViewCart extends View {
     @FXML
     public void onSubmit(ActionEvent event) throws IOException {
         if (address_list.getValue() == null) {
-            (new JFXSnackbar(v_box)).enqueue(new JFXSnackbar.SnackbarEvent(new Label("Amin :D"), new Duration(5000)));
+            snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Address has not been set.")));
             return;
         }
 
