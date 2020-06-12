@@ -34,41 +34,41 @@
     -fx-background-color: rgba(255, 255, 255, 0.12);
 }
 
-.header {
+.product-card .header {
     -fx-effect: none;
     -fx-background-color: -mat-secondary;
     -fx-background-radius: 5 5 0 0;
 }
 
-.image {
+.product-card .image {
 }
 
-.count{
+.product-card .count{
     -fx-font-family: 'Work Sans Bold';
     -fx-font-weight: bold;
     -fx-font-size: 12;
     -fx-text-fill: -mat-text-low;
 }
 
-.count:focused{
+.product-card .count:focused{
     -fx-text-fill: -mat-text;
 }
 
-.name {
+.product-card .name {
     -fx-effect: none;
     -fx-font-family: 'Work Sans bold';
     -fx-font-size: 15;
     -fx-text-fill: -mat-primary;
 }
 
-.price {
+.product-card .price {
     -fx-effect: none;
     -fx-font-family: 'Work Sans';
     -fx-font-size: 14;
     -fx-text-fill: -mat-text;
 }
 
-.order {
+.product-card .order {
     -fx-effect: none;
     -fx-background-color: -mat-secondary;
     -fx-font-family: 'Work Sans bold';
