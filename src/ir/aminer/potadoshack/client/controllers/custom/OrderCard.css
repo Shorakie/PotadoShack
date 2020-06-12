@@ -21,31 +21,31 @@
  *                                                                             *
  ******************************************************************************/
 
-.box:hover{
+.box:hover {
     -fx-background-color: rgba(255, 255, 255, 0.12);
 }
 
-.code{
+.box .code {
     -fx-background-radius: 5;
     -fx-font-weight: bold;
     -fx-background-color: -mat-primary;
     -fx-text-fill: #121212;
 }
 
-.delete-button{
+.box .delete-button {
     -fx-background-color: -mat-red;
 }
 
-.delete-button:hover{
+.box .delete-button:hover {
     -fx-background-color: -mat-red, #ffffff0C;
 }
 
-.icon {
+.box .icon {
     -fx-font-size: 18;
     -fx-text-fill: -mat-primary;
 }
 
-.order-total{
+.box .order-total {
     -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-text-fill: -mat-text;
