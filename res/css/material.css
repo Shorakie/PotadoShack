@@ -186,3 +186,32 @@
 .combo-box-base:hover {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * Snack Bar                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.jfx-snackbar-content {
+    -fx-background-color: white !important;
+    -fx-background-radius: 2px;
+    -fx-background-insets: 5;
+    -fx-padding: 0;
+}
+
+.jfx-snackbar-toast {
+    -fx-wrap-text: true;
+    -fx-font-family: "Work Sans";
+    -fx-font-size: 12px;
+    -fx-text-fill: #121212 !important;
+}
+
+.jfx-snackbar-action {
+    -fx-text-fill: -mat-primary-variant !important;
+    -fx-background-color: transparent;
+    -fx-background-radius: 2px;
+}
+
+.jfx-snackbar-action:hover {
+    -fx-background-color: transparent, rgba(255, 255, 255, 0.05);
+}
