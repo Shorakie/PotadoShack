@@ -79,10 +79,10 @@ public class PotadoShackServer {
 
 
         while (running.get())
-            commands.getOrDefault(readCmd(), new HelpCommand(commands)).execute();
+            commands.getOrDefault(readNextCmd(), new HelpCommand(commands)).execute();
     }
 
-    private String readCmd(){
+    private String readNextCmd(){
         System.out.print("Server#");
         return new Scanner(System.in).nextLine();
     }
