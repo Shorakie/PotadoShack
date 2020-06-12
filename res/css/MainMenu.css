@@ -1,68 +1,43 @@
 /*******************************************************************************
  *                                                                             *
- * Root					 				                       				   *
- *                                                                             *
- ******************************************************************************/
-@font-face {
-    src: url('/font/WorkSans-Bold.ttf');
-}
-
-@font-face {
-    src: url('/font/FontAwesome-Solid.otf');
-}
-
-@font-face {
-    src: url('/font/WorkSans-Regular.ttf');
-}
-
-* {
-    -mat-primary: #b794f6;
-    -mat-secondary: #6002ee;
-    -mat-red: #B00020;
-    -mat-text: rgba(255, 255, 255, 0.87);
-    -mat-text-low: rgba(255, 255, 255, 0.60);
-}
-
-/*******************************************************************************
- *                                                                             *
  * side Bar						                                               *
  *                                                                             *
  ******************************************************************************/
-.side-bar{
+.side-bar {
     -fx-background-color: #202020;
 }
 
-.side-bar-button-profile{
+.side-bar .button-profile {
     -fx-font-size: 16px;
     -fx-text-fill: -mat-text;
 }
 
-.side-bar-button-icon{
-    -fx-font-size: 16px;
-    -fx-text-fill: -mat-text-low;
-}
-
-.side-bar-button{
+.side-bar .button {
     -fx-background-color: transparent;
     -fx-text-fill: -mat-text-low;
 }
 
-.side-bar-button:hover{
+.side-bar .button .icon {
+    -fx-font-size: 16px;
+    -fx-text-fill: -mat-text-low;
+}
+
+.side-bar .button:hover {
     -fx-background-color: rgba(255, 255, 255, 0.10);
 }
 
-.selected{
+.side-bar .button.selected {
     -fx-effect: dropshadow(three-pass-box, black, 2, 0, 0, 1);
     -fx-background-color: -mat-primary !important;
     -fx-text-fill: #202020 !important;
 }
 
-.selected-icon{
+.side-bar .button .icon.selected-icon {
     -fx-effect: null;
     -fx-text-fill: #202020 !important;
 }
 
-.user-label{
+.side-bar .user-label {
     -fx-font-family: 'Work Sans Bold';
     -fx-text-fill: #202020;
 }
