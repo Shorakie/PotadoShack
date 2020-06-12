@@ -13,6 +13,8 @@ public class Main {
     public static Mode mode = Mode.CLIENT;
     public static int port = 25552;
     public static String host = "localhost";
+    public static int threadPoolSize = 20;
+    public static String secretKey = "P0t4doS3rver";
 
     public static void main(String[] args) throws IOException {
 
@@ -42,6 +44,16 @@ public class Main {
                 case "host":
                     host = args[i + 1];
                     break;
+                /* if argument was secret-key or key set the host */
+                case "key":
+                case "secret-key":
+                    secretKey = args[i + 1];
+                    break;
+                /* if argument was accept-amount or thread-pool-size set the host */
+                case "accept-amount":
+                case "thread-pool-size":
+                    threadPoolSize = Integer.parseInt(args[i + 1]);
+                    break;
                 default:
                     throw new IllegalArgumentException();
             }
@@ -50,6 +62,6 @@ public class Main {
         if (mode.equals(Mode.CLIENT))
             javafx.application.Application.launch(PotadoShack.class, args);
         else if (mode.equals(Mode.SERVER))
-            new PotadoShackServer().start(port);
+            new PotadoShackServer(port).start();
     }
 }
