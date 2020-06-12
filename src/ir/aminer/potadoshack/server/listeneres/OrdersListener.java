@@ -47,7 +47,7 @@ public class OrdersListener implements Listener {
     @ListenerMethod
     public void onCancelOrder(CancelOrderEvent event) throws IOException {
         User user = event.getUser();
-        if (user ==null)
+        if (user == null)
             return;
 
         user.removeOrder(event.getData().getOrderCode());

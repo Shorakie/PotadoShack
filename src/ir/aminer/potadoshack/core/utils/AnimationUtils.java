@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class AnimationUtils {
-    public static Transition pulse(Node node){
+    public static Transition pulse(Node node) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(90), node);
         scaleTransition.setFromX(1);
         scaleTransition.setToX(1.04);

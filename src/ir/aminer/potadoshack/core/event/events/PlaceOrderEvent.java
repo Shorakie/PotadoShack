@@ -4,7 +4,7 @@ import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 import ir.aminer.potadoshack.core.network.packets.PlaceOrderPacket;
 
-public class PlaceOrderEvent extends AuthenticatedEvent{
+public class PlaceOrderEvent extends AuthenticatedEvent {
 
     public PlaceOrderEvent(Packet packet, ClientSocket sender) {
         super(packet, sender);

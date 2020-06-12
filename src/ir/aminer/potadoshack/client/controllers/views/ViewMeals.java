@@ -15,7 +15,7 @@ import javafx.scene.layout.TilePane;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ViewMeals extends View{
+public class ViewMeals extends View {
     @FXML
     private ScrollPane scroll_pane;
     @FXML

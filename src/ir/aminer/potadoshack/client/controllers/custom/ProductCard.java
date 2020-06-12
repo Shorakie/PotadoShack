@@ -1,6 +1,5 @@
 package ir.aminer.potadoshack.client.controllers.custom;
 
-import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
 import ir.aminer.potadoshack.core.product.Product;
 import javafx.beans.property.ObjectProperty;
@@ -32,7 +31,8 @@ public class ProductCard extends AnchorPane {
     private String color = "black";
     private Product product;
 
-    private Consumer<ProductChangeEvent> orderEventConsumer = orderEvent -> {};
+    private Consumer<ProductChangeEvent> orderEventConsumer = orderEvent -> {
+    };
 
     public ProductCard() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductCard.fxml"));
@@ -47,14 +47,14 @@ public class ProductCard extends AnchorPane {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         txt_count.setTextFormatter(new TextFormatter<Object>(c -> {
-            if(c.getControlNewText().isEmpty())
+            if (c.getControlNewText().isEmpty())
                 return c;
             int n;
-            try{
+            try {
                 n = Integer.parseInt(c.getControlNewText());
-            }catch (NumberFormatException exception){
+            } catch (NumberFormatException exception) {
                 return null;
             }
 
@@ -127,7 +127,7 @@ public class ProductCard extends AnchorPane {
     public StringProperty priceProperty() {
         return lbl_price.textProperty();
     }
-    
+
     /// On Order event
     public Consumer<ProductChangeEvent> getOnOrder() {
         return orderEventConsumer;

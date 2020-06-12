@@ -12,7 +12,7 @@ import java.util.Base64;
 import java.util.function.Consumer;
 
 public class Common {
-    public static String hmacSha256(String key, String raw){
+    public static String hmacSha256(String key, String raw) {
         Mac hmac = null;
         try {
             hmac = Mac.getInstance("HmacSHA256");

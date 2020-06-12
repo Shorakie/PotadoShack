@@ -3,7 +3,6 @@ package ir.aminer.potadoshack.client;
 import ir.aminer.potadoshack.core.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 import ir.aminer.potadoshack.core.order.Address;
-import ir.aminer.potadoshack.core.order.Cart;
 import ir.aminer.potadoshack.core.order.Order;
 
 import java.io.File;
@@ -23,7 +22,7 @@ public class User extends BaseUser {
         renewCart();
     }
 
-    public static File getPreferenceFile(){
+    public static File getPreferenceFile() {
         return new File("./user.pref");
     }
 

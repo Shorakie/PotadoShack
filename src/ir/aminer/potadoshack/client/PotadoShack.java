@@ -1,14 +1,11 @@
 package ir.aminer.potadoshack.client;
 
-import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.SignIn;
 import ir.aminer.potadoshack.client.controllers.SignUp;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
-import ir.aminer.potadoshack.core.order.Address;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,15 +16,14 @@ import java.util.Map;
 
 public class PotadoShack extends Application {
 
-    Map<String, Page> pages = new HashMap<>()
-    {{
+    Map<String, Page> pages = new HashMap<>() {{
         put("main_menu", new MainMenu());
         put("sign_in", new SignIn());
         put("sign_up", new SignUp());
     }};
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Potado Shack");
 
         /* Create Empty Scene */
@@ -38,7 +34,7 @@ public class PotadoShack extends Application {
         PageHandler.awoke(primaryScene);
 
         /* Dynamically add pages to SceneHandler */
-        for (Map.Entry<String, Page> page : pages.entrySet()){
+        for (Map.Entry<String, Page> page : pages.entrySet()) {
             PageHandler.getInstance().addPage(
                     page.getKey(),
                     page.getValue());

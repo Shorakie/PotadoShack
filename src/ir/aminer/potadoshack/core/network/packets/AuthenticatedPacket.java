@@ -2,7 +2,7 @@ package ir.aminer.potadoshack.core.network.packets;
 
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 
-public abstract class AuthenticatedPacket extends Packet{
+public abstract class AuthenticatedPacket extends Packet {
     private String jwt;
 
     public AuthenticatedPacket(String jwt) {

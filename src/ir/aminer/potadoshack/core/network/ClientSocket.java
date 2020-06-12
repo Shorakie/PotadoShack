@@ -1,7 +1,7 @@
 package ir.aminer.potadoshack.core.network;
 
-import ir.aminer.potadoshack.core.network.packets.ErrorPacket;
 import ir.aminer.potadoshack.core.error.Error;
+import ir.aminer.potadoshack.core.network.packets.ErrorPacket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.utils.Common;
@@ -80,8 +80,8 @@ public class ClientSocket {
         return inputStream.readObject();
     }
 
-    public String getAddress(){
-        return client.getInetAddress().getHostName()+"@"+client.getInetAddress().getHostAddress();
+    public String getAddress() {
+        return client.getInetAddress().getHostName() + "@" + client.getInetAddress().getHostAddress();
     }
 
     public void handleResponse(Consumer<ResponsePacket> onResponse, Consumer<Error> onError) throws IOException {
@@ -94,7 +94,7 @@ public class ClientSocket {
                 onResponse.accept(response);
         } catch (EOFException eofException) {
             System.out.println(getAddress() + "#No responses were received");
-        } catch (ClassNotFoundException classNotFoundException){
+        } catch (ClassNotFoundException classNotFoundException) {
             System.err.println("Couldn't cast response object into ResponsePacket");
         }
     }

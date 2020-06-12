@@ -1,6 +1,6 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-public class PrimitivePacket <T> extends Packet{
+public class PrimitivePacket<T> extends Packet {
     private final T data;
 
     public PrimitivePacket(T data) {

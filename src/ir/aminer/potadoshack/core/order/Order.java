@@ -29,7 +29,7 @@ public class Order implements Serializable {
         return code;
     }
 
-    public void close(){
+    public void close() {
         code = hashCode();
 
         if (address == null)
@@ -39,13 +39,13 @@ public class Order implements Serializable {
             status = Status.FINALIZED;
     }
 
-    public void settleUp(){
-        if(status.compareTo(Status.SETTLED_UP) < 0)
+    public void settleUp() {
+        if (status.compareTo(Status.SETTLED_UP) < 0)
             status = Status.SETTLED_UP;
     }
 
-    public void deliver(){
-        if(status.compareTo(Status.DELIVERED) < 0)
+    public void deliver() {
+        if (status.compareTo(Status.DELIVERED) < 0)
             status = Status.DELIVERED;
     }
 

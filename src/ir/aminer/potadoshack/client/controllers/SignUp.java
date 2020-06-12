@@ -1,9 +1,9 @@
 package ir.aminer.potadoshack.client.controllers;
 
 import ir.aminer.potadoshack.Main;
+import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
-import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
@@ -11,12 +11,12 @@ import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.network.packets.SignUpPacket;
 import ir.aminer.potadoshack.core.utils.AnimationUtils;
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -68,7 +68,7 @@ public class SignUp extends Page {
             }
         }
 
-        user.setJwt(((PrimitivePacket<String>)response.getResponse()).getData());
+        user.setJwt(((PrimitivePacket<String>) response.getResponse()).getData());
         user.save();
         PageHandler.getInstance().activePage("sign_in");
     }
@@ -93,7 +93,7 @@ public class SignUp extends Page {
     }
 
     public void Signin(ActionEvent actionEvent) {
-        ((Hyperlink)actionEvent.getSource()).setVisited(false);
+        ((Hyperlink) actionEvent.getSource()).setVisited(false);
         PageHandler.getInstance().activePage("sign_in");
     }
 }

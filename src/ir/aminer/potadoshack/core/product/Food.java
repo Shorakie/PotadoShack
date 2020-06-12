@@ -12,6 +12,7 @@ public enum Food implements Product {
     JUMBON(8, "Jumbon", 32000, "Bread, Burger", "/girl-6.png", Category.PIZZA),
     SALAD(9, "Salad", 2000, "Bread, Burger", "/girl-6.png", Category.APPETIZER),
     ;
+
     public enum Category implements Product.Category {
         APPETIZER("Appetizer", "#b2ff59", "\uf06c"),
         BURGER("Burger", "#795548", "\uf805"),

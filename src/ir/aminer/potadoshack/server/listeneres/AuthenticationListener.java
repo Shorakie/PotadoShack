@@ -1,7 +1,7 @@
 package ir.aminer.potadoshack.server.listeneres;
 
-import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
+import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.event.Listener;
 import ir.aminer.potadoshack.core.event.ListenerMethod;
@@ -61,8 +61,8 @@ public class AuthenticationListener implements Listener {
 
         User client = null;
         try {
-             client = User.fromUsername(username);
-        } catch (IllegalStateException ignored){
+            client = User.fromUsername(username);
+        } catch (IllegalStateException ignored) {
             event.getSender().sendError(Error.USERNAME_NOT_FOUND);
             return;
         }

@@ -85,7 +85,7 @@ public class JWT {
         return getEncodedHeaderPayload() + "." + hmacSignature(key);
     }
 
-    private String getEncodedHeaderPayload(){
+    private String getEncodedHeaderPayload() {
         return Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(header))
                 + "." + Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(payload));
     }
@@ -95,7 +95,7 @@ public class JWT {
     }
 
     public <P extends Payload> P getPayload() {
-        return (P)payload;
+        return (P) payload;
     }
 
     @Override

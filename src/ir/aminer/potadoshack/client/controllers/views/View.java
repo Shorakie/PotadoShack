@@ -4,7 +4,7 @@ import ir.aminer.potadoshack.client.controllers.MainMenu;
 
 public abstract class View {
 
-    public static enum Type{
+    public static enum Type {
         MEALS, CART, ORDERS, SETTINGS;
     }
 

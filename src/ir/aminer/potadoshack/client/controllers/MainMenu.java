@@ -10,18 +10,13 @@ import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
-import jdk.jfr.SettingControl;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MainMenu extends Page {
     @FXML
@@ -52,7 +47,7 @@ public class MainMenu extends Page {
     }
 
     @FXML
-    public void initialize() throws IOException{
+    public void initialize() throws IOException {
         /* make profile picture circle */
         img_user_pfp.setClip(new Circle(img_user_pfp.getFitWidth() / 2, img_user_pfp.getFitHeight() / 2, img_user_pfp.getFitWidth() / 2));
 
@@ -83,7 +78,7 @@ public class MainMenu extends Page {
             selectedButton = btn_orders;
         } else if (type.equals(View.Type.SETTINGS)) {
             selectedButton = btn_settings;
-        }else {
+        } else {
             throw new IllegalArgumentException("given type is not valid");
         }
 
@@ -120,7 +115,7 @@ public class MainMenu extends Page {
 
     @FXML
     private void onSettings() throws IOException {
-        selectView(new View(this){
+        selectView(new View(this) {
             @Override
             public Type getType() {
                 return Type.SETTINGS;

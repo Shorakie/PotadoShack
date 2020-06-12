@@ -20,8 +20,9 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ViewOrder extends View{
-    @FXML private VBox v_box;
+public class ViewOrder extends View {
+    @FXML
+    private VBox v_box;
 
     ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
@@ -68,12 +69,12 @@ public class ViewOrder extends View{
             client.sendPacket(new CancelOrderPacket(User.loadClient().getJwt().toString(), order.getCode()));
 
             client.handleResponseAfterAuthority(responsePacket -> {
-                System.out.println(((PrimitivePacket<String>)responsePacket.getResponse()).getData());
+                System.out.println(((PrimitivePacket<String>) responsePacket.getResponse()).getData());
             }, System.err::println);
 
 
             client.close();
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Couldn't send order delete packet");
         }
     }

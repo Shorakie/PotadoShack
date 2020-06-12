@@ -39,7 +39,8 @@ public class ProductInCart extends AnchorPane {
     private Product product;
     boolean readOnly = false;
 
-    private Consumer<ProductChangeEvent> deleteEventConsumer = deleteEvent -> {};
+    private Consumer<ProductChangeEvent> deleteEventConsumer = deleteEvent -> {
+    };
     private final Consumer<ProductChangeEvent> deleteFromView = deleteEvent -> {
         try {
             ((Pane) this.getParent()).getChildren().remove(this);
@@ -76,11 +77,11 @@ public class ProductInCart extends AnchorPane {
         setPrice(product.getPrice());
     }
 
-    public boolean getReadOnly(){
+    public boolean getReadOnly() {
         return readOnly;
     }
 
-    public void setReadOnly(boolean readOnly){
+    public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
 
         btn_plus.setDisable(readOnly);
@@ -103,7 +104,7 @@ public class ProductInCart extends AnchorPane {
     }
 
     // icon color
-    public void setIconColor(String color){
+    public void setIconColor(String color) {
         lbl_icon.setStyle(String.format("-icon-color: %s;", color));
     }
 
