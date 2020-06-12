@@ -21,7 +21,8 @@ public class ViewMeals extends View {
     @FXML
     private TilePane tile_pane;
 
-    private final ExecutorService executorService = ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+    private final static ExecutorService executorService =
+            ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
 
     public ViewMeals(MainMenu mainMenu) {
         super(mainMenu);

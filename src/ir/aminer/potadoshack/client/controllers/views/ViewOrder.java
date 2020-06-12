@@ -24,7 +24,7 @@ public class ViewOrder extends View {
     @FXML
     private VBox v_box;
 
-    ExecutorService executorService =
+    private final static ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
 
     public ViewOrder(MainMenu mainMenu) {

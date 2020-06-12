@@ -45,7 +45,8 @@ public class ViewCart extends View {
     private boolean readOnly;
     private JFXSnackbar snackbar;
 
-    ExecutorService executorService = ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
+    private final static ExecutorService executorService =
+            ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
     Supplier<Task<Void>> updateGrandTotalPriceFactory = () -> new Task<Void>() {
         @Override
         protected Void call() throws Exception {

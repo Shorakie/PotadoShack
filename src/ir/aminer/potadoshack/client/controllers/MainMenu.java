@@ -125,7 +125,7 @@ public class MainMenu extends Page {
 
     @FXML
     private void onLogout() {
-        User.getPreferenceFile().delete();
-        PageHandler.getInstance().activePage("sign_in");
+        if (User.getPreferenceFile().delete())
+            PageHandler.getInstance().activePage("sign_in");
     }
 }
