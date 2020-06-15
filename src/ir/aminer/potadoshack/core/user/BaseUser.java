@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack.core;
+package ir.aminer.potadoshack.core.user;
 
 import java.io.*;
 
@@ -6,6 +6,8 @@ public class BaseUser implements Serializable {
     protected String username;
     protected String first_name;
     protected String last_name;
+    protected String email;
+    protected PhoneNumber phoneNumber;
 
     public static BaseUser loadUser(File userFile) {
         if (!(userFile.exists() && userFile.isFile()))
@@ -79,5 +81,21 @@ public class BaseUser implements Serializable {
 
     public String getLastName() {
         return last_name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
