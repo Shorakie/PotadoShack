@@ -4,8 +4,13 @@ import ir.aminer.potadoshack.core.user.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.order.Order;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 
 public class User extends BaseUser {
@@ -18,6 +23,12 @@ public class User extends BaseUser {
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
+        try {
+            this.profile_picture = ImageIO.read(getClass().getResource("/default-user.jpg"));
+        } catch (IOException ignored) {
+            this.profile_picture = null;
+            System.err.println("Couldn't read image");
+        }
     }
 
     public static boolean hasUserFilePref(String username) {
@@ -62,6 +73,10 @@ public class User extends BaseUser {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean save() {
