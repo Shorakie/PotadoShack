@@ -1,5 +1,6 @@
 package ir.aminer.potadoshack.core.utils;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Transition;
@@ -15,5 +16,14 @@ public class AnimationUtils {
         scaleTransition.setCycleCount(4);
         scaleTransition.setInterpolator(Interpolator.EASE_OUT);
         return scaleTransition;
+    }
+
+    public static Transition fade(Node node, boolean out){
+        FadeTransition transition = new FadeTransition(Duration.millis(140), node);
+        if(out)
+            transition.setToValue(0);
+        else
+            transition.setToValue(1);
+        return transition;
     }
 }
