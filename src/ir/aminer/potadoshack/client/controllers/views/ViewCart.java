@@ -129,6 +129,8 @@ public class ViewCart extends View {
                 Platform.runLater(() -> {
                     btn_submit.setDisable(readOnly);
                     btn_submit.setVisible(!readOnly);
+
+                    address_list.setDisable(readOnly);
                 });
 
                 for (Node node : v_box.getChildren()) {
