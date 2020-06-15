@@ -97,5 +97,4 @@ public enum Food implements Product {
         return category;
     }
 
-
 }
