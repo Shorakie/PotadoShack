@@ -108,6 +108,11 @@
     -fx-font-family: 'Font Awesome 5 Free Solid' !important;
 }
 
+.text {
+    -fx-font-smoothing-type: gray;
+}
+
+
 .label {
     -fx-font-family: 'Work Sans';
     -fx-text-fill: -mat-primary;
@@ -117,7 +122,7 @@
     -fx-text-fill: -mat-text;
 }
 
-.text-field {
+.text-area, .text-field {
     -fx-effect: none;
     -fx-font-family: 'Work Sans';
     -fx-background-color: transparent;
@@ -126,8 +131,14 @@
     -fx-text-fill: -mat-text;
 }
 
-.text-field:focused {
+.text-area:focused, .text-field:focused {
     -fx-border-color: -mat-primary;
+}
+
+.text-area .content {
+    -fx-padding: 0.7em;
+    -fx-border-width: 0.0;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
 }
 
 
@@ -143,6 +154,19 @@
     -fx-text-fill: -mat-text;
 }
 
+.button.flat {
+    -fx-background-color: transparent;
+    -fx-text-fill: -mat-primary-variant;
+}
+
+.button > .graphic {
+    -fx-text-fill: white;
+}
+
+.button.flat .jfx-rippler{
+    -jfx-rippler-fill:-mat-primary;
+}
+
 .button:hover {
     -fx-background-color: -mat-secondary, rgba(255, 255, 255, 0.05);
 }
@@ -154,6 +178,7 @@
  ******************************************************************************/
 .combo-box {
     -fx-padding: 3px 0px 0px 0px;
+    -jfx-rippler-fill:-mat-primary;
 }
 
 .combo-box .list-cell {
@@ -216,4 +241,15 @@
 
 .jfx-snackbar-action:hover {
     -fx-background-color: transparent, rgba(255, 255, 255, 0.05);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Dialog                                                                      *
+ *                                                                             *
+ ******************************************************************************/
+.dialog {
+    -fx-background-color: #121212;
+    -fx-background-radius: 5px;
+    -fx-padding: 10;
 }
