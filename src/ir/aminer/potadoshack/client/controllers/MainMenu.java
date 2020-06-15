@@ -2,14 +2,12 @@ package ir.aminer.potadoshack.client.controllers;
 
 import ir.aminer.potadoshack.client.PotadoShack;
 import ir.aminer.potadoshack.client.User;
-import ir.aminer.potadoshack.client.controllers.views.View;
-import ir.aminer.potadoshack.client.controllers.views.ViewCart;
-import ir.aminer.potadoshack.client.controllers.views.ViewMeals;
-import ir.aminer.potadoshack.client.controllers.views.ViewOrder;
+import ir.aminer.potadoshack.client.controllers.views.*;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -57,13 +55,17 @@ public class MainMenu extends Page {
         selectedButton = btn_meals;
     }
 
+    public Node getCenter() {
+        return border_pane.getCenter();
+    }
+
     public void selectView(View view) {
         final View.Type type = view.getType();
 
         selectedButton.getStyleClass().remove("selected");
         selectedButton.getGraphic().getStyleClass().remove("selected-icon");
 
-        FXMLLoader loader = null;
+        FXMLLoader loader;
         if (type.equals(View.Type.MEALS)) {
             loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewMeals.fxml"));
 
@@ -77,6 +79,7 @@ public class MainMenu extends Page {
 
             selectedButton = btn_orders;
         } else if (type.equals(View.Type.SETTINGS)) {
+            loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewSettings.fxml"));
             selectedButton = btn_settings;
         } else {
             throw new IllegalArgumentException("given type is not valid");
@@ -84,9 +87,6 @@ public class MainMenu extends Page {
 
         selectedButton.getStyleClass().add("selected");
         selectedButton.getGraphic().getStyleClass().add("selected-icon");
-
-        if (loader == null)
-            return;
 
         loader.setController(view);
 
@@ -99,28 +99,23 @@ public class MainMenu extends Page {
     }
 
     @FXML
-    private void onMeals() throws IOException {
+    private void onMeals() {
         selectView(new ViewMeals(this));
     }
 
     @FXML
-    private void onViewCart() throws IOException {
+    private void onViewCart() {
         selectView(new ViewCart(this, User.loadClient().getOrder()));
     }
 
     @FXML
-    private void onViewOrders() throws IOException {
+    private void onViewOrders() {
         selectView(new ViewOrder(this));
     }
 
     @FXML
-    private void onSettings() throws IOException {
-        selectView(new View(this) {
-            @Override
-            public Type getType() {
-                return Type.SETTINGS;
-            }
-        });
+    private void onSettings() {
+        selectView(new ViewSettings(this));
     }
 
     @FXML
