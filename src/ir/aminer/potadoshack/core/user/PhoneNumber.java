@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class PhoneNumber implements Serializable {
     private final int code;
-    private final int number;
+    private final long number;
 
-    public PhoneNumber(int code, int number) {
+    public PhoneNumber(int code, long number) {
         this.code = code;
         this.number = number;
     }
@@ -15,7 +15,7 @@ public class PhoneNumber implements Serializable {
         return code;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
