@@ -9,6 +9,7 @@ import ir.aminer.potadoshack.server.command.HelpCommand;
 import ir.aminer.potadoshack.server.command.StopCommand;
 import ir.aminer.potadoshack.server.listeneres.AuthenticationListener;
 import ir.aminer.potadoshack.server.listeneres.OrdersListener;
+import ir.aminer.potadoshack.server.listeneres.UpdatesListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,6 +62,7 @@ public class PotadoShackServer {
         EventHandler.awake();
         EventHandler.getInstance().register(new AuthenticationListener());
         EventHandler.getInstance().register(new OrdersListener());
+        EventHandler.getInstance().register(new UpdatesListener());
 
         System.out.println("Started Listening.");
         new Thread(() -> {
