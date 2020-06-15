@@ -1,5 +1,7 @@
 package ir.aminer.potadoshack.core.user;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class BaseUser implements Serializable {
@@ -7,7 +9,30 @@ public class BaseUser implements Serializable {
     protected String first_name;
     protected String last_name;
     protected String email;
+
     protected PhoneNumber phoneNumber;
+
+    /* SO https://stackoverflow.com/questions/33074774/javafx-image-serialization */
+    protected transient BufferedImage profile_picture;
+
+    private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+        stream.defaultReadObject();
+        profile_picture = ImageIO.read(stream);
+    }
+
+    private void writeObject(ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+        ImageIO.write(profile_picture, "png", stream);
+    }
+
+    public BaseUser() {
+        try {
+            this.profile_picture = ImageIO.read(getClass().getResource("/default-user.jpg"));
+        } catch (IOException ignored) {
+            System.err.println("Couldn't read the image");
+            this.profile_picture = null;
+        }
+    }
 
     public static BaseUser loadUser(File userFile) {
         if (!(userFile.exists() && userFile.isFile()))
@@ -97,5 +122,21 @@ public class BaseUser implements Serializable {
 
     public void setPhoneNumber(PhoneNumber phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public BufferedImage getProfilePicture() {
+        return profile_picture;
+    }
+
+    public void setProfilePicture(BufferedImage profile_picture) {
+        this.profile_picture = profile_picture;
+    }
+
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.last_name = lastName;
     }
 }
