@@ -12,7 +12,7 @@
              <Insets left="5.0" right="5.0" />
          </padding>
      </Label>
-     <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" styleClass="fontawesome" text="" GridPane.columnIndex="2">
+     <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" styleClass="fontawesome" text="" GridPane.columnIndex="2">
          <padding>
              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
