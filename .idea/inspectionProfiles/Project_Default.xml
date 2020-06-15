@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="5">
+            <item index="0" class="java.lang.String" itemvalue="-mat-primary" />
+            <item index="1" class="java.lang.String" itemvalue="-mat-secondary" />
+            <item index="2" class="java.lang.String" itemvalue="-mat-red" />
+            <item index="3" class="java.lang.String" itemvalue="-mat-text" />
+            <item index="4" class="java.lang.String" itemvalue="-mat-text-low" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="UNCHECKED_WARNING" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="IGNORE_UNCHECKED_ASSIGNMENT" value="false" />
+      <option name="IGNORE_UNCHECKED_GENERICS_ARRAY_CREATION" value="false" />
+      <option name="IGNORE_UNCHECKED_CALL" value="false" />
+      <option name="IGNORE_UNCHECKED_CAST" value="true" />
+      <option name="IGNORE_UNCHECKED_OVERRIDING" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

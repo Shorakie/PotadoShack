@@ -1,6 +1,5 @@
 package ir.aminer.potadoshack.core.auth.simplejwt;
 
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Header implements Serializable {

@@ -29,19 +29,23 @@ public class Order implements Serializable {
         return code;
     }
 
-    public void close(){
+    public void close() {
         code = hashCode();
+
+        if (address == null)
+            throw new IllegalStateException("Address is null");
+
         if (status.compareTo(Status.FINALIZED) < 0)
             status = Status.FINALIZED;
     }
 
-    public void settleUp(){
-        if(status.compareTo(Status.SETTLED_UP) < 0)
+    public void settleUp() {
+        if (status.compareTo(Status.SETTLED_UP) < 0)
             status = Status.SETTLED_UP;
     }
 
-    public void deliver(){
-        if(status.compareTo(Status.DELIVERED) < 0)
+    public void deliver() {
+        if (status.compareTo(Status.DELIVERED) < 0)
             status = Status.DELIVERED;
     }
 

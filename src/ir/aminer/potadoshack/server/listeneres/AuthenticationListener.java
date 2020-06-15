@@ -1,16 +1,15 @@
 package ir.aminer.potadoshack.server.listeneres;
 
-import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
+import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.event.Listener;
 import ir.aminer.potadoshack.core.event.ListenerMethod;
 import ir.aminer.potadoshack.core.event.events.SignInEvent;
 import ir.aminer.potadoshack.core.event.events.SignUpEvent;
-import ir.aminer.potadoshack.core.event.events.ViewOrdersEvent;
 import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
-import ir.aminer.potadoshack.core.utils.HmacSha256;
+import ir.aminer.potadoshack.core.utils.Common;
 import ir.aminer.potadoshack.core.utils.Log;
 import ir.aminer.potadoshack.server.PotadoShackServer;
 import ir.aminer.potadoshack.server.User;
@@ -23,7 +22,7 @@ public class AuthenticationListener implements Listener {
     @ListenerMethod
     public void onSignup(SignUpEvent event) throws IOException {
         String username = event.getData().getUsername();
-        String password = HmacSha256.hash(PotadoShackServer.SECRET_KEY, event.getData().getPassword());
+        String password = Common.hmacSha256(PotadoShackServer.SECRET_KEY, event.getData().getPassword());
         String first_name = event.getData().getFirstName();
         String last_name = event.getData().getLastName();
 
@@ -58,12 +57,12 @@ public class AuthenticationListener implements Listener {
     @ListenerMethod
     public void onSignin(SignInEvent event) throws IOException {
         String username = event.getData().getUsername();
-        String password = HmacSha256.hash(PotadoShackServer.SECRET_KEY, event.getData().getPassword());
+        String password = Common.hmacSha256(PotadoShackServer.SECRET_KEY, event.getData().getPassword());
 
         User client = null;
         try {
-             client = User.fromUsername(username);
-        } catch (IllegalStateException ignored){
+            client = User.fromUsername(username);
+        } catch (IllegalStateException ignored) {
             event.getSender().sendError(Error.USERNAME_NOT_FOUND);
             return;
         }

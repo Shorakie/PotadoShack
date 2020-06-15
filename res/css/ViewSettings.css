@@ -1,0 +1,10 @@
+#changePic{
+    -fx-text-fill: -mat-text;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(18, 18, 18, 0.6);
+}
+
+#changePic .fontawesome{
+    -fx-text-fill: -mat-text;
+    -fx-font-size: 19px;
+}

@@ -4,7 +4,7 @@ import ir.aminer.potadoshack.core.order.Order;
 
 import java.util.HashMap;
 
-public class ViewOrdersPacket extends AuthenticatedPacket{
+public class ViewOrdersPacket extends AuthenticatedPacket {
     private HashMap<Integer, Order> orders;
 
     public ViewOrdersPacket(String jwt) {

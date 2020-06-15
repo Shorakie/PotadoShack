@@ -1,24 +1,28 @@
 package ir.aminer.potadoshack.client;
 
-import ir.aminer.potadoshack.core.BaseUser;
+import ir.aminer.potadoshack.core.user.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
-import ir.aminer.potadoshack.core.order.Cart;
+import ir.aminer.potadoshack.core.order.Address;
 import ir.aminer.potadoshack.core.order.Order;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends BaseUser {
     private String jwt = null;
     private Order order;
+    private final List<Address> addressList;
 
     public User(String username, String firstName, String lastName) {
         this.username = username;
         this.first_name = firstName;
         this.last_name = lastName;
+        addressList = new ArrayList<>();
         renewCart();
     }
 
-    public static File getPreferenceFile(){
+    public static File getPreferenceFile() {
         return new File("./user.pref");
     }
 
@@ -51,5 +55,9 @@ public class User extends BaseUser {
 
     public void renewCart() {
         this.order = new Order();
+    }
+
+    public List<Address> getAddresses() {
+        return addressList;
     }
 }

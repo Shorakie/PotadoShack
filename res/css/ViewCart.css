@@ -1,0 +1,20 @@
+#total-price{
+    -fx-font-family: 'Work Sans Bold';
+}
+
+.submit-button{
+    -fx-font-family: 'Work Sans Bold';
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.jfx-combo-box{
+    -fx-prompt-text-fill: -mat-text-low;
+    -fx-background-color: transparent;
+    -jfx-focus-color: -mat-primary;
+    -jfx-unfocus-color: #cccccc
+}
+
+.jfx-combo-box .cell{
+    -fx-text-fill: -mat-text;
+}

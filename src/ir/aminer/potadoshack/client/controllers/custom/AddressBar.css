@@ -1,0 +1,37 @@
+/*******************************************************************************
+ *                                                                             *
+ * Root					 				                       				   *
+ *                                                                             *
+ ******************************************************************************/
+@font-face {
+    src: url('/font/WorkSans-Bold.ttf');
+}
+
+* {
+    -mat-primary: #b794f6;
+    -mat-secondary: #6002ee;
+    -mat-red: #B00020;
+    -mat-text: rgba(255, 255, 255, 0.87);
+    -mat-text-low: rgba(255, 255, 255, 0.60);
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Product in Cart             			                       				   *
+ *                                                                             *
+ ******************************************************************************/
+.box{
+    -fx-effect: none;
+}
+
+.box:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+}
+
+.box .delete-button {
+    -fx-background-color: -mat-red;
+}
+
+.box .delete-button:hover {
+    -fx-background-color: -mat-red, #ffffff0C;
+}

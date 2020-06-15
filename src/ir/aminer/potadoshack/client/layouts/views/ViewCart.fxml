@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane style="-fx-background-color: #121212;" styleClass="body" stylesheets="/css/material.css, /css/Cart.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.ViewCart">
+<BorderPane style="-fx-background-color: #121212;" styleClass="body" stylesheets="/css/material.css,/css/ViewCart.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <center>
         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="740.0" style="-fx-background-color: #121212;">
             <VBox fx:id="v_box" spacing="8.0">
@@ -31,14 +31,7 @@
                         </font>
                     </Label>
                 </TextFlow>
-                <Label contentDisplay="RIGHT" graphicTextGap="6.0" prefHeight="30.0" text="Address:">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                    <graphic>
-                        <ChoiceBox prefWidth="150.0" />
-                    </graphic>
-                </Label>
+                <JFXComboBox fx:id="address_list" prefWidth="150.0" promptText="Address" styleClass="choice-box" visibleRowCount="3" />
 
             </HBox>
             <JFXButton fx:id="btn_submit" contentDisplay="RIGHT" onAction="#onSubmit" prefHeight="30.0" styleClass="submit-button" text="Submit" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">

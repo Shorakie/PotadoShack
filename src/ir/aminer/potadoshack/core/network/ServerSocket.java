@@ -6,7 +6,7 @@ import java.net.Socket;
 public class ServerSocket {
     private static Socket client = null;
 
-    private static void createConnection(){
+    private static void createConnection() {
         if (client == null)
             throw new IllegalStateException("Client Socket is not initialized.");
         if (!client.isConnected())
@@ -14,12 +14,12 @@ public class ServerSocket {
 
         String host = client.getInetAddress().getHostAddress();
         int port = client.getPort();
-        System.out.println(host+":"+port);
+        System.out.println(host + ":" + port);
 
         createConnection(host, port);
     }
 
-    private static void createConnection(String host, int port){
+    private static void createConnection(String host, int port) {
         try {
             client = new Socket(host, port);
             client.setKeepAlive(true);
@@ -35,11 +35,11 @@ public class ServerSocket {
         createConnection(host, port);
     }
 
-    public static Socket getClient(){
+    public static Socket getClient() {
         if (client == null)
             throw new IllegalStateException("Client Socket is not initialized.");
 
-        if(client.isClosed() || client.isOutputShutdown() || client.isInputShutdown()){
+        if (client.isClosed() || client.isOutputShutdown() || client.isInputShutdown()) {
             System.out.println("Closed");
             createConnection();
         }

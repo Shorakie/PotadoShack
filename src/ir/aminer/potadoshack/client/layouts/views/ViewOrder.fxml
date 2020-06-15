@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-
-<?import ir.aminer.potadoshack.client.controllers.custom.OrderCard?>
-<?import ir.aminer.potadoshack.client.controllers.custom.ProductInCart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ir.aminer.potadoshack.client.controllers.ViewOrder"
             fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="740.0"
             style="-fx-background-color: #121212;">
     <VBox fx:id="v_box" spacing="8.0">

@@ -1,6 +1,6 @@
 package ir.aminer.potadoshack.core.auth.simplejwt;
 
-import ir.aminer.potadoshack.core.utils.SerializationUtils;;
+import ir.aminer.potadoshack.core.utils.SerializationUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -12,8 +12,8 @@ import java.util.Base64;
 
 public class JWT {
 
-    private Header header;
-    private Payload payload;
+    private final Header header;
+    private final Payload payload;
     private String signature;
 
     private JWT(Header header, Payload payload) {
@@ -45,10 +45,7 @@ public class JWT {
         if (!hmacSignature(key).equals(this.signature))
             return false;
 
-        if (!Instant.now().isBefore(Instant.ofEpochSecond(payload.iat).plus(Duration.ofDays(7))))
-            return false;
-
-        return true;
+        return Instant.now().isBefore(Instant.ofEpochSecond(payload.iat).plus(Duration.ofDays(7)));
     }
 
     public String hmacSignature(String key) {
@@ -88,7 +85,7 @@ public class JWT {
         return getEncodedHeaderPayload() + "." + hmacSignature(key);
     }
 
-    private String getEncodedHeaderPayload(){
+    private String getEncodedHeaderPayload() {
         return Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(header))
                 + "." + Base64.getUrlEncoder().encodeToString(SerializationUtils.serialize(payload));
     }
@@ -98,7 +95,7 @@ public class JWT {
     }
 
     public <P extends Payload> P getPayload() {
-        return (P)payload;
+        return (P) payload;
     }
 
     @Override

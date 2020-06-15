@@ -7,6 +7,6 @@ public abstract class Packet implements Serializable {
 
     @Override
     public String toString() {
-        return "Packet{id{"+getId()+"}}";
+        return "Packet{id{" + getId() + "}}";
     }
 }

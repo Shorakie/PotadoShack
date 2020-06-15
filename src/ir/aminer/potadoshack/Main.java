@@ -6,23 +6,26 @@ import ir.aminer.potadoshack.server.PotadoShackServer;
 import java.io.IOException;
 
 public class Main {
-    public enum Mode{
+    public enum Mode {
         SERVER, CLIENT
     }
+
     public static Mode mode = Mode.CLIENT;
     public static int port = 25552;
     public static String host = "localhost";
+    public static int threadPoolSize = 20;
+    public static String secretKey = "P0t4doS3rver";
 
     public static void main(String[] args) throws IOException {
 
-        for (int i=0; i <args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             String cmd = null;
             if (args[i].startsWith("--"))
                 cmd = args[i].substring(2);
             else if (args[i].startsWith("-"))
                 cmd = args[i].substring(1);
 
-            if(cmd==null)
+            if (cmd == null)
                 continue;
 
             switch (cmd) {
@@ -34,12 +37,22 @@ public class Main {
                 /* if argument was p or port set the port */
                 case "p":
                 case "port":
-                    port = Integer.parseInt(args[i+1]);
+                    port = Integer.parseInt(args[i + 1]);
                     break;
                 /* if argument was h or host set the host */
                 case "h":
                 case "host":
-                    host = args[i+1];
+                    host = args[i + 1];
+                    break;
+                /* if argument was secret-key or key set the host */
+                case "key":
+                case "secret-key":
+                    secretKey = args[i + 1];
+                    break;
+                /* if argument was accept-amount or thread-pool-size set the host */
+                case "accept-amount":
+                case "thread-pool-size":
+                    threadPoolSize = Integer.parseInt(args[i + 1]);
                     break;
                 default:
                     throw new IllegalArgumentException();
@@ -49,6 +62,6 @@ public class Main {
         if (mode.equals(Mode.CLIENT))
             javafx.application.Application.launch(PotadoShack.class, args);
         else if (mode.equals(Mode.SERVER))
-            new PotadoShackServer().start(port);
+            new PotadoShackServer(port).start();
     }
 }

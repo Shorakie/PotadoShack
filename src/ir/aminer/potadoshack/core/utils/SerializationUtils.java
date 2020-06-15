@@ -1,6 +1,5 @@
 package ir.aminer.potadoshack.core.utils;
 
-import java.awt.*;
 import java.io.*;
 
 public class SerializationUtils {

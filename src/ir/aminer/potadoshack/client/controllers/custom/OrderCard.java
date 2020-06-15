@@ -29,8 +29,10 @@ public class OrderCard extends AnchorPane {
 
     private Order order;
 
-    private Consumer<Order> deleteEventConsumer = deleteEvent -> {};
-    private Consumer<Order> viewEventConsumer = countEvent -> {};
+    private Consumer<Order> deleteEventConsumer = deleteEvent -> {
+    };
+    private Consumer<Order> viewEventConsumer = countEvent -> {
+    };
     private final Consumer<Order> deleteFromView = deleteEvent -> {
         try {
             ((Pane) this.getParent()).getChildren().remove(this);

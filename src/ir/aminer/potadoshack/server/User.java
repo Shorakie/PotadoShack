@@ -1,15 +1,12 @@
 package ir.aminer.potadoshack.server;
 
-import ir.aminer.potadoshack.core.BaseUser;
-import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
+import ir.aminer.potadoshack.core.user.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
+import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.order.Order;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class User extends BaseUser {
 
@@ -35,6 +32,7 @@ public class User extends BaseUser {
     public static User fromUsername(String username) {
         if (!hasUserFilePref(username))
             throw new IllegalStateException("User doesn't have a preference");
+
         return (User) loadUser(getUserFilePref(username));
     }
 
@@ -58,7 +56,7 @@ public class User extends BaseUser {
         orders.remove(code);
     }
 
-    public HashMap<Integer, Order> getOrders(){
+    public HashMap<Integer, Order> getOrders() {
         return orders;
     }
 

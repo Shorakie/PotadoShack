@@ -5,12 +5,12 @@ import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.ErrorPacket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 
-public class ErrorEvent extends Event{
+public class ErrorEvent extends Event {
     Error error;
 
     public ErrorEvent(Packet packet, ClientSocket sender) {
         super(packet, sender);
-        error = ((ErrorPacket)packet).getError();
+        error = ((ErrorPacket) packet).getError();
     }
 
     public Error getError() {

@@ -1,8 +1,8 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-public class ResponsePacket extends Packet{
-    public enum Status{
-        OK,ERROR;
+public class ResponsePacket extends Packet {
+    public enum Status {
+        OK, ERROR;
     }
 
     private Packet response;

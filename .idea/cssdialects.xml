@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CssDialectMappings">
+    <file url="file://$PROJECT_DIR$/res/css/MainMenu.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/res/css/material.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/src/ir/aminer/potadoshack/client/controllers/custom/AddressBar.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/src/ir/aminer/potadoshack/client/controllers/custom/OrderCard.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/src/ir/aminer/potadoshack/client/controllers/custom/ProductCard.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/src/ir/aminer/potadoshack/client/controllers/custom/ProductInCart.css" dialect="JavaFX" />
+    <file url="file://$PROJECT_DIR$/src/ir/aminer/potadoshack/client/controllers/custom/TitleBar.css" dialect="JavaFX" />
+  </component>
+</project>

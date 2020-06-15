@@ -51,10 +51,10 @@ public class SignIn extends Page {
     public void onResponse(ResponsePacket response) {
 
         User user;
-        if(User.hasPreference())
+        if (User.hasPreference())
             user = User.loadClient();
         else {
-            UserPayload payload = JWT.decode(((PrimitivePacket<String>)response.getResponse()).getData()).getPayload();
+            UserPayload payload = JWT.decode(((PrimitivePacket<String>) response.getResponse()).getData()).getPayload();
             user = new User(payload.getUsername(), payload.getFirstName(), payload.getLastName());
             try {
                 User.getPreferenceFile().createNewFile();
@@ -62,18 +62,18 @@ public class SignIn extends Page {
                 System.err.println("Couldn't create preference file");
             }
         }
-        user.setJwt(((PrimitivePacket<String>)response.getResponse()).getData());
+        user.setJwt(((PrimitivePacket<String>) response.getResponse()).getData());
         user.save();
         PageHandler.getInstance().activePage("main_menu");
     }
 
     @Override
     public void onError(Error error) {
-        System.err.println("Got Error: "+ error);
+        System.err.println("Got Error: " + error);
     }
 
     public void Signup(ActionEvent actionEvent) {
-        ((Hyperlink)actionEvent.getSource()).setVisited(false);
+        ((Hyperlink) actionEvent.getSource()).setVisited(false);
         PageHandler.getInstance().activePage("sign_up");
     }
 }

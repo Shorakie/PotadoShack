@@ -9,8 +9,6 @@ import ir.aminer.potadoshack.core.network.packets.Packet;
 import ir.aminer.potadoshack.core.utils.Log;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 public class ClientThread extends Thread {
 
@@ -34,9 +32,9 @@ public class ClientThread extends Thread {
             return;
         }
 
-        Log.info(client, "Received Packet id:"+packet.getId());
+        Log.info(client, "Received Packet id:" + packet.getId());
 
-        if(checkAuthentications(packet))
+        if (checkAuthentications(packet))
             EventHandler.getInstance().trigger(EventFactory.getEvent(packet, client));
         else
             try {

@@ -1,12 +1,8 @@
 package ir.aminer.potadoshack.client.page;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +28,7 @@ public class PageHandler {
     }
 
     public void activePage(String name) {
-        if(currentPage == null)
+        if (currentPage == null)
             throw new IllegalStateException("Default page should be given");
 
         Page to = pages.get(name);

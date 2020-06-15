@@ -1,13 +1,18 @@
 package ir.aminer.potadoshack.core.utils;
 
+import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.page.PageHandler;
+import ir.aminer.potadoshack.core.error.Error;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.function.Consumer;
 
-public class HmacSha256 {
-    public static String hash(String key, String raw){
+public class Common {
+    public static String hmacSha256(String key, String raw) {
         Mac hmac = null;
         try {
             hmac = Mac.getInstance("HmacSHA256");
@@ -22,5 +27,13 @@ public class HmacSha256 {
         }
 
         return Base64.getUrlEncoder().encodeToString(hmac.doFinal(raw.getBytes()));
+    }
+
+    public static Consumer<Error> getAuthorityErrorChecker() {
+        return error -> {
+            if (error.equals(Error.UNAUTHORIZED_TOKEN) || error.equals(Error.INVALID_TOKEN))
+                if (User.getPreferenceFile().delete())
+                    PageHandler.getInstance().activePage("sign_in");
+        };
     }
 }

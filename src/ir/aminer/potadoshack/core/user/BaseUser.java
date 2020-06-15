@@ -1,4 +1,4 @@
-package ir.aminer.potadoshack.core;
+package ir.aminer.potadoshack.core.user;
 
 import java.io.*;
 
@@ -6,9 +6,11 @@ public class BaseUser implements Serializable {
     protected String username;
     protected String first_name;
     protected String last_name;
+    protected String email;
+    protected PhoneNumber phoneNumber;
 
     public static BaseUser loadUser(File userFile) {
-        if (! (userFile.exists() && userFile.isFile()))
+        if (!(userFile.exists() && userFile.isFile()))
             throw new IllegalStateException("Specified path should exist and be a valid file.");
 
         ObjectInputStream inputStream;
@@ -31,13 +33,17 @@ public class BaseUser implements Serializable {
         }
 
         /* Close the stream */
-        try {inputStream.close();} catch (IOException e) {System.err.println("Could not close the stream.");}
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            System.err.println("Could not close the stream.");
+        }
 
-        return (BaseUser)o;
+        return (BaseUser) o;
     }
 
-    public boolean save(File userFile){
-        if (! (userFile.exists() && userFile.isFile()))
+    public boolean save(File userFile) {
+        if (!(userFile.exists() && userFile.isFile()))
             throw new IllegalStateException("Specified path should exist and be a valid file.");
 
         ObjectOutputStream outputStream;
@@ -56,7 +62,11 @@ public class BaseUser implements Serializable {
         }
 
         /* Close the stream */
-        try {outputStream.close();} catch (IOException e) {System.err.println("Could not close the stream.");}
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            System.err.println("Could not close the stream.");
+        }
 
         return true;
     }
@@ -71,5 +81,21 @@ public class BaseUser implements Serializable {
 
     public String getLastName() {
         return last_name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumber phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

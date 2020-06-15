@@ -1,7 +1,8 @@
-package ir.aminer.potadoshack.client.controllers;
+package ir.aminer.potadoshack.client.controllers.views;
 
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.custom.OrderCard;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.CancelOrderPacket;
@@ -19,13 +20,16 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ViewOrder {
-    @FXML private VBox v_box;
+public class ViewOrder extends View {
+    @FXML
+    private VBox v_box;
 
-    private MainMenu mainMenu = null;
-
-    ExecutorService executorService =
+    private final static ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+
+    public ViewOrder(MainMenu mainMenu) {
+        super(mainMenu);
+    }
 
     @FXML
     public void initialize() {
@@ -37,7 +41,7 @@ public class ViewOrder {
 
                 client.sendPacket(new ViewOrdersPacket(User.loadClient().getJwt().toString()));
 
-                client.handleResponse(responsePacket -> {
+                client.handleResponseAfterAuthority(responsePacket -> {
                     /* Add products in cart */
                     for (HashMap.Entry<Integer, Order> order : ((ViewOrdersPacket) responsePacket.getResponse()).getOrders().entrySet()) {
                         OrderCard orderCard = new OrderCard();
@@ -58,30 +62,29 @@ public class ViewOrder {
         executorService.submit(addOrders);
     }
 
-    public void setMainMenu(MainMenu mainMenu) {
-        this.mainMenu = mainMenu;
-    }
-
     public void onDelete(Order order) {
         try {
             ClientSocket client = new ClientSocket(Main.host, Main.port);
 
             client.sendPacket(new CancelOrderPacket(User.loadClient().getJwt().toString(), order.getCode()));
 
-            client.handleResponse(responsePacket -> {
-                System.out.println(((PrimitivePacket<String>)responsePacket.getResponse()).getData());
+            client.handleResponseAfterAuthority(responsePacket -> {
+                System.out.println(((PrimitivePacket<String>) responsePacket.getResponse()).getData());
             }, System.err::println);
 
 
             client.close();
-        }catch (IOException ioException){
+        } catch (IOException ioException) {
             System.err.println("Couldn't send order delete packet");
         }
     }
 
     public void onView(Order order) {
-        ViewCart viewCart = (ViewCart) mainMenu.selectView(MainMenu.View.CART);
-        viewCart.setOrder(order);
+        mainMenu.selectView(new ViewCart(mainMenu, order));
     }
 
+    @Override
+    public Type getType() {
+        return Type.ORDERS;
+    }
 }

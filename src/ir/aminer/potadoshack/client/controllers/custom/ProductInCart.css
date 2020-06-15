@@ -21,42 +21,42 @@
  *                                                                             *
  ******************************************************************************/
 
-.box:hover{
+.box:hover {
     -fx-background-color: rgba(255, 255, 255, 0.12);
 }
 
-.count{
+.box .count {
     -fx-background-radius: 5;
     -fx-font-weight: bold;
     -fx-background-color: -mat-primary;
     -fx-text-fill: #121212;
 }
 
-.delete-button{
+.box .delete-button {
     -fx-background-color: -mat-red;
 }
 
-.delete-button:hover{
+.box .delete-button:hover {
     -fx-background-color: -mat-red, #ffffff0C;
 }
 
-.icon {
+.box .icon {
     -fx-font-size: 18;
     -fx-text-fill: -icon-color;
 }
 
-.product-name{
+.box .product-name {
     -fx-font-family: 'Work Sans Bold';
     -fx-font-size: 18;
 }
 
-.product-price{
+.box .product-price {
     -fx-text-fill: -mat-text;
     -fx-font-size: 14;
     -fx-font-weight: bold;
 }
 
-.product-total{
+.box .product-total {
     -fx-font-size: 16;
     -fx-font-weight: bold;
 }

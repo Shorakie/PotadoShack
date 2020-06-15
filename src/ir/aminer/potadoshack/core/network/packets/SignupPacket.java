@@ -1,6 +1,6 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-public class SignUpPacket extends Packet{
+public class SignUpPacket extends Packet {
     private final String username;
     private final String password;
     private final String first_name;

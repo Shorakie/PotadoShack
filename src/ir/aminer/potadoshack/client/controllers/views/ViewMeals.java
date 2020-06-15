@@ -1,7 +1,7 @@
-package ir.aminer.potadoshack.client.controllers;
+package ir.aminer.potadoshack.client.controllers.views;
 
-import ir.aminer.potadoshack.client.PotadoShack;
 import ir.aminer.potadoshack.client.User;
+import ir.aminer.potadoshack.client.controllers.MainMenu;
 import ir.aminer.potadoshack.client.controllers.custom.ProductCard;
 import ir.aminer.potadoshack.client.controllers.custom.event.ProductChangeEvent;
 import ir.aminer.potadoshack.core.product.Food;
@@ -9,21 +9,24 @@ import ir.aminer.potadoshack.core.utils.ExecutorUtils;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.TilePane;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ViewMeals {
+public class ViewMeals extends View {
     @FXML
     private ScrollPane scroll_pane;
     @FXML
     private TilePane tile_pane;
 
-    private final ExecutorService executorService = ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+    private final static ExecutorService executorService =
+            ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+
+    public ViewMeals(MainMenu mainMenu) {
+        super(mainMenu);
+    }
 
     @FXML
     public void initialize() {
@@ -45,6 +48,7 @@ public class ViewMeals {
                 return null;
             }
         };
+
         executorService.submit(addFoodsThread);
     }
 
@@ -54,5 +58,10 @@ public class ViewMeals {
         user.getOrder().getCart().addProduct(event.getProduct(), event.getAmount());
         System.out.println(user.getOrder().getCart());
         user.save();
+    }
+
+    @Override
+    public Type getType() {
+        return Type.MEALS;
     }
 }

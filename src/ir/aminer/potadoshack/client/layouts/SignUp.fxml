@@ -11,7 +11,7 @@
         <fx:include source="../controllers/custom/TitleBar.fxml" />
     </top>
     <center>
-        <AnchorPane styleClass="body">
+        <AnchorPane styleClass="body" fx:id="body">
             <children>
                 <VBox layoutX="320.0" layoutY="137.0" maxHeight="320.0" prefHeight="320.0" prefWidth="300.0" styleClass="box">
                     <children>
@@ -69,11 +69,6 @@
                         </TextFlow>
                     </children>
                 </VBox>
-                <Label fx:id="error_span" alignment="CENTER" cache="true" cacheHint="QUALITY" contentDisplay="CENTER" depthTest="DISABLE" layoutX="594.0" layoutY="422.0" prefHeight="58.0" prefWidth="126.0" style="-fx-background-color: red;" text="Aminer" textAlignment="CENTER" visible="false" wrapText="true">
-                    <opaqueInsets>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </opaqueInsets>
-                </Label>
             </children>
         </AnchorPane>
     </center>

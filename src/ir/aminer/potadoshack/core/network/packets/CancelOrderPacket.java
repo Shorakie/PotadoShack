@@ -1,6 +1,6 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-public class CancelOrderPacket extends AuthenticatedPacket{
+public class CancelOrderPacket extends AuthenticatedPacket {
     private final int orderCode;
 
     public CancelOrderPacket(String jwt, int orderCode) {

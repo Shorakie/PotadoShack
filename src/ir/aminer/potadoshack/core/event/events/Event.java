@@ -3,8 +3,6 @@ package ir.aminer.potadoshack.core.event.events;
 import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 
-import java.net.Socket;
-
 public abstract class Event {
     private final Packet packet;
     private final ClientSocket sender;
@@ -19,6 +17,6 @@ public abstract class Event {
     }
 
     public <P extends Packet> P getData() {
-        return (P)packet;
+        return (P) packet;
     }
 }

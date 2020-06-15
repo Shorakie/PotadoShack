@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EventFactory {
-    private static final Map<Class<? extends Packet>, EventSupplier<? extends Event>> eventsMap = new HashMap<>()
-    {{
+    private static final Map<Class<? extends Packet>, EventSupplier<? extends Event>> eventsMap = new HashMap<>() {{
         put(ErrorPacket.class, ErrorEvent::new);
         put(SignInPacket.class, SignInEvent::new);
         put(SignUpPacket.class, SignUpEvent::new);
@@ -18,7 +17,7 @@ public class EventFactory {
         put(ViewOrdersPacket.class, ViewOrdersEvent::new);
     }};
 
-    public static <E extends Event> E getEvent(Packet packet, ClientSocket sender){
+    public static <E extends Event> E getEvent(Packet packet, ClientSocket sender) {
         return ((E) eventsMap.get(packet.getClass()).get(packet, sender));
     }
 }
