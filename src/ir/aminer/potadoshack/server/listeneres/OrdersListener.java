@@ -51,7 +51,7 @@ public class OrdersListener implements Listener {
             return;
 
         user.removeOrder(event.getData().getOrderCode());
-        event.getSender().sendResponse(new PrimitivePacket("OK"), ResponsePacket.Status.OK);
         user.save();
+        event.getSender().sendResponse(new PrimitivePacket<>("OK"), ResponsePacket.Status.OK);
     }
 }
