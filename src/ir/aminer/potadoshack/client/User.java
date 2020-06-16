@@ -1,9 +1,9 @@
 package ir.aminer.potadoshack.client;
 
-import ir.aminer.potadoshack.core.user.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 import ir.aminer.potadoshack.core.order.Address;
 import ir.aminer.potadoshack.core.order.Order;
+import ir.aminer.potadoshack.core.user.BaseUser;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -15,6 +15,8 @@ public class EventFactory {
         put(PlaceOrderPacket.class, PlaceOrderEvent::new);
         put(CancelOrderPacket.class, CancelOrderEvent::new);
         put(ViewOrdersPacket.class, ViewOrdersEvent::new);
+        put(UpdateProfilePacket.class, UpdateProfileEvent::new);
+        put(UpdatePasswordPacket.class, UpdatePasswordEvent::new);
     }};
 
     public static <E extends Event> E getEvent(Packet packet, ClientSocket sender) {

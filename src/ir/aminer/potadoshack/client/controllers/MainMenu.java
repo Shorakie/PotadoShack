@@ -5,6 +5,7 @@ import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.controllers.views.*;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -41,13 +42,19 @@ public class MainMenu extends Page {
 
     @Override
     public void onEnter(Page from) {
+        updateFields();
+    }
+
+    public void updateFields(){
         lbl_user_name.setText(User.loadClient().getUsername());
+        img_user_pfp.setImage(SwingFXUtils.toFXImage(User.loadClient().getProfilePicture(), null));
     }
 
     @FXML
     public void initialize() throws IOException {
         /* make profile picture circle */
-        img_user_pfp.setClip(new Circle(img_user_pfp.getFitWidth() / 2, img_user_pfp.getFitHeight() / 2, img_user_pfp.getFitWidth() / 2));
+        double radius = img_user_pfp.getFitWidth() / 2;
+        img_user_pfp.setClip(new Circle(radius, radius, radius));
 
         FXMLLoader loader = new FXMLLoader(PotadoShack.class.getResource("layouts/views/ViewMeals.fxml"));
         loader.setController(new ViewMeals(this));

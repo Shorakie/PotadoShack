@@ -10,7 +10,7 @@ import ir.aminer.potadoshack.core.utils.Log;
 
 import java.io.IOException;
 
-public class ClientThread extends Thread {
+public class ClientThread implements Runnable {
 
     private final ClientSocket client;
 
