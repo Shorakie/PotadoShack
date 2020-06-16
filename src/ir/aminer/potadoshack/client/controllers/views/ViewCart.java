@@ -20,7 +20,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -34,13 +37,15 @@ import java.util.function.Supplier;
 public class ViewCart extends View {
 
     @FXML
+    private Pane body;
+    @FXML
     private VBox v_box;
     @FXML
     private Label lbl_total_price;
     @FXML
     private Button btn_submit;
     @FXML
-    private JFXComboBox<Address> address_list;
+    private ComboBox<Address> address_list;
 
     private boolean readOnly;
     private JFXSnackbar snackbar;
@@ -73,7 +78,7 @@ public class ViewCart extends View {
     @FXML
     public void initialize() {
         v_box.getChildren().clear();
-        snackbar = new JFXSnackbar(v_box);
+        snackbar = new JFXSnackbar(body);
 
         executorService.submit(new Task<Void>() {
             @Override
@@ -169,14 +174,18 @@ public class ViewCart extends View {
     }
 
     @FXML
-    public void onSubmit(ActionEvent event) throws IOException {
-        if (address_list.getValue() == null) {
+    public void onSubmit(ActionEvent e) throws IOException {
+        if (order.getCart().isEmpty()){
+            snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Your cart is empty", "Order", event -> mainMenu.selectView(new ViewMeals(mainMenu)))));
+            return;
+        }else if (address_list.getValue() == null) {
             snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Address has not been set.")));
             return;
         }
 
         ClientSocket client = new ClientSocket(Main.host, Main.port);
         User user = User.loadClient();
+
         user.getOrder().setAddress(address_list.getValue());
         user.getOrder().close();
 
