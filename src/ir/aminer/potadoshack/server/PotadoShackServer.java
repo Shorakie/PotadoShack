@@ -64,6 +64,9 @@ public class PotadoShackServer {
         EventHandler.getInstance().register(new OrdersListener());
         EventHandler.getInstance().register(new UpdatesListener());
 
+        /* Fix prompt */
+        Log.setAfter(()->System.out.print("Server#"));
+
         System.out.println("Started Listening.");
         new Thread(() -> {
             while (running.get()) {
