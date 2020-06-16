@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fx:id="scroll_pane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0"
+<ScrollPane fx:id="scroll_pane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0"
             prefWidth="740.0" styleClass="body" stylesheets="@/css/material.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <TilePane fx:id="tile_pane" hgap="20.0" prefColumns="1" prefHeight="480.0" prefRows="1" prefWidth="740.0"
