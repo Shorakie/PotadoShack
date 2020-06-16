@@ -24,7 +24,7 @@
                         <Image url="@/boy-3.jpg" />
                     </ImageView>
                     <HBox alignment="CENTER" maxWidth="180.0">
-                        <Label fx:id="lbl_user_name" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" maxWidth="170.0" prefHeight="30.0" style="-fx-background-color: linear-gradient(whitesmoke,ghostwhite); -fx-background-radius: 5 0 0 5;" styleClass="user-label" text="Username">
+                        <Label fx:id="lbl_user_name" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" maxHeight="-Infinity" maxWidth="170.0" minHeight="-Infinity" prefHeight="30.0" style="-fx-background-color: linear-gradient(whitesmoke,ghostwhite); -fx-background-radius: 5 0 0 5;" styleClass="user-label" text="Username">
                             <font>
                                 <Font name="Roboto Medium" size="14.0" />
                             </font>
@@ -32,7 +32,7 @@
                                 <Insets left="5.0" right="5.0" />
                             </padding>
                         </Label>
-                        <Label fx:id="btn_profile" alignment="BASELINE_CENTER" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #6002ee; -fx-border-radius: 0;" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                        <Label fx:id="btn_profile" alignment="BASELINE_CENTER" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #6002ee; -fx-border-radius: 0;" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                             <styleClass>
                                 <String fx:value="button-profile" />
                                 <String fx:value="fontawesome" />
