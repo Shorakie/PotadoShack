@@ -165,6 +165,7 @@ public class ViewSettings extends View {
 
                     AddressBar addressBar = new AddressBar(dialog);
                     addressBar.setAddress(address);
+                    addressBar.setOnDelete(ViewSettings.this::onAddressDelete);
                     Platform.runLater(() -> address_list.getChildren().add(addressBar));
                 }
                 return null;
@@ -205,19 +206,19 @@ public class ViewSettings extends View {
                 snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Please enter a country code!")));
                 AnimationUtils.pulse(txt_phone_number_code).play();
                 return;
-            } else if (txt_phone_number.getText().length() != 10){
+            } else if (!txt_phone_number.getText().isEmpty() && txt_phone_number.getText().length() != 10){
                 System.out.println(txt_phone_number.getText() + " "+ txt_phone_number.getText().length());
                 snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Please enter a valid phone number!")));
                 AnimationUtils.pulse(txt_phone_number).play();
                 return;
-            } else if (txt_phone_number_code.getText().length() < 2){
+            } else if (!txt_phone_number_code.getText().isEmpty() && txt_phone_number_code.getText().length() < 2){
                 snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Please enter a valid country code!")));
                 AnimationUtils.pulse(txt_phone_number_code).play();
                 return;
             }
 
             // URL https://emailregex.com
-            if (!txt_email.getText().isEmpty() && !txt_email.getText().matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")){
+            if (txt_email.getText() != null && !txt_email.getText().isEmpty() && !txt_email.getText().matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")){
                 snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Please enter a valid email address!")));
                 AnimationUtils.pulse(txt_email).play();
                 return;
@@ -299,6 +300,14 @@ public class ViewSettings extends View {
         TextField add_name = ((TextField) gridPane.lookup("#name"));
         TextArea add_location = ((TextArea) gridPane.lookup("#address"));
         save_btn.setOnAction(event -> {
+            if (add_name.getText().isEmpty()) {
+                AnimationUtils.pulse(add_name).play();
+                return;
+            } else if (add_location.getText().isEmpty()) {
+                AnimationUtils.pulse(add_location).play();
+                return;
+            }
+
             User user = User.loadClient();
             Address address = new Address(add_name.getText(), add_location.getText());
             user.getAddresses().add(address);
@@ -306,6 +315,7 @@ public class ViewSettings extends View {
 
             AddressBar addressBar = new AddressBar(dialog);
             addressBar.setAddress(address);
+            addressBar.setOnDelete(this::onAddressDelete);
             address_list.getChildren().add(addressBar);
 
             dialog.close();
@@ -313,6 +323,14 @@ public class ViewSettings extends View {
 
         dialog.setContent(gridPane);
         dialog.show();
+    }
+
+    private void onAddressDelete(Address address){
+        User user = User.loadClient();
+        user.getAddresses().remove(address);
+        for (Address ad : user.getAddresses())
+            System.out.println(ad.toString());
+        user.save();
     }
 
     @Override
