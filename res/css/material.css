@@ -183,27 +183,38 @@
 
 .combo-box .list-cell {
     -fx-background-color: transparent;
-    -fx-text-fill: -fx-text;
+    -fx-text-fill: -mat-text;
 }
 
 .combo-box-popup .list-view {
     -fx-background-color: #1a1a1a;
+    -fx-background-radius: 3px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0.0, 0, 0);
+
+    /* Margin top */
+    -fx-padding: 5px 0 0 0;
+    -fx-border-insets: 2px 0 0 0;
+    -fx-background-insets: 2px 0 0 0;
 }
 
 .combo-box-popup .list-view .list-cell {
     -fx-background-color: #1a1a1a;
+    -fx-background-radius: 3px;
 }
 
 .combo-box-popup .list-view .list-cell:filled:selected,
 .combo-box-popup .list-view .list-cell:filled:selected:hover {
     -fx-background-color: -mat-primary;
-    -fx-text-fill: -mat-text;
+    -fx-text-fill: #121212;
 }
 
 .combo-box-popup .list-view .list-cell:filled:hover {
     -fx-background-color: #1a1a1a, rgba(255, 255, 255, 0.05);
     -fx-text-fill: -mat-text;
+}
+
+.combo-box-popup .list-view .jfx-list-cell .jfx-rippler {
+    -jfx-rippler-fill: -mat-primary-variant;
 }
 
 .combo-box-base {
