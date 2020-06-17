@@ -48,12 +48,12 @@
                 <Insets right="10.0"/>
             </HBox.margin>
         </Label>
-        <JFXButton fx:id="btn_minus" onAction="#onMinus" prefHeight="30.0" styleClass="fontawesome" text="">
+        <JFXButton fx:id="btn_minus" onAction="#onMinus" prefHeight="30.0" styleClass="fontawesome, util-button" text="">
             <padding>
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
             </padding>
         </JFXButton>
-        <JFXButton fx:id="btn_plus" onAction="#onPlus" prefHeight="30.0" styleClass="fontawesome" text="">
+        <JFXButton fx:id="btn_plus" onAction="#onPlus" prefHeight="30.0" styleClass="fontawesome, util-button" text="">
             <padding>
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
             </padding>
