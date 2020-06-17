@@ -1,6 +1,5 @@
 package ir.aminer.potadoshack.client.page;
 
-import ir.aminer.potadoshack.client.Palette;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
