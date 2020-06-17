@@ -9,6 +9,7 @@ import ir.aminer.potadoshack.core.utils.ExecutorUtils;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.TilePane;
 
@@ -50,6 +51,11 @@ public class ViewMeals extends View {
         };
 
         executorService.submit(addFoodsThread);
+    }
+
+    @FXML
+    public void dragging() {
+        scroll_pane.setCursor(Cursor.OPEN_HAND);
     }
 
     public void onOrder(ProductChangeEvent event) {
