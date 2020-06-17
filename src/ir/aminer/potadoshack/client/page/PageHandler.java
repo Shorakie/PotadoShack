@@ -1,5 +1,6 @@
 package ir.aminer.potadoshack.client.page;
 
+import ir.aminer.potadoshack.client.Palette;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -13,6 +14,7 @@ public class PageHandler {
     private Map<String, Page> pages = new HashMap<>();
     /* Default is an empty page */
     private Page currentPage = new Page(new Pane());
+    private String currentTheme = "/themes/purple.css";
     private Scene scene;
 
     private PageHandler(Scene scene) {
@@ -44,6 +46,14 @@ public class PageHandler {
 
         /* set current page to dest */
         currentPage = to;
+    }
+
+    public void setPalette(String path) {
+        for (Page page : pages.values()) {
+            page.getParent().getStylesheets().remove(getClass().getResource(currentTheme).toExternalForm());
+            page.getParent().getStylesheets().add(getClass().getResource(path).toExternalForm());
+            currentTheme = path;
+        }
     }
 
     public static void awoke(Scene scene) {
