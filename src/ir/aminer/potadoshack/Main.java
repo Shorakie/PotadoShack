@@ -59,6 +59,11 @@ public class Main {
             }
         }
 
+        // TODO: replace images
+        // TODO: add filter/search support
+        // TODO: Add pallet color support
+        // TODO: Make a good packet when user signs in
+
         if (mode.equals(Mode.CLIENT))
             javafx.application.Application.launch(PotadoShack.class, args);
         else if (mode.equals(Mode.SERVER))
