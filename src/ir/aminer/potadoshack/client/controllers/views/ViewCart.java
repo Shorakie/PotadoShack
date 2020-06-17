@@ -1,6 +1,5 @@
 package ir.aminer.potadoshack.client.controllers.views;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbarLayout;
 import ir.aminer.potadoshack.Main;
@@ -22,10 +21,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -48,26 +45,25 @@ public class ViewCart extends View {
     private ComboBox<Address> address_list;
 
     private boolean readOnly;
-    private JFXSnackbar snackbar;
 
     private final static ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
     Supplier<Task<Void>> updateGrandTotalPriceFactory = () -> new Task<Void>() {
         @Override
-        protected Void call() throws Exception {
+        protected Void call() {
             int grand_total_price = 0;
 
             /* Add products in cart */
             for (HashMap.Entry<Product, Integer> product : order.getCart().getProducts())
                 grand_total_price += product.getKey().getPrice() * product.getValue();
 
-            int finalGrand_total_price = grand_total_price;
+            final int finalGrand_total_price = grand_total_price;
             Platform.runLater(() -> lbl_total_price.setText(Integer.toString(finalGrand_total_price)));
             return null;
         }
     };
 
-    private final Order order;
+    private Order order;
 
     public ViewCart(MainMenu mainMenu, Order order) {
         super(mainMenu);
@@ -78,7 +74,7 @@ public class ViewCart extends View {
     @FXML
     public void initialize() {
         v_box.getChildren().clear();
-        snackbar = new JFXSnackbar(body);
+        snackbar.registerSnackbarContainer(body);
 
         executorService.submit(new Task<Void>() {
             @Override
@@ -154,7 +150,6 @@ public class ViewCart extends View {
 
         User user = User.loadClient();
         user.getOrder().getCart().removeProduct(event.getProduct());
-        System.out.println(user.getOrder().getCart());
         user.save();
 
         /* Update Grand Total price */
@@ -166,8 +161,9 @@ public class ViewCart extends View {
 
         User user = User.loadClient();
         user.getOrder().getCart().setProduct(event.getProduct(), event.getAmount());
-        System.out.println(user.getOrder().getCart());
         user.save();
+
+        order = user.getOrder();
 
         /* Update Grand Total price */
         executorService.submit(updateGrandTotalPriceFactory.get());
@@ -175,16 +171,16 @@ public class ViewCart extends View {
 
     @FXML
     public void onSubmit(ActionEvent e) throws IOException {
-        if (order.getCart().isEmpty()){
+        ClientSocket client = new ClientSocket(Main.host, Main.port);
+        User user = User.loadClient();
+
+        if (user.getOrder().getCart().isEmpty()) {
             snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Your cart is empty", "Order", event -> mainMenu.selectView(new ViewMeals(mainMenu)))));
             return;
-        }else if (address_list.getValue() == null) {
+        } else if (address_list.getValue() == null) {
             snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Address has not been set.")));
             return;
         }
-
-        ClientSocket client = new ClientSocket(Main.host, Main.port);
-        User user = User.loadClient();
 
         user.getOrder().setAddress(address_list.getValue());
         user.getOrder().close();
@@ -201,7 +197,7 @@ public class ViewCart extends View {
             user.renewCart();
             user.save();
 
-        }, System.err::println);
+        }, this::errorHandler);
 
         client.close();
     }

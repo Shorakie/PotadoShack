@@ -33,6 +33,9 @@ public class ViewOrder extends View {
 
     @FXML
     public void initialize() {
+
+        snackbar.registerSnackbarContainer(v_box);
+
         Task<Void> addOrders = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -52,7 +55,7 @@ public class ViewOrder extends View {
 
                         Platform.runLater(() -> v_box.getChildren().add(orderCard));
                     }
-                }, System.err::println);
+                }, ViewOrder.this::errorHandler);
 
                 client.close();
 
@@ -70,7 +73,7 @@ public class ViewOrder extends View {
 
             client.handleResponseAfterAuthority(responsePacket -> {
                 System.out.println(((PrimitivePacket<String>) responsePacket.getResponse()).getData());
-            }, System.err::println);
+            }, this::errorHandler);
 
 
             client.close();

@@ -78,7 +78,6 @@ public class ViewSettings extends View {
     private final static ExecutorService executorService =
             ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
 
-    private JFXSnackbar snackbar;
     private JFXDialog dialog;
 
     public ViewSettings(MainMenu mainMenu) {
@@ -88,7 +87,7 @@ public class ViewSettings extends View {
     @FXML
     public void initialize() {
         /* Initialize SnackBar */
-        snackbar = new JFXSnackbar(body);
+        snackbar.registerSnackbarContainer(body);
         /* Initialize JFXDialog */
         dialog = new JFXDialog();
         dialog.setDialogContainer(body);
@@ -241,7 +240,7 @@ public class ViewSettings extends View {
                 snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("Profile changed!")));
                 user.save();
                 mainMenu.updateFields();
-            }, System.err::println);
+            }, this::errorHandler);
 
             client.close();
         } catch (IOException ioException) {
@@ -285,7 +284,7 @@ public class ViewSettings extends View {
 
                 if (User.getPreferenceFile().delete())
                     PageHandler.getInstance().activePage("sign_in");
-            }, System.err::println);
+            }, this::errorHandler);
 
             client.close();
         } catch (IOException ioException) {
