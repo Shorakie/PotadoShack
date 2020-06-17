@@ -1,26 +1,5 @@
 /*******************************************************************************
  *                                                                             *
- * Root					 				                       				   *
- *                                                                             *
- ******************************************************************************/
-@font-face {
-	src: url('/font/WorkSans-Bold.ttf');
-}
-
-@font-face {
-	src: url('/font/WorkSans-Regular.ttf');
-}
-
-* {
-    -mat-primary: #b794f6;
-    -mat-secondary: #6002ee;
-    -mat-red: #B00020;
-    -mat-text: rgba(255, 255, 255, 0.87);
-    -mat-text-low: rgba(255, 255, 255, 0.60);
-}
-
-/*******************************************************************************
- *                                                                             *
  * Product Card             			                       				   *
  *                                                                             *
  ******************************************************************************/
@@ -44,7 +23,7 @@
 }
 
 .product-card .count{
-    -fx-font-family: 'Work Sans Bold';
+    -fx-font-family: 'Work Sans';
     -fx-font-weight: bold;
     -fx-font-size: 12;
     -fx-text-fill: -mat-text-low;
@@ -70,8 +49,10 @@
 
 .product-card .order {
     -fx-effect: none;
-    -fx-background-color: -mat-secondary;
     -fx-font-family: 'Work Sans bold';
     -fx-font-size: 12;
+}
+
+.product-card .order.flat {
     -fx-text-fill: -mat-text;
 }
