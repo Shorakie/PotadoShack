@@ -32,7 +32,7 @@
                                 <Insets left="5.0" right="5.0" />
                             </padding>
                         </Label>
-                        <Label fx:id="btn_profile" alignment="BASELINE_CENTER" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: #6002ee; -fx-border-radius: 0;" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+                        <Label fx:id="btn_profile" alignment="BASELINE_CENTER" contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 0 5 5 0; -fx-background-color: -mat-primary; -fx-border-radius: 0; -fx-text-fill: -mat-on-primary;" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                             <styleClass>
                                 <String fx:value="button-profile" />
                                 <String fx:value="fontawesome" />
@@ -144,7 +144,7 @@
                     </VBox.margin>
                 </JFXButton>
             </VBox>
-            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" styleClass="secondary-label" text="Developed By @Shorakie" textAlignment="CENTER" textFill="#fdfdfd" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" />
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" style="-fx-text-fill: -mat-text-disabled;" styleClass="secondary-label" text="Developed By @Shorakie" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" />
         </AnchorPane>
     </left>
     <top>
