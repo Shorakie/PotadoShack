@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" onMouseDragged="#dragging" onMousePressed="#drag" prefHeight="32.0" prefWidth="720" styleClass="title-bar" stylesheets="@TitleBar.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ir.aminer.potadoshack.client.controllers.custom.TitleBar">
-   <Label focusTraversable="false" maxWidth="150.0" prefHeight="32.0" styleClass="title" text="POTADO SHACK" textAlignment="CENTER" textFill="#f0f0f0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
+   <Label maxWidth="150.0" prefHeight="32.0" styleClass="title" text="POTADO SHACK" textAlignment="CENTER" textFill="#f0f0f0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0" />
    <HBox alignment="CENTER_RIGHT" fillHeight="false" layoutX="520.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Button contentDisplay="CENTER" ellipsisString="" focusTraversable="false" graphicTextGap="0.0" layoutX="278.0" layoutY="10.0" mnemonicParsing="false" onAction="#onMinimize" prefHeight="32.0" styleClass="minimize" text="" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
          <padding>
