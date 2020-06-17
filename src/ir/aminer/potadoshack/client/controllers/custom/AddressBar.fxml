@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -12,10 +13,14 @@
              <Insets left="5.0" right="5.0" />
          </padding>
      </Label>
-     <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" styleClass="fontawesome" text="" GridPane.columnIndex="2">
+     <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" text="" GridPane.columnIndex="2">
          <padding>
              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
+      <styleClass>
+         <String fx:value="fontawesome" />
+         <String fx:value="util-button" />
+      </styleClass>
      </JFXButton>
      <JFXButton fx:id="btn_delete" focusTraversable="false" onAction="#onDelete" prefHeight="30.0" styleClass="fontawesome, delete-button" text="" GridPane.columnIndex="3">
          <padding>
