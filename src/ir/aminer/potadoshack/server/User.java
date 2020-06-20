@@ -33,7 +33,7 @@ public class User extends BaseUser {
         return (credentialsFile.exists() && credentialsFile.isFile());
     }
 
-    private static File getUserFilePref(String username) {
+    public static File getUserFilePref(String username) {
         return new File("./clients/" + username + ".pref");
     }
 
