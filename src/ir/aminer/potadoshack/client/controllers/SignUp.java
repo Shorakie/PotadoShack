@@ -60,7 +60,7 @@ public class SignUp extends Page {
             return;
         }
 
-        if (Validators.passwordFieldValidator(txt_password.getText(), error -> {
+        if (!Validators.passwordFieldValidator(txt_password.getText(), error -> {
             AnimationUtils.pulse(txt_password).play();
             snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout(error)));
         }))
