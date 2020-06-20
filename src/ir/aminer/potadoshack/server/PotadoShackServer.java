@@ -15,9 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.SocketException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -83,8 +81,18 @@ public class PotadoShackServer {
         }).start();
 
 
-        while (running.get())
-            commands.getOrDefault(readNextCmd(), new HelpCommand(commands)).execute();
+        while (running.get()) {
+            List<String> line = Arrays.asList(readNextCmd().split(" "));
+            if (line.get(0).equals("\n"))
+                return;
+
+            Command command = commands.getOrDefault(line.get(0), new HelpCommand(commands));
+
+            if (line.size()>1)
+                command.execute(Command.Argument.parse(line.subList(1, line.size())));
+            else
+                command.execute(Command.Argument.parse(new ArrayList<>()));
+        }
     }
 
     private String readNextCmd() {
