@@ -19,6 +19,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -91,7 +92,7 @@ public class SignIn extends Page {
             layout.setToast("No user with the username exists.");
         }
 
-        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout));
+        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout, Duration.seconds(1)));
     }
 
     public void Signup(ActionEvent actionEvent) {

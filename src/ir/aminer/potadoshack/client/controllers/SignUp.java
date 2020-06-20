@@ -21,6 +21,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -123,7 +124,7 @@ public class SignUp extends Page {
             layout.setToast("A user with this username already exists.");
         }
 
-        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout));
+        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout, Duration.seconds(1)));
     }
 
     @FXML
