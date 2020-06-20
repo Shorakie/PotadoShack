@@ -3,27 +3,27 @@ package ir.aminer.potadoshack.core.product;
 import java.io.Serializable;
 
 public interface Product extends Serializable {
-    public enum Type {
-        FOOD, DRINK;
+    enum Type {
+        FOOD, DRINK
     }
 
-    public interface Category {
-        public String getName();
+    interface Category {
+        String getName();
 
-        public String getColor();
+        String getColor();
 
-        public String getIcon();
+        String getIcon();
     }
 
-    public int getId();
+    int getId();
 
-    public Type getType();
+    Type getType();
 
-    public String getName();
+    String getName();
 
-    public int getPrice();
+    int getPrice();
 
-    public String getImageUrl();
+    String getImageUrl();
 
-    public Category getCategory();
+    Category getCategory();
 }

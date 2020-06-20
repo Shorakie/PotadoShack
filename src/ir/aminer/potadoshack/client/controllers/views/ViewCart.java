@@ -12,7 +12,7 @@ import ir.aminer.potadoshack.core.network.packets.PlaceOrderPacket;
 import ir.aminer.potadoshack.core.order.Address;
 import ir.aminer.potadoshack.core.order.Order;
 import ir.aminer.potadoshack.core.product.Product;
-import ir.aminer.potadoshack.core.utils.ExecutorUtils;
+import ir.aminer.potadoshack.core.utils.Common;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -47,7 +47,7 @@ public class ViewCart extends View {
     private boolean readOnly;
 
     private final static ExecutorService executorService =
-            ExecutorUtils.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
+            Common.createFixedTimeoutExecutorService(2, 1, TimeUnit.SECONDS);
     Supplier<Task<Void>> updateGrandTotalPriceFactory = () -> new Task<Void>() {
         @Override
         protected Void call() {

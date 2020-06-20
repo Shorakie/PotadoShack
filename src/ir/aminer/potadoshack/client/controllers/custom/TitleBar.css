@@ -31,12 +31,12 @@
     -fx-font-size: 14px;
 }
 
-.title-bar .close:hover{
+.title-bar .close:hover {
     -fx-background-color: #B00020;
     -fx-text-fill: -mat-text;
 }
 
-.title-bar .title{
+.title-bar .title {
     -fx-font-family: 'Work Sans bold';
     -fx-font-size: 16px;
     -fx-text-fill: rgba(255, 255, 255, 0.2);

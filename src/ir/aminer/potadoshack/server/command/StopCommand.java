@@ -1,12 +1,6 @@
 package ir.aminer.potadoshack.server.command;
 
-import ir.aminer.potadoshack.client.PotadoShack;
 import ir.aminer.potadoshack.server.PotadoShackServer;
-
-import java.time.chrono.IsoEra;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class StopCommand extends Command {
 

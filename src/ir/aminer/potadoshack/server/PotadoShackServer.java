@@ -32,7 +32,7 @@ public class PotadoShackServer {
     private ServerSocket serverSocket;
     private ClientSocket client;
 
-    public final Map<String, Command> commands = new HashMap<>(){{
+    public final Map<String, Command> commands = new HashMap<>() {{
         put("h", new HelpCommand(this));
         put("help", new HelpCommand(this));
         put("stop", new StopCommand(PotadoShackServer.this));
@@ -65,7 +65,7 @@ public class PotadoShackServer {
         EventHandler.getInstance().register(new UpdatesListener());
 
         /* Fix prompt */
-        Log.setAfter(()->System.out.print("Server#"));
+        Log.setAfter(() -> System.out.print("Server#"));
 
         System.out.println("Started Listening.");
         new Thread(() -> {
@@ -87,7 +87,7 @@ public class PotadoShackServer {
             commands.getOrDefault(readNextCmd(), new HelpCommand(commands)).execute();
     }
 
-    private String readNextCmd(){
+    private String readNextCmd() {
         System.out.print("Server#");
         return new Scanner(System.in).nextLine();
     }

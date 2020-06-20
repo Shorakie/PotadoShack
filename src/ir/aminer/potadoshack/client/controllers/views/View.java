@@ -7,8 +7,8 @@ import ir.aminer.potadoshack.core.error.Error;
 
 public abstract class View {
 
-    public static enum Type {
-        MEALS, CART, ORDERS, SETTINGS;
+    public enum Type {
+        MEALS, CART, ORDERS, SETTINGS
     }
 
     protected final MainMenu mainMenu;

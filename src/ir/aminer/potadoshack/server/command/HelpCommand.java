@@ -15,7 +15,7 @@ public class HelpCommand extends Command {
     @Override
     public void execute() {
         Set<Command> commands = new HashSet<Command>(commandsMap.values());
-        for( Command command : commands)
+        for (Command command : commands)
             System.out.println(command.help());
     }
 

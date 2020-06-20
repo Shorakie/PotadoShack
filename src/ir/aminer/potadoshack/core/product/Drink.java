@@ -34,6 +34,11 @@ public enum Drink implements Product {
         public String getIcon() {
             return this.icon;
         }
+
+        @Override
+        public String toString() {
+            return getName();
+        }
     }
 
     private final int id;

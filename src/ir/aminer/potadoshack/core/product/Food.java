@@ -44,6 +44,11 @@ public enum Food implements Product {
         public String getIcon() {
             return icon;
         }
+
+        @Override
+        public String toString() {
+            return getName();
+        }
     }
 
     private final int id;

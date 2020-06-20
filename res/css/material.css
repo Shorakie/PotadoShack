@@ -205,20 +205,20 @@
 }
 
 .combo-box-popup .list-view {
-    -fx-background-color: transparent;
+    -fx-background-color: -mat-surface;
     -fx-background-radius: 3px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0.0, 0, 0);
 
     /* Margin top */
-    -fx-padding: 5px 0 0 0;
+    -fx-padding: 5px 0 3px 0;
     -fx-border-insets: 2px 0 0 0;
     -fx-background-insets: 2px 0 0 0;
+
 }
 
 .combo-box-popup .list-view .list-cell {
-    -fx-background-color: -mat-surface;
+    -fx-background-color: transparent;
     -fx-text-fill: -mat-text;
-    -fx-background-radius: 3px;
 }
 
 .combo-box-popup .list-view .list-cell:filled:selected,
@@ -241,6 +241,17 @@
 
 .combo-box-base:hover {
     -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.jfx-combo-box{
+    -fx-prompt-text-fill: -mat-text-low;
+    -fx-background-color: transparent;
+    -jfx-focus-color: -mat-primary;
+    -jfx-unfocus-color: #cccccc
+}
+
+.jfx-combo-box .cell{
+    -fx-text-fill: -mat-text;
 }
 
 /*******************************************************************************

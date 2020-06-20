@@ -4,13 +4,11 @@ import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.page.Page;
 import ir.aminer.potadoshack.client.page.PageHandler;
-import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
-import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.error.Error;
 import ir.aminer.potadoshack.core.network.ClientSocket;
-import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.network.packets.SignInPacket;
+import ir.aminer.potadoshack.core.network.packets.UserPacket;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -27,10 +25,6 @@ public class SignIn extends Page {
     public SignIn() {
         super("layouts/SignIn.fxml");
     }
-
-//    public SignIn(String path) {
-//        super(path);
-//    }
 
     @Override
     public void onEnter(Page from) {
@@ -49,21 +43,26 @@ public class SignIn extends Page {
 
     @Override
     public void onResponse(ResponsePacket response) {
+        UserPacket packet;
+        if (response.getResponse() instanceof UserPacket)
+            packet = (UserPacket) response.getResponse();
+        else
+            return;
 
         User user;
         if (User.hasPreference())
             user = User.loadClient();
         else {
-            UserPayload payload = JWT.decode(((PrimitivePacket<String>) response.getResponse()).getData()).getPayload();
-            user = new User(payload.getUsername(), payload.getFirstName(), payload.getLastName());
+            user = new User(packet.getUser());
             try {
                 User.getPreferenceFile().createNewFile();
             } catch (IOException ioException) {
                 System.err.println("Couldn't create preference file");
             }
         }
-        user.setJwt(((PrimitivePacket<String>) response.getResponse()).getData());
+        user.setJwt(packet.getJwt());
         user.save();
+
         PageHandler.getInstance().activePage("main_menu");
     }
 

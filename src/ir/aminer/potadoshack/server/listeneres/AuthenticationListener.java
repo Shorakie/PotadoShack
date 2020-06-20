@@ -7,8 +7,8 @@ import ir.aminer.potadoshack.core.event.Listener;
 import ir.aminer.potadoshack.core.event.ListenerMethod;
 import ir.aminer.potadoshack.core.event.events.SignInEvent;
 import ir.aminer.potadoshack.core.event.events.SignUpEvent;
-import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
+import ir.aminer.potadoshack.core.network.packets.UserPacket;
 import ir.aminer.potadoshack.core.utils.Common;
 import ir.aminer.potadoshack.core.utils.Log;
 import ir.aminer.potadoshack.server.PotadoShackServer;
@@ -49,9 +49,9 @@ public class AuthenticationListener implements Listener {
         client.save(clientFile);
 
         JWT jwt = JWT.generate(
-                new UserPayload(client.getUsername(), client.getPassword(), client.getFirstName(), client.getLastName()),
+                new UserPayload(client.getUsername(), client.getPassword()),
                 PotadoShackServer.SECRET_KEY);
-        event.getSender().sendResponse(new PrimitivePacket(jwt.toString()), ResponsePacket.Status.OK);
+        event.getSender().sendResponse(new UserPacket(jwt.toString(), client), ResponsePacket.Status.OK);
     }
 
     @ListenerMethod
@@ -59,7 +59,7 @@ public class AuthenticationListener implements Listener {
         String username = event.getData().getUsername();
         String password = Common.hmacSha256(PotadoShackServer.SECRET_KEY, event.getData().getPassword());
 
-        User client = null;
+        User client;
         try {
             client = User.fromUsername(username);
         } catch (IllegalStateException ignored) {
@@ -73,8 +73,8 @@ public class AuthenticationListener implements Listener {
         }
 
         JWT jwt = JWT.generate(
-                new UserPayload(client.getUsername(), client.getPassword(), client.getFirstName(), client.getLastName()),
+                new UserPayload(client.getUsername(), client.getPassword()),
                 PotadoShackServer.SECRET_KEY);
-        event.getSender().sendResponse(new PrimitivePacket(jwt.toString()), ResponsePacket.Status.OK);
+        event.getSender().sendResponse(new UserPacket(jwt.toString(), client), ResponsePacket.Status.OK);
     }
 }

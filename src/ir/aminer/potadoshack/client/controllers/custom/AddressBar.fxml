@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-
-<fx:root hgap="10.0" maxHeight="50.0" prefHeight="50.0" styleClass="box" stylesheets="@AddressBar.css" type="GridPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-     <Label fx:id="lbl_name" focusTraversable="false" style="-fx-font-weight: bold;" styleClass="secondary-label" text="Name" wrapText="true" />
-     <Label fx:id="lbl_address" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" lineSpacing="2.0" prefHeight="30.0" styleClass="secondary-label" text="Address" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-         <padding>
-             <Insets left="5.0" right="5.0" />
-         </padding>
-     </Label>
-     <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" text="" GridPane.columnIndex="2">
-         <padding>
-             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-         </padding>
-      <styleClass>
-         <String fx:value="fontawesome" />
-         <String fx:value="util-button" />
-      </styleClass>
-     </JFXButton>
-     <JFXButton fx:id="btn_delete" focusTraversable="false" onAction="#onDelete" prefHeight="30.0" styleClass="fontawesome, delete-button" text="" GridPane.columnIndex="3">
-         <padding>
-             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-         </padding>
-     </JFXButton>
-   <columnConstraints>
-      <ColumnConstraints halignment="CENTER" minWidth="40.0" />
-      <ColumnConstraints hgrow="ALWAYS" />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-   </rowConstraints>
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
+<?import java.lang.String?>
+<fx:root hgap="10.0" maxHeight="50.0" prefHeight="50.0" styleClass="box" stylesheets="@AddressBar.css" type="GridPane"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="lbl_name" style="-fx-font-weight: bold;" styleClass="secondary-label"
+           text="Name" wrapText="true"/>
+    <Label fx:id="lbl_address" alignment="CENTER" contentDisplay="CENTER" lineSpacing="2.0"
+           prefHeight="30.0" styleClass="secondary-label" text="Address" wrapText="true" GridPane.columnIndex="1"
+           GridPane.halignment="LEFT">
+        <padding>
+            <Insets left="5.0" right="5.0"/>
+        </padding>
+    </Label>
+    <JFXButton fx:id="btn_edit" focusTraversable="false" onAction="#onEdit" prefHeight="30.0" text=""
+               GridPane.columnIndex="2">
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+        </padding>
+        <styleClass>
+            <String fx:value="fontawesome"/>
+            <String fx:value="util-button"/>
+        </styleClass>
+    </JFXButton>
+    <JFXButton fx:id="btn_delete" focusTraversable="false" onAction="#onDelete" prefHeight="30.0"
+               styleClass="fontawesome, delete-button" text="" GridPane.columnIndex="3">
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+        </padding>
+    </JFXButton>
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" minWidth="40.0"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
 </fx:root>

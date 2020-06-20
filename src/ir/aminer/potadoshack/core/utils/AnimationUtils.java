@@ -18,9 +18,9 @@ public class AnimationUtils {
         return scaleTransition;
     }
 
-    public static Transition fade(Node node, boolean out){
+    public static Transition fade(Node node, boolean out) {
         FadeTransition transition = new FadeTransition(Duration.millis(140), node);
-        if(out)
+        if (out)
             transition.setToValue(0);
         else
             transition.setToValue(1);

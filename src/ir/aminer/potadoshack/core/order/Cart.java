@@ -27,7 +27,7 @@ public class Cart implements Serializable {
         return products.entrySet();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return products.isEmpty();
     }
 

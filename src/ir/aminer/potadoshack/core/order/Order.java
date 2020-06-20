@@ -11,7 +11,7 @@ public class Order implements Serializable {
         CREATED,
         FINALIZED,
         SETTLED_UP,
-        DELIVERED;
+        DELIVERED
     }
 
     private final Cart cart;
@@ -20,7 +20,7 @@ public class Order implements Serializable {
     private int code;
 
     public Order() {
-        code = hashCode();
+        code = -1;
         cart = new Cart();
         status = Status.CREATED;
     }

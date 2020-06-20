@@ -121,22 +121,22 @@ public class AddressBar extends GridPane {
     @FXML
     private void onEdit() throws IOException {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("AddressDialog.fxml"));
-        Button save_btn = ((Button)gridPane.lookup("#save"));
+        Button save_btn = ((Button) gridPane.lookup("#save"));
 
-        TextField add_name = ((TextField)gridPane.lookup("#name"));
-        TextArea add_location = ((TextArea)gridPane.lookup("#address"));
+        TextField add_name = ((TextField) gridPane.lookup("#name"));
+        TextArea add_location = ((TextArea) gridPane.lookup("#address"));
         if (getAddress() != null) {
             add_name.setText(getAddress().getName());
             add_location.setText(getAddress().getAddress());
         }
 
-        ((Label)gridPane.lookup("#head")).setText("Edit Address");
+        ((Label) gridPane.lookup("#head")).setText("Edit Address");
 
-        save_btn.setOnAction(event ->{
-            if (add_name.getText().isEmpty()){
+        save_btn.setOnAction(event -> {
+            if (add_name.getText().isEmpty()) {
                 AnimationUtils.pulse(add_name).play();
                 return;
-            }else if (add_location.getText().isEmpty()){
+            } else if (add_location.getText().isEmpty()) {
                 AnimationUtils.pulse(add_location).play();
                 return;
             }

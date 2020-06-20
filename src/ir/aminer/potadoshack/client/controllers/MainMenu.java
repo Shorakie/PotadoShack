@@ -45,7 +45,7 @@ public class MainMenu extends Page {
         updateFields();
     }
 
-    public void updateFields(){
+    public void updateFields() {
         lbl_user_name.setText(User.loadClient().getUsername());
         img_user_pfp.setImage(SwingFXUtils.toFXImage(User.loadClient().getProfilePicture(), null));
     }
@@ -127,7 +127,9 @@ public class MainMenu extends Page {
 
     @FXML
     private void onLogout() {
-        if (User.getPreferenceFile().delete())
+        User.getPreferenceFile().delete();
+        if (!User.getPreferenceFile().exists())
             PageHandler.getInstance().activePage("sign_in");
+
     }
 }
