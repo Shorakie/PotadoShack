@@ -7,6 +7,7 @@ import ir.aminer.potadoshack.core.utils.Log;
 import ir.aminer.potadoshack.server.command.Command;
 import ir.aminer.potadoshack.server.command.HelpCommand;
 import ir.aminer.potadoshack.server.command.StopCommand;
+import ir.aminer.potadoshack.server.command.UserCommand;
 import ir.aminer.potadoshack.server.listeneres.AuthenticationListener;
 import ir.aminer.potadoshack.server.listeneres.OrdersListener;
 import ir.aminer.potadoshack.server.listeneres.UpdatesListener;
@@ -34,6 +35,7 @@ public class PotadoShackServer {
         put("h", new HelpCommand(this));
         put("help", new HelpCommand(this));
         put("stop", new StopCommand(PotadoShackServer.this));
+        put("user", new UserCommand());
     }};
 
     public PotadoShackServer(int port) {
