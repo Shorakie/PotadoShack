@@ -9,7 +9,7 @@
 <BorderPane prefHeight="626.0" prefWidth="940.0" stylesheets="/css/material.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-        <AnchorPane styleClass="body">
+        <AnchorPane fx:id="body" styleClass="body">
             <VBox layoutX="320.0" layoutY="182.0" maxHeight="230.0" prefHeight="230.0" prefWidth="300.0"
                   styleClass="box">
                 <children>
