@@ -80,7 +80,18 @@ public class SignIn extends Page {
 
     @Override
     public void onError(Error error) {
-        System.err.println("Got Error: " + error);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout("An error occurred!");
+        layout.getStyleClass().add("error");
+
+        if (error.equals(Error.WRONG_PASSWORD)) {
+            AnimationUtils.pulse(txt_password).play();
+            layout.setToast("The password is incorrect.");
+        } else if (error.equals(Error.USERNAME_NOT_FOUND)) {
+            AnimationUtils.pulse(txt_username).play();
+            layout.setToast("No user with the username exists.");
+        }
+
+        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout));
     }
 
     public void Signup(ActionEvent actionEvent) {

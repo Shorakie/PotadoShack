@@ -115,10 +115,15 @@ public class SignUp extends Page {
 
     @Override
     public void onError(Error error) {
+        JFXSnackbarLayout layout = new JFXSnackbarLayout("An error occurred!");
+        layout.getStyleClass().add("error");
+
         if (error.equals(Error.USER_EXISTS)) {
             AnimationUtils.pulse(txt_username).play();
-            snackbar.enqueue(new JFXSnackbar.SnackbarEvent(new JFXSnackbarLayout("A user with this username already exists.")));
+            layout.setToast("A user with this username already exists.");
         }
+
+        snackbar.enqueue(new JFXSnackbar.SnackbarEvent(layout));
     }
 
     @FXML
