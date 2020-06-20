@@ -1,5 +1,7 @@
 package ir.aminer.potadoshack.client.controllers;
 
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import ir.aminer.potadoshack.Main;
 import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.client.page.Page;
@@ -9,21 +11,31 @@ import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.ResponsePacket;
 import ir.aminer.potadoshack.core.network.packets.SignInPacket;
 import ir.aminer.potadoshack.core.network.packets.UserPacket;
+import ir.aminer.potadoshack.core.utils.AnimationUtils;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class SignIn extends Page {
-    public Button btn_signin;
+    public AnchorPane body;
     public TextField txt_username;
     public PasswordField txt_password;
 
+    private JFXSnackbar snackbar;
+
     public SignIn() {
         super("layouts/SignIn.fxml");
+    }
+
+    @FXML
+    public void initialize() {
+        snackbar = new JFXSnackbar(body);
     }
 
     @Override
@@ -32,7 +44,7 @@ public class SignIn extends Page {
             PageHandler.getInstance().activePage("main_menu");
     }
 
-    public void signin(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+    public void signin(ActionEvent actionEvent) throws IOException {
         ClientSocket client = new ClientSocket(Main.host, Main.port);
 
         SignInPacket signin = new SignInPacket(txt_username.getText(), txt_password.getText());
