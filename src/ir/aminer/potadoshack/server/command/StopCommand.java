@@ -2,6 +2,8 @@ package ir.aminer.potadoshack.server.command;
 
 import ir.aminer.potadoshack.server.PotadoShackServer;
 
+import java.util.List;
+
 public class StopCommand extends Command {
 
     private final PotadoShackServer server;
@@ -11,7 +13,7 @@ public class StopCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(List<Argument> arguments) {
         server.stop();
     }
 
