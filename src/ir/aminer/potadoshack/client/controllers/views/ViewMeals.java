@@ -41,6 +41,27 @@ public class ViewMeals extends View {
     private Button btn_search;
 
     private volatile boolean locked = false;
+    private final Product.Category allCategories = new Product.Category() {
+        @Override
+        public String getName() {
+            return "All";
+        }
+
+        @Override
+        public String getColor() {
+            return null;
+        }
+
+        @Override
+        public String getIcon() {
+            return null;
+        }
+
+        @Override
+        public String toString() {
+            return getName();
+        }
+    };
 
     final private Supplier<Task<Void>> updateMealsSupplier = () -> new Task<Void>() {
         @Override
@@ -100,6 +121,7 @@ public class ViewMeals extends View {
     @FXML
     public void initialize() {
         meal_search.getItems().addAll("All", "Food", "Drink");
+        category_search.getItems().add(allCategories);
         updateCategorySearch();
 
         executorService.submit(updateMealsSupplier.get());
@@ -111,30 +133,8 @@ public class ViewMeals extends View {
     }
 
     private void updateCategorySearch() {
-        category_search.getItems().clear();
-
-        // Add a category named all
-        category_search.getItems().add(new Product.Category() {
-            @Override
-            public String getName() {
-                return "All";
-            }
-
-            @Override
-            public String getColor() {
-                return null;
-            }
-
-            @Override
-            public String getIcon() {
-                return null;
-            }
-
-            @Override
-            public String toString() {
-                return getName();
-            }
-        });
+        category_search.getItems().removeIf(category -> !category.equals(allCategories));
+        category_search.setValue(allCategories);
 
         if (meal_search.getValue().equalsIgnoreCase("food"))
             for (Food.Category foodCategory : Food.Category.values())
@@ -142,13 +142,12 @@ public class ViewMeals extends View {
         else if (meal_search.getValue().equalsIgnoreCase("drink"))
             for (Drink.Category drinkCategory : Drink.Category.values())
                 category_search.getItems().add(drinkCategory);
-
-        category_search.setValue(category_search.getItems().get(0));
     }
 
     @FXML
     public void onMealChange() {
         updateCategorySearch();
+        onSearch();
     }
 
     @FXML
