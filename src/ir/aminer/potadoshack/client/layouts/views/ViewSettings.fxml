@@ -78,7 +78,7 @@
                                 minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="130.0"
                                 GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
                         <ImageView fx:id="img_profile_picture" fitWidth="130.0" preserveRatio="true">
-                            <Image url="@/boy-3.jpg"/>
+                            <Image url="@/default-user.jpg"/>
                         </ImageView>
                         <JFXButton id="changePic" fx:id="profile_img_btn" contentDisplay="TOP" layoutX="23.0"
                                    layoutY="46.0" onAction="#onChangeProfilePic" opacity="0.0"

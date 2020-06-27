@@ -24,7 +24,7 @@
                         <VBox.margin>
                             <Insets left="20.0" right="20.0" top="20.0"/>
                         </VBox.margin>
-                        <Image url="@/boy-3.jpg"/>
+                        <Image url="@/default-user.jpg"/>
                     </ImageView>
                     <HBox alignment="CENTER" maxWidth="180.0">
                         <Label fx:id="lbl_user_name" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false"
