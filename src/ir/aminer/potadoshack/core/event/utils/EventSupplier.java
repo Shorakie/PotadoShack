@@ -5,5 +5,5 @@ import ir.aminer.potadoshack.core.network.ClientSocket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
 
 public interface EventSupplier<E extends Event> {
-    public E get(Packet packet, ClientSocket sender);
+    E get(Packet packet, ClientSocket sender);
 }

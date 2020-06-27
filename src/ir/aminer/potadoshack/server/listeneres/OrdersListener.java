@@ -24,8 +24,10 @@ public class OrdersListener implements Listener {
 
         if (event.getData().getOrder().getStatus().equals(Order.Status.FINALIZED))
             user.addOrder(event.getData().getOrder());
-        else
+        else {
             event.getSender().sendError(Error.INVALID_ORDER_STATE);
+            return;
+        }
         user.save();
 
         for (Map.Entry<Integer, Order> orders : user.getOrders().entrySet())

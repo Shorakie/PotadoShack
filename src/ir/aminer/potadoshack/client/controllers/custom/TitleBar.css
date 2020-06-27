@@ -1,24 +1,5 @@
 /*******************************************************************************
  *                                                                             *
- * Root					 				                       				   *
- *                                                                             *
- ******************************************************************************/
-@font-face {
-    src: url('/font/WorkSans-Bold.ttf');
-}
-
-@font-face {
-    src: url('/font/FontAwesome-Solid.otf');
-}
-
-* {
-    -mat-primary: #b794f6;
-    -mat-secondary: #6002ee;
-    -mat-red: #B00020;
-}
-
-/*******************************************************************************
- *                                                                             *
  * Title Bar                 			                       				   *
  *                                                                             *
  ******************************************************************************/
@@ -27,31 +8,35 @@
     -fx-background-color: #202020;
 }
 
-.minimize {
+.title-bar .minimize {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
+    -fx-text-fill: -mat-text-low;
     -fx-font-family: 'Font Awesome 5 Free Solid';
     -fx-font-size: 9px;
 }
 
-.minimize:hover {
+.title-bar .minimize:hover {
     -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: -mat-text;
 }
 
-.close {
+.title-bar .close {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
+    -fx-text-fill: -mat-text-low;
     -fx-font-family: 'Font Awesome 5 Free Solid';
     -fx-font-size: 14px;
 }
 
-.close:hover{
-    -fx-background-color: -mat-red;
+.title-bar .close:hover {
+    -fx-background-color: #B00020;
+    -fx-text-fill: -mat-text;
 }
 
-.title{
+.title-bar .title {
     -fx-font-family: 'Work Sans bold';
     -fx-font-size: 16px;
     -fx-text-fill: rgba(255, 255, 255, 0.2);

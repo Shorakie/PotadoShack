@@ -16,10 +16,20 @@
 }
 
 * {
-    -mat-primary: #b794f6;
+    -mat-primary: #BB86FC;
     -mat-primary-variant: #3700B3;
-    -mat-secondary: #6002ee;
-    -mat-red: #B00020;
+    -mat-secondary: #9667e6;
+
+    -mat-background: #121212;
+    -mat-surface: #121212;
+    -mat-error: #CF6679;
+
+    -mat-on-primary: #000000;
+    -mat-on-secondary: #000000;
+    -mat-on-background: #FFFFFF;
+    -mat-on-surface: #FFFFFF;
+    -mat-on-error: #000000;
+
     -mat-text: rgba(255, 255, 255, 0.87);
     -mat-text-low: rgba(255, 255, 255, 0.60);
     -mat-text-disabled: rgba(255, 255, 255, 0.38);
@@ -38,7 +48,7 @@
 }
 
 .body {
-    -fx-background-color: #121212;
+    -fx-background-color: -mat-background;
 }
 
 /*******************************************************************************
@@ -92,6 +102,10 @@
 .scroll-bar:vertical:focused,
 .scroll-bar:horizontal:focused {
     -fx-background-color: transparent, rgb(96, 96, 96), rgb(96, 96, 96);
+}
+
+.scroll-pane {
+    -fx-cursor: default;
 }
 
 .scroll-pane > .viewport {
@@ -151,7 +165,7 @@
 .button {
     -fx-background-color: -mat-secondary;
     -fx-border-radius: 5;
-    -fx-text-fill: -mat-text;
+    -fx-text-fill: -mat-on-secondary;
 }
 
 .button.flat {
@@ -160,11 +174,15 @@
 }
 
 .button > .graphic {
-    -fx-text-fill: white;
+    -fx-text-fill: -mat-on-secondary;
 }
 
-.button.flat .jfx-rippler{
-    -jfx-rippler-fill:-mat-primary;
+.button.flat > .graphic {
+    -fx-text-fill: -mat-primary-variant;
+}
+
+.button.flat .jfx-rippler {
+    -jfx-rippler-fill: -mat-primary;
 }
 
 .button:hover {
@@ -177,33 +195,44 @@
  *                                                                             *
  ******************************************************************************/
 .combo-box {
-    -fx-padding: 3px 0px 0px 0px;
-    -jfx-rippler-fill:-mat-primary;
+    -fx-padding: 3px 4px 0px 4px;
+    -jfx-rippler-fill: -mat-primary;
 }
 
 .combo-box .list-cell {
     -fx-background-color: transparent;
-    -fx-text-fill: -fx-text;
+    -fx-text-fill: -mat-text;
 }
 
 .combo-box-popup .list-view {
-    -fx-background-color: #1a1a1a;
+    -fx-background-color: -mat-surface;
+    -fx-background-radius: 3px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0.0, 0, 0);
+
+    /* Margin top */
+    -fx-padding: 5px 0 3px 0;
+    -fx-border-insets: 2px 0 0 0;
+    -fx-background-insets: 2px 0 0 0;
+
 }
 
 .combo-box-popup .list-view .list-cell {
-    -fx-background-color: #1a1a1a;
+    -fx-background-color: transparent;
+    -fx-text-fill: -mat-text;
 }
 
 .combo-box-popup .list-view .list-cell:filled:selected,
 .combo-box-popup .list-view .list-cell:filled:selected:hover {
     -fx-background-color: -mat-primary;
-    -fx-text-fill: -mat-text;
+    -fx-text-fill: -mat-on-primary;
 }
 
 .combo-box-popup .list-view .list-cell:filled:hover {
     -fx-background-color: #1a1a1a, rgba(255, 255, 255, 0.05);
-    -fx-text-fill: -mat-text;
+}
+
+.combo-box-popup .list-view .jfx-list-cell .jfx-rippler {
+    -jfx-rippler-fill: -mat-primary-variant;
 }
 
 .combo-box-base {
@@ -214,32 +243,57 @@
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
 
+.jfx-combo-box{
+    -fx-prompt-text-fill: -mat-text-low;
+    -fx-background-color: transparent;
+    -jfx-focus-color: -mat-primary;
+    -jfx-unfocus-color: #cccccc
+}
+
+.jfx-combo-box .cell{
+    -fx-text-fill: -mat-text;
+}
+
 /*******************************************************************************
  *                                                                             *
  * Snack Bar                                                                   *
  *                                                                             *
  ******************************************************************************/
-.jfx-snackbar-content {
-    -fx-background-color: white !important;
+.jfx-snackbar-layout {
+    -fx-background-color: -mat-on-background !important;
     -fx-background-radius: 2px;
     -fx-background-insets: 5;
     -fx-padding: 0;
 }
 
-.jfx-snackbar-toast {
+.jfx-snackbar-layout.error {
+    -fx-background-color: -mat-error !important;
+}
+
+.jfx-snackbar-layout.error .jfx-snackbar-toast {
+    -fx-text-fill: -mat-on-error !important;
+}
+
+.jfx-snackbar-layout.error .jfx-snackbar-action {
+    visibility: hidden;
+}
+
+.jfx-snackbar-content .jfx-snackbar-toast {
     -fx-wrap-text: true;
     -fx-font-family: "Work Sans";
     -fx-font-size: 12px;
-    -fx-text-fill: #121212 !important;
+    -fx-text-fill: -mat-on-primary !important;
 }
 
-.jfx-snackbar-action {
+.jfx-snackbar-content .jfx-snackbar-action {
     -fx-text-fill: -mat-primary-variant !important;
+    -fx-font-family: "Work Sans";
+    -fx-font-weight: bold;
     -fx-background-color: transparent;
     -fx-background-radius: 2px;
 }
 
-.jfx-snackbar-action:hover {
+.jfx-snackbar-content .jfx-snackbar-action:hover {
     -fx-background-color: transparent, rgba(255, 255, 255, 0.05);
 }
 
@@ -249,7 +303,7 @@
  *                                                                             *
  ******************************************************************************/
 .dialog {
-    -fx-background-color: #121212;
+    -fx-background-color: -mat-background;
     -fx-background-radius: 5px;
     -fx-padding: 10;
 }

@@ -1,26 +1,18 @@
 package ir.aminer.potadoshack.client.controllers.custom;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.events.JFXDialogEvent;
 import ir.aminer.potadoshack.client.User;
 import ir.aminer.potadoshack.core.order.Address;
-import ir.aminer.potadoshack.core.order.Order;
 import ir.aminer.potadoshack.core.utils.AnimationUtils;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -44,7 +36,7 @@ public class AddressBar extends GridPane {
 
     private Consumer<Address> deleteEventConsumer = deleteEvent -> {
     };
-    private Consumer<Address> viewEventConsumer = countEvent -> {
+    private Consumer<Address> editEventConsumer = countEvent -> {
     };
     private final Consumer<Address> deleteFromView = deleteEvent -> {
         try {
@@ -119,32 +111,32 @@ public class AddressBar extends GridPane {
 
     // On Edit change
     public Consumer<Address> getOnEdit() {
-        return viewEventConsumer;
+        return editEventConsumer;
     }
 
     public void setOnEdit(Consumer<Address> eventHandler) {
-        this.viewEventConsumer = eventHandler;
+        this.editEventConsumer = eventHandler;
     }
 
     @FXML
     private void onEdit() throws IOException {
         GridPane gridPane = FXMLLoader.load(getClass().getResource("AddressDialog.fxml"));
-        Button save_btn = ((Button)gridPane.lookup("#save"));
+        Button save_btn = ((Button) gridPane.lookup("#save"));
 
-        TextField add_name = ((TextField)gridPane.lookup("#name"));
-        TextArea add_location = ((TextArea)gridPane.lookup("#address"));
+        TextField add_name = ((TextField) gridPane.lookup("#name"));
+        TextArea add_location = ((TextArea) gridPane.lookup("#address"));
         if (getAddress() != null) {
             add_name.setText(getAddress().getName());
             add_location.setText(getAddress().getAddress());
         }
 
-        ((Label)gridPane.lookup("#head")).setText("Edit Address");
+        ((Label) gridPane.lookup("#head")).setText("Edit Address");
 
-        save_btn.setOnAction(event ->{
-            if (add_name.getText().isEmpty()){
+        save_btn.setOnAction(event -> {
+            if (add_name.getText().isEmpty()) {
                 AnimationUtils.pulse(add_name).play();
                 return;
-            }else if (add_location.getText().isEmpty()){
+            } else if (add_location.getText().isEmpty()) {
                 AnimationUtils.pulse(add_location).play();
                 return;
             }
@@ -163,12 +155,12 @@ public class AddressBar extends GridPane {
         dialog.setContent(gridPane);
         dialog.show();
 
-        viewEventConsumer.accept(getAddress());
+        getOnEdit().accept(getAddress());
     }
 
     @FXML
     private void onDelete() {
-        deleteEventConsumer
+        getOnDelete()
                 .andThen(deleteFromView)
                 .accept(getAddress());
     }

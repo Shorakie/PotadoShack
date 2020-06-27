@@ -14,10 +14,14 @@ public class User extends BaseUser {
     private Order order;
     private final List<Address> addressList;
 
-    public User(String username, String firstName, String lastName) {
-        this.username = username;
-        this.first_name = firstName;
-        this.last_name = lastName;
+    public User(BaseUser user) {
+        this.username = user.getUsername();
+        this.first_name = user.getFirstName();
+        this.last_name = user.getLastName();
+        this.email = user.getEmail();
+        this.phoneNumber = user.getPhoneNumber();
+        this.profile_picture = user.getProfilePicture();
+
         addressList = new ArrayList<>();
         renewCart();
     }

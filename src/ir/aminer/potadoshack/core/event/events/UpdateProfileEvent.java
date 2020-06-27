@@ -1,8 +1,8 @@
 package ir.aminer.potadoshack.core.event.events;
 
 import ir.aminer.potadoshack.core.network.ClientSocket;
-import ir.aminer.potadoshack.core.network.packets.UpdateProfilePacket;
 import ir.aminer.potadoshack.core.network.packets.Packet;
+import ir.aminer.potadoshack.core.network.packets.UpdateProfilePacket;
 
 public class UpdateProfileEvent extends AuthenticatedEvent {
 

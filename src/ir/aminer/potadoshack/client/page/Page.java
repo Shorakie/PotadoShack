@@ -16,8 +16,6 @@ import java.io.IOException;
 public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
     private final Parent parent;
 
-    // TODO: Rework constructors
-
     public Page(String path) {
         Parent temp_parent;
         try {
@@ -25,7 +23,6 @@ public class Page implements IPageEnter, IPageExit, IPageResponse, IPageError {
             loader.setController(this);
             temp_parent = loader.load();
         } catch (IOException ioException) {
-            ioException.printStackTrace();
             System.err.println("Could not load: " + path);
             temp_parent = null;
         }

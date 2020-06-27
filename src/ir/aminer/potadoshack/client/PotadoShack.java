@@ -31,7 +31,7 @@ public class PotadoShack extends Application {
         primaryStage.setScene(primaryScene);
 
         /* Awake PageHandler */
-        PageHandler.awoke(primaryScene);
+        PageHandler.awake(primaryScene);
 
         /* Dynamically add pages to SceneHandler */
         for (Map.Entry<String, Page> page : pages.entrySet()) {

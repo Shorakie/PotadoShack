@@ -6,12 +6,13 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
       <option name="myCustomPropertiesList">
         <value>
-          <list size="5">
+          <list size="6">
             <item index="0" class="java.lang.String" itemvalue="-mat-primary" />
             <item index="1" class="java.lang.String" itemvalue="-mat-secondary" />
             <item index="2" class="java.lang.String" itemvalue="-mat-red" />
             <item index="3" class="java.lang.String" itemvalue="-mat-text" />
             <item index="4" class="java.lang.String" itemvalue="-mat-text-low" />
+            <item index="5" class="java.lang.String" itemvalue="-mat-primary-variant" />
           </list>
         </value>
       </option>

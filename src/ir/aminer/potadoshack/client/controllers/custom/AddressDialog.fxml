@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
-
-<GridPane hgap="10.0" prefHeight="260.0" prefWidth="400.0" styleClass="dialog" vgap="16.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <Label id="head" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Enter an Address">
-      <GridPane.margin>
-         <Insets left="16.0" right="16.0" top="16.0" />
-      </GridPane.margin></Label>
+<GridPane hgap="10.0" prefHeight="260.0" prefWidth="400.0" styleClass="dialog" vgap="16.0"
+          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Label id="head" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Enter an Address">
+        <GridPane.margin>
+            <Insets left="16.0" right="16.0" top="16.0"/>
+        </GridPane.margin>
+    </Label>
     <TextField id="name" maxWidth="200.0" promptText="Name" GridPane.rowIndex="1">
-      <GridPane.margin>
-         <Insets left="16.0" right="16.0" />
-      </GridPane.margin></TextField>
-    <TextArea id="address" prefHeight="79.0" prefWidth="368.0" promptText="Address" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
-      <GridPane.margin>
-         <Insets left="16.0" right="16.0" />
-      </GridPane.margin></TextArea>
-    <JFXButton id="save" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" text="Save" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-      <padding>
-         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-      </padding>
-      <GridPane.margin>
-         <Insets bottom="16.0" right="16.0" />
-      </GridPane.margin></JFXButton>
+        <GridPane.margin>
+            <Insets left="16.0" right="16.0"/>
+        </GridPane.margin>
+    </TextField>
+    <TextArea id="address" prefHeight="79.0" prefWidth="368.0" promptText="Address" GridPane.rowIndex="2"
+              GridPane.vgrow="ALWAYS">
+        <GridPane.margin>
+            <Insets left="16.0" right="16.0"/>
+        </GridPane.margin>
+    </TextArea>
+    <JFXButton id="save" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" text="Save"
+               GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+        </padding>
+        <GridPane.margin>
+            <Insets bottom="16.0" right="16.0"/>
+        </GridPane.margin>
+    </JFXButton>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>
-      <RowConstraints minHeight="10.0" />
-        <RowConstraints />
-        <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-        <RowConstraints />
+        <RowConstraints minHeight="10.0"/>
+        <RowConstraints/>
+        <RowConstraints minHeight="10.0" vgrow="ALWAYS"/>
+        <RowConstraints/>
     </rowConstraints>
 </GridPane>

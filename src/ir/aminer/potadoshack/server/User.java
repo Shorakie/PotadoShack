@@ -1,16 +1,13 @@
 package ir.aminer.potadoshack.server;
 
-import ir.aminer.potadoshack.core.user.BaseUser;
 import ir.aminer.potadoshack.core.auth.simplejwt.JWT;
 import ir.aminer.potadoshack.core.auth.simplejwt.UserPayload;
 import ir.aminer.potadoshack.core.order.Order;
-import javafx.scene.image.Image;
+import ir.aminer.potadoshack.core.user.BaseUser;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 
 public class User extends BaseUser {
@@ -36,7 +33,7 @@ public class User extends BaseUser {
         return (credentialsFile.exists() && credentialsFile.isFile());
     }
 
-    private static File getUserFilePref(String username) {
+    public static File getUserFilePref(String username) {
         return new File("./clients/" + username + ".pref");
     }
 

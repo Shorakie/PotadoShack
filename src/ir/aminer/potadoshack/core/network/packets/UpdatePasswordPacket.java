@@ -1,7 +1,5 @@
 package ir.aminer.potadoshack.core.network.packets;
 
-import ir.aminer.potadoshack.core.user.BaseUser;
-
 public class UpdatePasswordPacket extends AuthenticatedPacket {
     private final String currentPassword;
     private final String password;
@@ -22,6 +20,6 @@ public class UpdatePasswordPacket extends AuthenticatedPacket {
 
     @Override
     public int getId() {
-        return 7;
+        return 8;
     }
 }

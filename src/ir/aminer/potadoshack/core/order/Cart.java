@@ -27,6 +27,10 @@ public class Cart implements Serializable {
         return products.entrySet();
     }
 
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder("--------[Cart]---------\n");

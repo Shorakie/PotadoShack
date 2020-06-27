@@ -1,6 +1,7 @@
 package ir.aminer.potadoshack.server.command;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,9 +14,9 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(List<Argument> arguments) {
         Set<Command> commands = new HashSet<Command>(commandsMap.values());
-        for( Command command : commands)
+        for (Command command : commands)
             System.out.println(command.help());
     }
 

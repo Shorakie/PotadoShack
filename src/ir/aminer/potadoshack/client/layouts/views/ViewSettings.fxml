@@ -10,7 +10,7 @@
 <StackPane fx:id="body" stylesheets="@/css/material.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
            xmlns:fx="http://javafx.com/fxml/1">
     <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="480.0" prefWidth="750.0" styleClass="body"
-                stylesheets="@/css/material.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                stylesheets="@/css/material.css" vvalue="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox prefWidth="740.0" spacing="20.0" style="-fx-border-style: hidden" styleClass="body"
               stylesheets="@/css/ViewSettings.css">
@@ -78,7 +78,7 @@
                                 minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="130.0"
                                 GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
                         <ImageView fx:id="img_profile_picture" fitWidth="130.0" preserveRatio="true">
-                            <Image url="@/boy-3.jpg"/>
+                            <Image url="@/default-user.jpg"/>
                         </ImageView>
                         <JFXButton id="changePic" fx:id="profile_img_btn" contentDisplay="TOP" layoutX="23.0"
                                    layoutY="46.0" onAction="#onChangeProfilePic" opacity="0.0"
@@ -189,7 +189,7 @@
                                     GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
                             <VBox fx:id="address_list" spacing="10.0" style="-fx-background-color: transparent">
                                 <padding>
-                                    <Insets bottom="5.0" top="5.0"/>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                 </padding>
                             </VBox>
                         </ScrollPane>

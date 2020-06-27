@@ -7,6 +7,7 @@ import ir.aminer.potadoshack.core.utils.Log;
 import ir.aminer.potadoshack.server.command.Command;
 import ir.aminer.potadoshack.server.command.HelpCommand;
 import ir.aminer.potadoshack.server.command.StopCommand;
+import ir.aminer.potadoshack.server.command.UserCommand;
 import ir.aminer.potadoshack.server.listeneres.AuthenticationListener;
 import ir.aminer.potadoshack.server.listeneres.OrdersListener;
 import ir.aminer.potadoshack.server.listeneres.UpdatesListener;
@@ -15,9 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.SocketException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -32,10 +31,11 @@ public class PotadoShackServer {
     private ServerSocket serverSocket;
     private ClientSocket client;
 
-    public final Map<String, Command> commands = new HashMap<>(){{
+    public final Map<String, Command> commands = new HashMap<>() {{
         put("h", new HelpCommand(this));
         put("help", new HelpCommand(this));
         put("stop", new StopCommand(PotadoShackServer.this));
+        put("user", new UserCommand());
     }};
 
     public PotadoShackServer(int port) {
@@ -64,6 +64,9 @@ public class PotadoShackServer {
         EventHandler.getInstance().register(new OrdersListener());
         EventHandler.getInstance().register(new UpdatesListener());
 
+        /* Fix prompt */
+        Log.setAfter(() -> System.out.print("Server#"));
+
         System.out.println("Started Listening.");
         new Thread(() -> {
             while (running.get()) {
@@ -80,11 +83,21 @@ public class PotadoShackServer {
         }).start();
 
 
-        while (running.get())
-            commands.getOrDefault(readNextCmd(), new HelpCommand(commands)).execute();
+        while (running.get()) {
+            List<String> line = Arrays.asList(readNextCmd().split(" "));
+            if (line.get(0).equals("\n"))
+                return;
+
+            Command command = commands.getOrDefault(line.get(0), new HelpCommand(commands));
+
+            if (line.size()>1)
+                command.execute(Command.Argument.parse(line.subList(1, line.size())));
+            else
+                command.execute(Command.Argument.parse(new ArrayList<>()));
+        }
     }
 
-    private String readNextCmd(){
+    private String readNextCmd() {
         System.out.print("Server#");
         return new Scanner(System.in).nextLine();
     }

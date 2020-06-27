@@ -40,7 +40,7 @@ public class UpdatesListener implements Listener {
             return;
 
         String password = Common.hmacSha256(PotadoShackServer.SECRET_KEY, event.getData().getCurrentPassword());
-        if (!user.getPassword().equals(password)){
+        if (!user.getPassword().equals(password)) {
             event.getSender().sendError(Error.WRONG_PASSWORD);
             return;
         }

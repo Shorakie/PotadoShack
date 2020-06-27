@@ -1,7 +1,19 @@
 package ir.aminer.potadoshack.core.product;
 
 public enum Drink implements Product {
-    WATER(1, "Water", 2000, "https://p7.hiclipart.com/preview/818/930/517/cartoon-beverage-bottles.jpg", Category.COLD_DRINK);
+    CAFE_CUBANO(1, "Cafe Cubano", 2000, "/images/drink/cold/cafe_cubano.png", Category.COLD_DRINK),
+    ICED_COFFEE(2, "Iced Coffee", 2000, "/images/drink/cold/iced_coffee.png", Category.COLD_DRINK),
+    LEMONADE(3, "Lemonade", 2000, "/images/drink/cold/lemonade.jpg", Category.COLD_DRINK),
+
+    HOT_COFFEE(4, "Hot Coffee", 2000, "/images/drink/hot/hot_coffee.jpg", Category.HOT_DRINK),
+    HOT_TEA(5, "Hot tea", 2000, "/images/drink/hot/hot_tea.jpg", Category.HOT_DRINK),
+
+    STRAWBERRY_SHAKE(6, "Strawberry Shake", 8000, "/images/drink/shake/strawberry_shake.jpg", Category.SHAKE),
+    BANANA_SHAKE(7, "Banana Shake", 8000, "/images/drink/shake/banana_shake.jpg", Category.SHAKE),
+    OREO_SHAKE(8, "Oreo Shake", 8000, "/images/drink/shake/oreo_shake.jpg", Category.SHAKE),
+
+
+    ;
 
 
     public enum Category implements Product.Category {
@@ -33,6 +45,11 @@ public enum Drink implements Product {
         @Override
         public String getIcon() {
             return this.icon;
+        }
+
+        @Override
+        public String toString() {
+            return getName();
         }
     }
 

@@ -10,10 +10,11 @@ public class PageHandler {
 
     private static PageHandler instance = null;
 
-    private Map<String, Page> pages = new HashMap<>();
+    private final Map<String, Page> pages = new HashMap<>();
     /* Default is an empty page */
     private Page currentPage = new Page(new Pane());
-    private Scene scene;
+    private String currentTheme = "/themes/purple.css";
+    private final Scene scene;
 
     private PageHandler(Scene scene) {
         this.scene = scene;
@@ -30,7 +31,6 @@ public class PageHandler {
     public void activePage(String name) {
         if (currentPage == null)
             throw new IllegalStateException("Default page should be given");
-
         Page to = pages.get(name);
 
         /* Inform current page we are existing */
@@ -46,7 +46,15 @@ public class PageHandler {
         currentPage = to;
     }
 
-    public static void awoke(Scene scene) {
+    public void setPalette(String path) {
+        for (Page page : pages.values()) {
+            page.getParent().getStylesheets().remove(getClass().getResource(currentTheme).toExternalForm());
+            page.getParent().getStylesheets().add(getClass().getResource(path).toExternalForm());
+            currentTheme = path;
+        }
+    }
+
+    public static void awake(Scene scene) {
         if (instance != null)
             throw new IllegalStateException("Instance is already initialized.");
         instance = new PageHandler(scene);

@@ -9,7 +9,7 @@ import ir.aminer.potadoshack.core.network.packets.CancelOrderPacket;
 import ir.aminer.potadoshack.core.network.packets.PrimitivePacket;
 import ir.aminer.potadoshack.core.network.packets.ViewOrdersPacket;
 import ir.aminer.potadoshack.core.order.Order;
-import ir.aminer.potadoshack.core.utils.ExecutorUtils;
+import ir.aminer.potadoshack.core.utils.Common;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class ViewOrder extends View {
     private VBox v_box;
 
     private final static ExecutorService executorService =
-            ExecutorUtils.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
+            Common.createFixedTimeoutExecutorService(1, 1, TimeUnit.SECONDS);
 
     public ViewOrder(MainMenu mainMenu) {
         super(mainMenu);
@@ -33,6 +33,9 @@ public class ViewOrder extends View {
 
     @FXML
     public void initialize() {
+
+        snackbar.registerSnackbarContainer(v_box);
+
         Task<Void> addOrders = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -52,7 +55,7 @@ public class ViewOrder extends View {
 
                         Platform.runLater(() -> v_box.getChildren().add(orderCard));
                     }
-                }, System.err::println);
+                }, ViewOrder.this::errorHandler);
 
                 client.close();
 
@@ -70,7 +73,7 @@ public class ViewOrder extends View {
 
             client.handleResponseAfterAuthority(responsePacket -> {
                 System.out.println(((PrimitivePacket<String>) responsePacket.getResponse()).getData());
-            }, System.err::println);
+            }, this::errorHandler);
 
 
             client.close();
