@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 - JavaFX 10.0.0
-- Java 8
+- Java 10.0.01
 
 ### Installing
 Simply clone the project into a directory
