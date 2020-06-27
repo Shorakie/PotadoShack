@@ -59,9 +59,6 @@ public class Main {
             }
         }
 
-        // TODO: replace images
-        // TODO: Add pallet color support
-
         if (mode.equals(Mode.CLIENT))
             javafx.application.Application.launch(PotadoShack.class, args);
         else if (mode.equals(Mode.SERVER))
